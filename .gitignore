@@ -1,12 +1,5 @@
 $ cat .gitignore
-*.[oa]
-*~
-*.obj
-*.log
-*.cfg
-*.dsk
-*.bak
-*.gpi
-*.exe
 .vscode
+card_maker/node_modules
+card_maker/package-lock.json
 bin
