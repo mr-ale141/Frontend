@@ -78,9 +78,9 @@ const templateExample6: Template = {
     width: 800,
     hight: 600,
     blocks: [
-        textBlockHello,
-        imageBlockExample,
-        artBlockExample
+        textBlockHello3,
+        imageBlockExample4,
+        artBlockExample5
     ]
 }
 
@@ -91,8 +91,8 @@ const activBlockExample7: ActivBlock = {
 }
 
 const sessionExample8: Session = {
-    selectedBlock: activBlockExample,
+    selectedBlock: activBlockExample7,
     templates: [
-        templateExample
+        templateExample6
     ]
 }

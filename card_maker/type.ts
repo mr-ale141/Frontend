@@ -1,4 +1,4 @@
-type Char = {
+type Char = {   // весь текст сразу
     value: string,
     fontSize: number,
     fontFamily: string,
@@ -18,7 +18,7 @@ type Block = {
     posX: number,
     posY: number,
     color: string,
-    filtr: string
+    filtr: string     // на весь холст
 }
 
 type TextBlock = Block & {
@@ -27,7 +27,7 @@ type TextBlock = Block & {
 }
 
 type ImageBlock = Block & {
-    type: 'image',
+    type: 'image',// добавить ссылку
     data: string
 }
 
@@ -36,7 +36,7 @@ type ArtBlock = Block & {
     data: ArtObject
 }
 
-type Template = {
+type Template = {    // добавить холст
     id: string,
     width: number,
     hight: number,
@@ -45,11 +45,13 @@ type Template = {
 
 type ActivBlock = {
     id: string
-    changeParametrs: Array<string>,
-    newValues: Array<string>
+    changeParametrs: Array<string>, // лишнее
+    newValues: Array<string>      // лишнее
 }
 
 type Session = {
     selectedBlock: ActivBlock,
     templates: Array<Template>
 }
+
+// + тестовые данные
