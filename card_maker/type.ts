@@ -36,7 +36,7 @@ type ArtBlock = Block & {
     data: ArtObject
 }
 
-type Template = {    // добавить холст, фон
+type Template = {    // добавить холст, фон (цвет или картинка)
     id: string,
     width: number,
     hight: number,
