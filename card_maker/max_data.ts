@@ -1,98 +1,106 @@
-const textHello: Array<Char> = [
+const artObjectSource: Array<ArtObject> = [
     {
-        value: 'H',
-        fontSize: 10,
-        fontFamily: 'Arial',
-        color: '000000',
-        bold: true
+        name: 'quote',
+        svg_data: 'svg_string'
     }, {
-        value: 'e',
-        fontSize: 10,
-        fontFamily: 'Arial',
-        color: '000000',
-        bold: true
+        name: 'circle',
+        svg_data: 'svg_string'
     }, {
-        value: 'l',
-        fontSize: 10,
-        fontFamily: 'Arial',
-        color: '000000',
-        bold: true
+        name: 'square',
+        svg_data: 'svg_string'
     }, {
-        value: 'l',
-        fontSize: 10,
-        fontFamily: 'Arial',
-        color: '000000',
-        bold: true
+        name: 'rectangle',
+        svg_data: 'svg_string'
     }, {
-        value: 'o',
-        fontSize: 10,
-        fontFamily: 'Arial',
-        color: '000000',
-        bold: true
+        name: 'oval',
+        svg_data: 'svg_string'
+    }, {
+        name: 'rhombus',
+        svg_data: 'svg_string'
+    }, {
+        name: 'line',
+        svg_data: 'svg_string'
+    }, {
+        name: 'arrow',
+        svg_data: 'svg_string'
+    }, {
+        name: 'like',
+        svg_data: 'svg_string'
     }
 ]
 
-const textBlockHello3: TextBlock = {
+const textBlockHelloWorld: TextBlock = {
     id: 'blk4',
     width: 50,
     hight: 14,
     posX: 0,
     posY: 0,
-    color: 'FFFFFF',
-    filtr: '',
     type: 'text',
-    chars: textHello
+    value: 'Hello World!',
+    fontSize: 14,
+    fontFamily: 'Arial',
+    color: '000000',
+    bold: false,
+    cursive: true,
+    underline: false,
+    background: {
+        type: "color",
+        data: 'FFFFFF'
+    }
 }
 
-const artObjectExample: ArtObject = {
-    name: 'quote',
-    data: 'Base64_string'
-}
-
-const imageBlockExample4: ImageBlock = {
+const imageBlockLink: ImageBlock = {
     id: 'blk5',
     width: 200,
     hight: 100,
     posX: 20,
     posY: 20,
-    color: '',
-    filtr: '+101010',
     type: 'image',
-    data: 'Base64_string'
+    data: {
+        type: 'link',
+        data: 'https://...'
+    }
 }
 
-const artBlockExample5: ArtBlock = {
+const artBlockCircle: ArtBlock = {
     id: 'blk6',
     width: 50,
     hight: 50,
     posX: 100,
     posY: 100,
-    color: 'FF0000',
-    filtr: '',
     type: 'art',
-    data: artObjectExample
+    color: '00FF00',
+    art_name: 'circle',
+    background: {
+        type: 'color',
+        data: 'FFFFFF'
+    }
 }
 
-const templateExample6: Template = {
+const templateMax: Template = {
     id: 'tmp2',
-    width: 800,
-    hight: 600,
     blocks: [
-        textBlockHello3,
-        imageBlockExample4,
-        artBlockExample5
+        textBlockHelloWorld,
+        imageBlockLink,
+        artBlockCircle
     ]
 }
 
-const activBlockExample7: ActivBlock = {
-    id: 'blk5',
-    changeParametrs: ['posX', 'posY'],
-    newValues: ['200', '150']
+const activBlockMax: ActivBlock = {
+    id: 'blk5'
 }
 
-const sessionExample8: Session = {
-    selectedBlock: activBlockExample7,
-    templates: [
-        templateExample6
-    ]
+const sessionMax: Session = {
+    selectedBlock: activBlockMax,
+    file_name: 'max_file.stick',
+    canvas: {
+        width: 800,
+        hight: 600,
+        filtr: '+000015',
+        tamplate_id: 'tmp2',
+        background: {
+            type: 'color',
+            data: '0000FF'
+        }
+    }
 }

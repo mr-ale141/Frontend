@@ -1,13 +1,10 @@
-type Char = {   // весь текст сразу
-    value: string,
-    fontSize: number,
-    fontFamily: string,
-    color: string,
-    bold: boolean
-}
-
 type ArtObject = {
     name: string,
+    svg_data: string
+}
+
+type Background = {
+    type: 'link'|'base64'|'color',
     data: string
 }
 
@@ -16,42 +13,52 @@ type Block = {
     width: number,
     hight: number,
     posX: number,
-    posY: number,
-    color: string,
-    filtr: string     // на весь холст
+    posY: number
 }
 
 type TextBlock = Block & {
     type: 'text',
-    chars: Array<Char>
+    value: string,
+    fontSize: number,
+    fontFamily: string,
+    color: string,
+    bold: boolean,
+    cursive: boolean,
+    underline: boolean,
+    background: Background
 }
 
 type ImageBlock = Block & {
-    type: 'image',// добавить ссылку
-    data: string
+    type: 'image',
+    data: Background
 }
 
 type ArtBlock = Block & {
     type: 'art',
-    data: ArtObject
+    color: string,
+    art_name: string,
+    background: Background
 }
 
-type Template = {    // добавить холст, фон (цвет или картинка)
+type Template = {
     id: string,
+    blocks: Array<TextBlock|ImageBlock|ArtBlock>
+}
+
+type Canvas = {
     width: number,
     hight: number,
-    blocks: Array<TextBlock|ImageBlock|ArtBlock>
+    filtr: string,
+    tamplate_id: string,
+    background: Background
 }
 
 type ActivBlock = {
     id: string
-    changeParametrs: Array<string>, // лишнее
-    newValues: Array<string>      // лишнее
 }
 
 type Session = {
     selectedBlock: ActivBlock,
-    templates: Array<Template>
+    canvas: Canvas,
+    file_name: string
 }
-
-// + тестовые данные
