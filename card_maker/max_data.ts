@@ -29,6 +29,59 @@ const artObjectSource: Array<ArtObject> = [
     }
 ]
 
+const tamplateSource: Array<Template> = [
+    {
+        id: 'tmp1',
+        blocks: []
+    }, {
+        id: 'tmp2',
+        blocks: [
+        {
+            id: 'tmp_txt_blk_1',
+            width: 100,
+            hight: 200,
+            posX: 50,
+            posY: 150,
+            type: 'text',
+            value: 'Template TEXT',
+            fontSize: 14,
+            fontFamily: 'Arial',
+            color: '000000',
+            bold: true,
+            cursive: true,
+            underline: false,
+            background: {
+                type: "color",
+                data: 'FF00FF'
+            }
+        }, {
+                id: 'tmp_img_blk_1',
+            width: 300,
+            hight: 100,
+            posX: 250,
+            posY: 400,
+            type: 'image',
+            data: {
+                type: 'link',
+                data: 'https://...'
+            }
+        }, {
+                id: 'tmp_art_blk_1',
+            width: 100,
+            hight: 100,
+            posX: 300,
+            posY: 300,
+            type: 'art',
+            color: '00FF00',
+            art_name: 'circle',
+            background: {
+                type: 'color',
+                data: 'FFFFFF'
+            }
+        }]
+    }
+]
+
 const textBlockHelloWorld: TextBlock = {
     id: 'blk4',
     width: 50,
@@ -98,6 +151,7 @@ const sessionMax: Session = {
         hight: 600,
         filtr: '+000015',
         tamplate_id: 'tmp2',
+        blocks: [],
         background: {
             type: 'color',
             data: '0000FF'

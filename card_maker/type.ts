@@ -42,7 +42,7 @@ type ArtBlock = Block & {
 
 type Template = {
     id: string,
-    blocks: Array<TextBlock|ImageBlock|ArtBlock>
+    blocks: Array<TextBlock | ImageBlock | ArtBlock>
 }
 
 type Canvas = {
@@ -50,7 +50,8 @@ type Canvas = {
     hight: number,
     filtr: string,
     tamplate_id: string,
-    background: Background
+    background: Background,
+    blocks: Array<TextBlock | ImageBlock | ArtBlock>
 }
 
 type ActivBlock = {

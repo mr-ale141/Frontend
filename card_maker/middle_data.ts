@@ -48,11 +48,7 @@ const artBlockQuote: ArtBlock = {
 
 const templateMiddle: Template = {
     id: 'tmp1',
-    blocks: [
-        textBlockHello,
-        imageBlockBase64,
-        artBlockQuote
-    ]
+    blocks: []
 }
 
 const activBlockMiddle: ActivBlock = {
@@ -64,6 +60,11 @@ const canvasMiddle: Canvas = {
     hight: 600,
     filtr: '+450000',
     tamplate_id: 'tmp1',
+    blocks: [
+        textBlockHello,
+        imageBlockBase64,
+        artBlockQuote
+    ],
     background: {
         type: 'color',
         data: 'FFFFFF'
