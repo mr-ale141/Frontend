@@ -3,7 +3,7 @@ type ArtObject = {
     svg_data: string
 }
 
-type Background = {
+type Background = {//разбить
     type: 'link'|'base64'|'color',
     data: string
 }
@@ -35,7 +35,7 @@ type ImageBlock = Block & {
 
 type ArtBlock = Block & {
     type: 'art',
-    color: string,
+    border_color: string,
     art_name: string,
     background: Background
 }
@@ -54,7 +54,7 @@ type Canvas = {
     blocks: Array<TextBlock | ImageBlock | ArtBlock>
 }
 
-type ActivBlock = {
+type ActivBlock = { //массив блоков, убрать и указать в Session
     id: string
 }
 
