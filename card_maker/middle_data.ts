@@ -1,10 +1,5 @@
 import {
     ArtObject,
-    Image,
-    Position,
-    Size,
-    Color,
-    Block,
     TextBlock,
     ImageBlock,
     ArtBlock,
@@ -12,19 +7,25 @@ import {
     Canvas,
     DeltaHistory,
     Session,
-} from "./type.js"; 
+} from "./type.js";
+
+let artObjectExample: ArtObject;
 
 const textBlockHello: TextBlock = {
     id: "blk1",
-    width: 50,
-    hight: 14,
-    posX: 0,
-    posY: 0,
+    position: {
+        x: 0,
+        y: 0,
+    },
+    size: {
+        width: 50,
+        hight: 14,
+    },
     type: "text",
     value: "Hello",
     fontSize: 12,
     fontFamily: "Arial",
-    color: "000000",
+    color: {r: 0, g: 0, b: 0, a: 1},
     bold: false,
     cursive: true,
     underline: false,
@@ -82,6 +83,8 @@ const canvasMiddle: Canvas = {
         data: "FFFFFF",
     },
 };
+
+const cmd: DeltaHistory;
 
 const sessionMiddle: Session = {
     selectedBlock: activBlockMiddle,

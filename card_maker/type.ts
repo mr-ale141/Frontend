@@ -25,6 +25,16 @@ type Color = {
     a: number;
 };
 
+type Text = {
+    value: string;
+    fontSize: number;
+    fontFamily: string;
+    color: Color;
+    bold: boolean;
+    cursive: boolean;
+    underline: boolean;
+}
+
 type Block = {
     id: string;
     position: Position;
@@ -33,19 +43,13 @@ type Block = {
 
 type TextBlock = Block & {
     type: "text";
-    value: string;
-    fontSize: number;
-    fontFamily: string;
-    color: Color;
-    bold: boolean;
-    cursive: boolean;
-    underline: boolean;
+    text: Text;
     background: Image | Color;
 };
 
 type ImageBlock = Block & {
     type: "image";
-    data: Image;
+    img: Image;
 };
 
 type ArtBlock = Block & {
@@ -68,25 +72,21 @@ type Canvas = {
 };
 
 type DeltaHistory = {
-    idBlock: string;
+    object: string;
     field: string;
-    newValue: string;
+    operation: string;
+    newValue: object;
 };
 
 type Session = {
     editHistory: Array<DeltaHistory>;
     selectedBlocks: Array<string>;
-    tamplate_id: string;
+    tamplate: Template;
     file_name: string;
 };
 
 export {
     ArtObject,
-    Image,
-    Position,
-    Size,
-    Color,
-    Block,
     TextBlock,
     ImageBlock,
     ArtBlock,

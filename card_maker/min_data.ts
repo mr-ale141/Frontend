@@ -1,10 +1,5 @@
 import {
     ArtObject,
-    Image,
-    Position,
-    Size,
-    Color,
-    Block,
     TextBlock,
     ImageBlock,
     ArtBlock,
@@ -13,6 +8,8 @@ import {
     DeltaHistory,
     Session,
 } from "./type.js";
+
+let artObjectExample: ArtObject;
 
 let textBlockExample: TextBlock;
 
@@ -24,6 +21,6 @@ let templateExample: Template;
 
 let canvasExample: Canvas;
 
-let activBlockExample: ActivBlock;
+let cmd: DeltaHistory;
 
 let sessionExample: Session;
