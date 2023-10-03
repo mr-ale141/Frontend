@@ -1,3 +1,19 @@
+import {
+    ArtObject,
+    Image,
+    Position,
+    Size,
+    Color,
+    Block,
+    TextBlock,
+    ImageBlock,
+    ArtBlock,
+    Template,
+    Canvas,
+    DeltaHistory,
+    Session,
+} from "./type.js"; 
+
 const textBlockHello: TextBlock = {
     id: "blk1",
     width: 50,

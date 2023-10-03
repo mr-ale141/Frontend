@@ -79,3 +79,19 @@ type Session = {
     tamplate_id: string;
     file_name: string;
 };
+
+export {
+    ArtObject,
+    Image,
+    Position,
+    Size,
+    Color,
+    Block,
+    TextBlock,
+    ImageBlock,
+    ArtBlock,
+    Template,
+    Canvas,
+    DeltaHistory,
+    Session,
+};
