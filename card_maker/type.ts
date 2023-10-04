@@ -33,7 +33,7 @@ type Text = {
     bold: boolean;
     cursive: boolean;
     underline: boolean;
-}
+};
 
 type Block = {
     id: string;

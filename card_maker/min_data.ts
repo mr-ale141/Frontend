@@ -24,3 +24,14 @@ let canvasExample: Canvas;
 let cmd: DeltaHistory;
 
 let sessionExample: Session;
+
+export {
+    artObjectExample,
+    textBlockExample,
+    imageBlockExample,
+    artBlockExample,
+    templateExample,
+    canvasExample,
+    cmd,
+    sessionExample,
+};
