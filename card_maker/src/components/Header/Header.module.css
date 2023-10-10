@@ -1,4 +1,7 @@
 .header {
-    grid-area: h;
-    background-color: green;
+    height: 8vh;
+    background-color: powderblue;
+    border-bottom: 2px outset white;
+    border-right: 2px outset white;
+    border-radius: 2px;
 }

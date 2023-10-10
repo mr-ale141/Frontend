@@ -1,4 +1,11 @@
 .nav {
-    grid-area: t;
-    background-color: burlywood;
+    position: absolute;
+    width: 15vw;
+    min-width: 200px;
+    height: 88vh;
+    left: 1vw;
+    top: 10vh;
+    background-color: snow;
+    border-radius: 15px;
+    border: 2px outset white;
 }
