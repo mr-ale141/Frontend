@@ -15,7 +15,7 @@ type Position = {
 
 type Size = {
     width: number;
-    hight: number;
+    height: number;
 };
 
 type Color = {
@@ -67,7 +67,7 @@ type Template = {
 
 type Canvas = {
     size: Size;
-    filtr: Color;
+    filter: Color;
     background: Image | Color;
 };
 
@@ -81,11 +81,11 @@ type DeltaHistory = {
 type Session = {
     editHistory: Array<DeltaHistory>;
     selectedBlocks: Array<string>;
-    tamplate: Template;
+    template: Template;
     file_name: string;
 };
 
-export {
+export type {
     ArtObject,
     TextBlock,
     ImageBlock,

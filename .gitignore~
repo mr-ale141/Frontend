@@ -2,5 +2,4 @@ $ cat .gitignore
 .vscode
 card_maker/node_modules
 card_maker/package-lock.json
-card_maker/.idea
 bin

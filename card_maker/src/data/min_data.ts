@@ -7,7 +7,7 @@ import {
     Canvas,
     DeltaHistory,
     Session,
-} from "./type.js";
+} from "../type/type.js";
 
 let artObjectExample: ArtObject;
 
