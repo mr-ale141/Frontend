@@ -1,5 +1,0 @@
-$ cat .gitignore
-.vscode
-card_maker/node_modules
-card_maker/package-lock.json
-bin

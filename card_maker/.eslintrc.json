@@ -5,6 +5,8 @@
     },
     "root": true,
     "extends": [
+        "standard",
+        "standard-jsx",
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier",
