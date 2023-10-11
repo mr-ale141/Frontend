@@ -16,7 +16,7 @@
             "height"
         ],
         "prettier/prettier": true,
-        "color-hex-case": "upper",
+        "color-hex-case": "lower",
         "color-hex-length": "long",
         "color-no-invalid-hex": true
     }

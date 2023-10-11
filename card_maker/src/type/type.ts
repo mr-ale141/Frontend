@@ -4,7 +4,7 @@ type ArtObject = {
 };
 
 type Image = {
-    type: "link" | "base64";
+    type: "link" | "base64" | "";
     data: string;
 };
 
@@ -44,31 +44,36 @@ type Block = {
 type TextBlock = Block & {
     type: "text";
     text: Text;
-    background: Image | Color;
+    bgImage: Image;
+    bgColor: Color;
 };
 
 type ImageBlock = Block & {
     type: "image";
-    img: Image;
+    bgImage: Image;
 };
 
 type ArtBlock = Block & {
     type: "art";
     border_color: Color;
     art_name: string;
-    background: Image | Color;
-};
-
-type Template = {
-    id: string;
-    canvas: Canvas;
-    blocks: Array<TextBlock | ImageBlock | ArtBlock>;
+    bgImage: Image;
+    bgColor: Color;
 };
 
 type Canvas = {
     size: Size;
     filter: Color;
-    background: Image | Color;
+    bgImage: Image;
+    bgColor: Color;
+};
+
+type Template = {
+    id: string;
+    canvas: Canvas;
+    textBlocks: Array<TextBlock>;
+    artBlocks: Array<ArtBlock>;
+    imageBlocks: Array<ImageBlock>;
 };
 
 type DeltaHistory = {

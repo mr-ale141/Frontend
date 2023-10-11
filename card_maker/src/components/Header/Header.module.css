@@ -1,7 +1,33 @@
 .header {
     height: 8vh;
-    background-color: powderblue;
-    border-bottom: 2px outset white;
-    border-right: 2px outset white;
+    min-height: 60px;
+    padding: 15px;
+    background-color: #353535;
+    border-bottom: 2px outset #575757;
+    border-right: 2px outset #575757;
     border-radius: 2px;
+}
+
+.logo {
+    width: 170px;
+    height: 4vh;
+    min-height: 30px;
+    padding: 3px;
+    border-radius: 15px;
+    border: 2px outset #575757;
+    text-align: center;
+    background-image: linear-gradient(
+        to right,
+        #462523 0,
+        #cb9b51 22%,
+        #f6e27a 45%,
+        #f6f2c0 50%,
+        #f6e27a 55%,
+        #cb9b51 78%,
+        #462523 100%
+    );
+}
+
+.logo span {
+    font: bold italic 150% serif;
 }

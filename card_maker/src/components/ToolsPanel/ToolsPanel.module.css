@@ -1,11 +1,11 @@
 .nav {
     position: absolute;
     width: 15vw;
-    min-width: 200px;
+    min-width: 100px;
     height: 88vh;
     left: 1vw;
-    top: 10vh;
-    background-color: snow;
+    top: max(10vh, 80px);
+    background-color: #353535;
     border-radius: 15px;
-    border: 2px outset white;
+    border: 2px outset #575757;
 }

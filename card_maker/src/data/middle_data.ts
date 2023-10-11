@@ -31,7 +31,16 @@ const textBlockHello: TextBlock = {
         cursive: true,
         underline: false,
     },
-    background: { r: 0x00, g: 0x00, b: 0x00, a: 1 },
+    bgImage: {
+        type: "",
+        data: "",
+    },
+    bgColor: {
+        r: 0x00,
+        g: 0x00,
+        b: 0x00,
+        a: 1,
+    },
 };
 
 const imageBlockBase64: ImageBlock = {
@@ -45,7 +54,7 @@ const imageBlockBase64: ImageBlock = {
         height: 100,
     },
     type: "image",
-    img: {
+    bgImage: {
         type: "base64",
         data: "./img/base64/gofer.txt",
     },
@@ -64,7 +73,16 @@ const artBlockQuote: ArtBlock = {
     type: "art",
     border_color: { r: 0xff, g: 0x00, b: 0x00, a: 1 },
     art_name: "quote",
-    background: { r: 0xff, g: 0xff, b: 0xff, a: 1 },
+    bgImage: {
+        type: "",
+        data: "",
+    },
+    bgColor: {
+        r: 0xff,
+        g: 0xff,
+        b: 0xff,
+        a: 1,
+    },
 };
 
 const canvasMiddle: Canvas = {
@@ -73,13 +91,24 @@ const canvasMiddle: Canvas = {
         height: 600,
     },
     filter: { r: 0x45, g: 0x00, b: 0x00, a: 0 },
-    background: { r: 0xff, g: 0xff, b: 0xff, a: 1 },
+    bgImage: {
+        type: "",
+        data: "",
+    },
+    bgColor: {
+        r: 0xff,
+        g: 0xff,
+        b: 0xff,
+        a: 1,
+    },
 };
 
 const templateMiddle: Template = {
     id: "tmp1",
     canvas: canvasMiddle,
-    blocks: [textBlockHello, imageBlockBase64, artBlockQuote],
+    imageBlocks: [imageBlockBase64],
+    textBlocks: [textBlockHello],
+    artBlocks: [artBlockQuote],
 };
 
 const cmd: DeltaHistory = {
