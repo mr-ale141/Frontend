@@ -10,14 +10,14 @@ function ArtBlk({ artBlock }: IArtBlock) {
     const posX = artBlock.position.x;
     const posY = artBlock.position.y;
     const artName = artBlock.art_name;
-    let art: string = "";
     const bgR = artBlock.bgColor.r;
     const bgG = artBlock.bgColor.g;
     const bgB = artBlock.bgColor.b;
     const bgA = artBlock.bgColor.a;
+    let artData: string = "";
     for (const elt of Data.artObjectSource) {
         if (elt.name === artName) {
-            art = elt.svg_data;
+            artData = elt.svg_data;
         }
     }
     return (
@@ -34,9 +34,8 @@ function ArtBlk({ artBlock }: IArtBlock) {
                                   ${bgA.toString()}
                              )`,
             }}
-        >
-            {this.renderNextLine(art)}
-        </div>
+            dangerouslySetInnerHTML={{ __html: artData }}
+        />
     );
 }
 
