@@ -26,8 +26,8 @@ function ArtBlk({ artBlock }: IArtBlock) {
             style={{
                 width: artBlockWidth,
                 height: artBlockHeight,
-                top: posY,
-                left: posX,
+                marginTop: posY,
+                marginLeft: posX,
                 background: `rgba(${bgR.toString()}, 
                                   ${bgG.toString()}, 
                                   ${bgB.toString()}, 

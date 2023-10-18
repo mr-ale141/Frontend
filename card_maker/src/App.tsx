@@ -4,16 +4,13 @@ import ToolsPanel from "./components/ToolsPanel/ToolsPanel";
 import WorkSpace from "./components/WorkSpace/WorkSpace";
 import Data from "../src/data/max_data";
 function App() {
-    const template = Data.templateSource[1];
+    const template = Data.templateSource[0];
     return (
         <div className="app">
             <Header />
             <ToolsPanel />
-            <WorkSpace template={template} />
+            {template && <WorkSpace template={template} />}
         </div>
     );
 }
 export default App;
-// header     #043f45
-// ToolsPanel #211d1d
-// WorkSpace  #2e2411

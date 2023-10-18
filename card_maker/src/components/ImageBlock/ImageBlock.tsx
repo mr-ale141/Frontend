@@ -8,7 +8,10 @@ interface IImageBlock {
 // }
 function ImageBlk({ imageBlock }: IImageBlock) {
     let dataImage = "data:image/png;base64,";
-    if (imageBlock.bgImage.type === "link") {
+    if (
+        imageBlock.bgImage.type === "link" ||
+        imageBlock.bgImage.type === "base64"
+    ) {
         dataImage = imageBlock.bgImage.data;
     } else {
         const file = "../../data/" + imageBlock.bgImage.data;
@@ -20,8 +23,8 @@ function ImageBlk({ imageBlock }: IImageBlock) {
             style={{
                 width: imageBlock.size.width,
                 height: imageBlock.size.height,
-                top: imageBlock.position.y,
-                left: imageBlock.position.x,
+                marginTop: imageBlock.position.y,
+                marginLeft: imageBlock.position.x,
             }}
         >
             <img src={dataImage} alt="img" />

@@ -28,8 +28,8 @@ function TextBlk({ textBlock }: ITextBlock) {
             style={{
                 width: textBlockWidth,
                 height: textBlockHeight,
-                top: posY,
-                left: posX,
+                marginTop: posY,
+                marginLeft: posX,
             }}
         >
             <p

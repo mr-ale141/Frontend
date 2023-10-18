@@ -26,9 +26,9 @@ function Canvas({
                 height: canvasHeight,
             }}
         >
-            <TextBlk textBlock={textBlocks[0]} />
-            <ArtBlk artBlock={artBlocks[0]} />
-            <ImageBlk imageBlock={imageBlocks[0]} />
+            {textBlocks[0] && <TextBlk textBlock={textBlocks[0]} />}
+            {artBlocks[0] && <ArtBlk artBlock={artBlocks[0]} />}
+            {imageBlocks[0] && <ImageBlk imageBlock={imageBlocks[0]} />}
         </div>
     );
 }

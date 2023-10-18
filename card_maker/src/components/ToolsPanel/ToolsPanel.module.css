@@ -2,9 +2,9 @@
     position: absolute;
     width: 15vw;
     min-width: 100px;
-    height: 88vh;
+    height: 500px;
     left: 1vw;
-    top: max(10vh, 80px);
+    top: max(15vh, 80px);
     background-color: #353535;
     border-radius: 15px;
     border: 2px outset #575757;
