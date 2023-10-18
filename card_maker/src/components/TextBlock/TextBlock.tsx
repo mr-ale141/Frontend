@@ -4,8 +4,9 @@ interface ITextBlock {
     textBlock: TextBlock;
 }
 function TextBlk({ textBlock }: ITextBlock) {
-    const textBlockWidth = textBlock.size.width;
-    const textBlockHeight = textBlock.size.height;
+    const { width, height } = textBlock.size;
+    // const textBlockWidth = textBlock.size.width;
+    // const textBlockHeight = textBlock.size.height;
     const posX = textBlock.position.x;
     const posY = textBlock.position.y;
     const text = textBlock.text.value;
@@ -26,8 +27,8 @@ function TextBlk({ textBlock }: ITextBlock) {
         <div
             className={css.text}
             style={{
-                width: textBlockWidth,
-                height: textBlockHeight,
+                width,
+                height,
                 marginTop: posY,
                 marginLeft: posX,
             }}
