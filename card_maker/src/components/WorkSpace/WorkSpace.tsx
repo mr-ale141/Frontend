@@ -7,11 +7,10 @@ interface ITemplate {
     template: Template;
 }
 function WorkSpace({ template }: ITemplate) {
-    const size = { ...template.canvas.size };
     return (
         <div className={css.workspace}>
             <Canvas
-                size={size}
+                size={template.canvas.size}
                 textBlocks={template.textBlocks}
                 artBlocks={template.artBlocks}
                 imageBlocks={template.imageBlocks}

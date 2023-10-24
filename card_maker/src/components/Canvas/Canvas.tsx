@@ -11,9 +11,8 @@ interface ITemplate {
     artBlocks: ArtBlock[];
 }
 function Canvas({ size, imageBlocks, artBlocks, textBlocks }: ITemplate) {
-    const { width, height } = size;
     return (
-        <div className={css.canvas} style={{ width, height }}>
+        <div className={css.canvas} style={size}>
             {textBlocks[0] && <TextBlk textBlock={textBlocks[0]} />}
             {artBlocks[0] && <ArtBlk artBlock={artBlocks[0]} />}
             {imageBlocks[0] && <ImageBlk imageBlock={imageBlocks[0]} />}

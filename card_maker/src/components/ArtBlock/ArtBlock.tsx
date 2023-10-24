@@ -6,8 +6,6 @@ interface IArtBlock {
     artBlock: ArtBlock;
 }
 function ArtBlk({ artBlock }: IArtBlock) {
-    const { width, height } = artBlock.size;
-    const { marginLeft, marginTop } = artBlock.position;
     const artName = artBlock.artName;
     let artData: string = "";
     for (const elt of Data.artObjectSource) {
@@ -19,10 +17,8 @@ function ArtBlk({ artBlock }: IArtBlock) {
         <div
             className={css.art}
             style={{
-                width,
-                height,
-                marginTop,
-                marginLeft,
+                ...artBlock.size,
+                ...artBlock.position,
                 background: convertRGB(artBlock.bgColor),
             }}
             dangerouslySetInnerHTML={{ __html: artData }}

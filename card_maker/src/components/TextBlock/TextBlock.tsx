@@ -5,27 +5,14 @@ interface ITextBlock {
     textBlock: TextBlock;
 }
 function TextBlk({ textBlock }: ITextBlock) {
-    const { width, height } = textBlock.size;
-    const { marginLeft, marginTop } = textBlock.position;
-    const { fontSize, fontFamily, fontStyle, fontWeight, textDecoration } =
-        textBlock.text;
     return (
         <div
             className={css.text}
-            style={{
-                width,
-                height,
-                marginTop,
-                marginLeft,
-            }}
+            style={{ ...textBlock.size, ...textBlock.position }}
         >
             <p
                 style={{
-                    fontSize,
-                    fontFamily,
-                    fontStyle,
-                    fontWeight,
-                    textDecoration,
+                    ...textBlock.text,
                     color: ConvertRGB(textBlock.text.color),
                     background: ConvertRGB(textBlock.bgColor),
                 }}
@@ -35,5 +22,4 @@ function TextBlk({ textBlock }: ITextBlock) {
         </div>
     );
 }
-
 export default TextBlk;
