@@ -9,8 +9,8 @@ type Image = {
 };
 
 type Position = {
-    x: number;
-    y: number;
+    marginLeft: number;
+    marginTop: number;
 };
 
 type Size = {
@@ -30,9 +30,9 @@ type Text = {
     fontSize: number;
     fontFamily: string;
     color: Color;
-    bold: boolean;
-    cursive: boolean;
-    underline: boolean;
+    fontWeight: number;
+    fontStyle: string;
+    textDecoration: string;
 };
 
 type Block = {
@@ -55,8 +55,8 @@ type ImageBlock = Block & {
 
 type ArtBlock = Block & {
     type: "art";
-    border_color: Color;
-    art_name: string;
+    borderColor: Color;
+    artName: string;
     bgImage: Image;
     bgColor: Color;
 };
@@ -99,4 +99,6 @@ export type {
     Canvas,
     DeltaHistory,
     Session,
+    Color,
+    Size,
 };

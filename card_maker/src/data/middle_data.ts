@@ -1,5 +1,4 @@
 import {
-    ArtObject,
     TextBlock,
     ImageBlock,
     ArtBlock,
@@ -9,13 +8,11 @@ import {
     Session,
 } from "../type/type.js";
 
-let artObjectExample: ArtObject;
-
 const textBlockHello: TextBlock = {
     id: "blk1",
     position: {
-        x: 0,
-        y: 0,
+        marginLeft: 0,
+        marginTop: 0,
     },
     size: {
         width: 50,
@@ -27,9 +24,9 @@ const textBlockHello: TextBlock = {
         fontSize: 12,
         fontFamily: "Arial",
         color: { r: 0x00, g: 0x00, b: 0x00, a: 1 },
-        bold: false,
-        cursive: true,
-        underline: false,
+        fontWeight: 400,
+        fontStyle: "italic",
+        textDecoration: "none",
     },
     bgImage: {
         type: "",
@@ -46,8 +43,8 @@ const textBlockHello: TextBlock = {
 const imageBlockBase64: ImageBlock = {
     id: "blk2",
     position: {
-        x: 20,
-        y: 20,
+        marginLeft: 20,
+        marginTop: 20,
     },
     size: {
         width: 200,
@@ -63,16 +60,16 @@ const imageBlockBase64: ImageBlock = {
 const artBlockQuote: ArtBlock = {
     id: "blk3",
     position: {
-        x: 100,
-        y: 100,
+        marginLeft: 100,
+        marginTop: 100,
     },
     size: {
         width: 50,
         height: 50,
     },
     type: "art",
-    border_color: { r: 0xff, g: 0x00, b: 0x00, a: 1 },
-    art_name: "quote",
+    borderColor: { r: 0xff, g: 0x00, b: 0x00, a: 1 },
+    artName: "quote",
     bgImage: {
         type: "",
         data: "",
@@ -129,7 +126,6 @@ const sessionMiddle: Session = {
 };
 
 export {
-    artObjectExample,
     textBlockHello,
     artBlockQuote,
     canvasMiddle,

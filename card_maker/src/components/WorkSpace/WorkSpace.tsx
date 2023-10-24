@@ -7,23 +7,14 @@ interface ITemplate {
     template: Template;
 }
 function WorkSpace({ template }: ITemplate) {
-    const canvasWidth = template.canvas.size.width
-        ? template.canvas.size.width
-        : 700;
-    const canvasHeight = template.canvas.size.height
-        ? template.canvas.size.height
-        : 500;
-    const textBlocks = template.textBlocks;
-    const artBlocks = template.artBlocks;
-    const imageBlocks = template.imageBlocks;
+    const size = { ...template.canvas.size };
     return (
         <div className={css.workspace}>
             <Canvas
-                canvasWidth={canvasWidth}
-                canvasHeight={canvasHeight}
-                textBlocks={textBlocks}
-                artBlocks={artBlocks}
-                imageBlocks={imageBlocks}
+                size={size}
+                textBlocks={template.textBlocks}
+                artBlocks={template.artBlocks}
+                imageBlocks={template.imageBlocks}
             />
         </div>
     );

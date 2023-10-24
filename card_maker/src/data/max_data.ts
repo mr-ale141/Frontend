@@ -47,8 +47,8 @@ const textBlockSource: Array<TextBlock> = [
             height: 100,
         },
         position: {
-            x: 50,
-            y: 80,
+            marginLeft: 50,
+            marginTop: 80,
         },
         type: "text",
         text: {
@@ -61,9 +61,9 @@ const textBlockSource: Array<TextBlock> = [
                 b: 0x0,
                 a: 1,
             },
-            bold: true,
-            cursive: true,
-            underline: false,
+            fontWeight: 800,
+            fontStyle: "italic",
+            textDecoration: "none",
         },
         bgImage: {
             type: "",
@@ -86,8 +86,8 @@ const imageBlockSource: Array<ImageBlock> = [
             height: 200,
         },
         position: {
-            x: 0,
-            y: 0,
+            marginLeft: 0,
+            marginTop: 0,
         },
         type: "image",
         bgImage: {
@@ -102,8 +102,8 @@ const imageBlockSource: Array<ImageBlock> = [
             height: 300,
         },
         position: {
-            x: 50,
-            y: 50,
+            marginLeft: 50,
+            marginTop: 50,
         },
         type: "image",
         bgImage: {
@@ -121,17 +121,17 @@ const artBlockSource: Array<ArtBlock> = [
             height: 100,
         },
         position: {
-            x: 200,
-            y: 0,
+            marginLeft: 200,
+            marginTop: 0,
         },
         type: "art",
-        border_color: {
+        borderColor: {
             r: 0xff,
             g: 0x00,
             b: 0x00,
             a: 1,
         },
-        art_name: "like",
+        artName: "like",
         bgImage: {
             type: "",
             data: "",
@@ -268,8 +268,8 @@ const userImageBlocks: Array<ImageBlock> = [
             height: 600,
         },
         position: {
-            x: 0,
-            y: 0,
+            marginLeft: 0,
+            marginTop: 0,
         },
         type: "image",
         bgImage: {

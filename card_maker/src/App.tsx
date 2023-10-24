@@ -4,7 +4,7 @@ import ToolsPanel from "./components/ToolsPanel/ToolsPanel";
 import WorkSpace from "./components/WorkSpace/WorkSpace";
 import Data from "../src/data/max_data";
 function App() {
-    const template = Data.templateSource[0];
+    const template = Data.templateSource[1];
     return (
         <div className="app">
             <Header />

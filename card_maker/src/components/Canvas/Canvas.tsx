@@ -3,34 +3,21 @@ import css from "./Canvas.module.css";
 import TextBlk from "../TextBlock/TextBlock";
 import ArtBlk from "../ArtBlock/ArtBlock";
 import ImageBlk from "../ImageBlock/ImageBlock";
-import { TextBlock, ImageBlock, ArtBlock } from "../../type/type";
+import { TextBlock, ImageBlock, ArtBlock, Size } from "../../type/type";
 interface ITemplate {
-    canvasWidth: number;
-    canvasHeight: number;
+    size: Size;
     imageBlocks: ImageBlock[];
     textBlocks: TextBlock[];
     artBlocks: ArtBlock[];
 }
-function Canvas({
-    canvasWidth,
-    canvasHeight,
-    imageBlocks,
-    artBlocks,
-    textBlocks,
-}: ITemplate) {
+function Canvas({ size, imageBlocks, artBlocks, textBlocks }: ITemplate) {
+    const { width, height } = size;
     return (
-        <div
-            className={css.canvas}
-            style={{
-                width: canvasWidth,
-                height: canvasHeight,
-            }}
-        >
+        <div className={css.canvas} style={{ width, height }}>
             {textBlocks[0] && <TextBlk textBlock={textBlocks[0]} />}
             {artBlocks[0] && <ArtBlk artBlock={artBlocks[0]} />}
             {imageBlocks[0] && <ImageBlk imageBlock={imageBlocks[0]} />}
         </div>
     );
 }
-
 export default Canvas;

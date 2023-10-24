@@ -7,6 +7,8 @@ interface IImageBlock {
 //
 // }
 function ImageBlk({ imageBlock }: IImageBlock) {
+    const { width, height } = imageBlock.size;
+    const { marginLeft, marginTop } = imageBlock.position;
     let dataImage = "data:image/png;base64,";
     if (
         imageBlock.bgImage.type === "link" ||
@@ -20,12 +22,7 @@ function ImageBlk({ imageBlock }: IImageBlock) {
     return (
         <div
             className={css.image}
-            style={{
-                width: imageBlock.size.width,
-                height: imageBlock.size.height,
-                marginTop: imageBlock.position.y,
-                marginLeft: imageBlock.position.x,
-            }}
+            style={{ width, height, marginTop, marginLeft }}
         >
             <img src={dataImage} alt="img" />
         </div>

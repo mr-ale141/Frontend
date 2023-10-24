@@ -1,55 +1,36 @@
 import css from "./TextBlock.module.css";
 import { TextBlock } from "../../type/type";
+import ConvertRGB from "../../function/convertRGB";
 interface ITextBlock {
     textBlock: TextBlock;
 }
 function TextBlk({ textBlock }: ITextBlock) {
     const { width, height } = textBlock.size;
-    // const textBlockWidth = textBlock.size.width;
-    // const textBlockHeight = textBlock.size.height;
-    const posX = textBlock.position.x;
-    const posY = textBlock.position.y;
-    const text = textBlock.text.value;
-    const textFontSize = textBlock.text.fontSize;
-    const textFontFamily = textBlock.text.fontFamily;
-    const textR = textBlock.text.color.r;
-    const textB = textBlock.text.color.g;
-    const textG = textBlock.text.color.b;
-    const textA = textBlock.text.color.a;
-    const bgR = textBlock.bgColor.r;
-    const bgG = textBlock.bgColor.g;
-    const bgB = textBlock.bgColor.b;
-    const bgA = textBlock.bgColor.a;
-    // const textBold = textBlocks[0].text.bold;
-    // const textCursive = textBlocks[0].text.cursive;
-    // const textUnderline = textBlocks[0].text.underline;
+    const { marginLeft, marginTop } = textBlock.position;
+    const { fontSize, fontFamily, fontStyle, fontWeight, textDecoration } =
+        textBlock.text;
     return (
         <div
             className={css.text}
             style={{
                 width,
                 height,
-                marginTop: posY,
-                marginLeft: posX,
+                marginTop,
+                marginLeft,
             }}
         >
             <p
                 style={{
-                    fontSize: textFontSize,
-                    fontFamily: textFontFamily,
-                    color: `rgba(${textR.toString()}, 
-                                 ${textB.toString()}, 
-                                 ${textG.toString()}, 
-                                 ${textA.toString()}
-                            )`,
-                    background: `rgba(${bgR.toString()}, 
-                                      ${bgG.toString()}, 
-                                      ${bgB.toString()}, 
-                                      ${bgA.toString()}
-                                 )`,
+                    fontSize,
+                    fontFamily,
+                    fontStyle,
+                    fontWeight,
+                    textDecoration,
+                    color: ConvertRGB(textBlock.text.color),
+                    background: ConvertRGB(textBlock.bgColor),
                 }}
             >
-                {text}
+                {textBlock.text.value}
             </p>
         </div>
     );

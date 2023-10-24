@@ -1,19 +1,14 @@
 import css from "./ArtBlock.module.css";
 import { ArtBlock } from "../../type/type";
 import Data from "../../data/max_data";
+import convertRGB from "../../function/convertRGB";
 interface IArtBlock {
     artBlock: ArtBlock;
 }
 function ArtBlk({ artBlock }: IArtBlock) {
-    const artBlockWidth = artBlock.size.width;
-    const artBlockHeight = artBlock.size.height;
-    const posX = artBlock.position.x;
-    const posY = artBlock.position.y;
-    const artName = artBlock.art_name;
-    const bgR = artBlock.bgColor.r;
-    const bgG = artBlock.bgColor.g;
-    const bgB = artBlock.bgColor.b;
-    const bgA = artBlock.bgColor.a;
+    const { width, height } = artBlock.size;
+    const { marginLeft, marginTop } = artBlock.position;
+    const artName = artBlock.artName;
     let artData: string = "";
     for (const elt of Data.artObjectSource) {
         if (elt.name === artName) {
@@ -24,15 +19,11 @@ function ArtBlk({ artBlock }: IArtBlock) {
         <div
             className={css.art}
             style={{
-                width: artBlockWidth,
-                height: artBlockHeight,
-                marginTop: posY,
-                marginLeft: posX,
-                background: `rgba(${bgR.toString()}, 
-                                  ${bgG.toString()}, 
-                                  ${bgB.toString()}, 
-                                  ${bgA.toString()}
-                             )`,
+                width,
+                height,
+                marginTop,
+                marginLeft,
+                background: convertRGB(artBlock.bgColor),
             }}
             dangerouslySetInnerHTML={{ __html: artData }}
         />
