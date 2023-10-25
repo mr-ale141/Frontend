@@ -6,19 +6,20 @@ interface ITextBlock {
     selectedBlocks: Array<string>;
 }
 function TextBlk({ textBlock, selectedBlocks }: ITextBlock) {
-    let classNameList = css.text;
+    let classNameList = "border";
     if (selectedBlocks.includes(textBlock.id)) {
         classNameList += " selected";
     }
     return (
         <div
-            className={classNameList}
+            className={css.text}
             style={{
                 ...textBlock.size,
                 ...textBlock.position,
                 backgroundColor: ConvertRGB(textBlock.bgColor),
             }}
         >
+            <div className={classNameList} />
             <p
                 style={{
                     ...textBlock.text,

@@ -343,7 +343,7 @@ const session: Session = {
             },
         },
     ],
-    selectedBlocks: ["img0", "txt0"],
+    selectedBlocks: ["img0", "txt0", "art0"],
     template: selectedTemplate,
     file_name: "max_file.card",
 };

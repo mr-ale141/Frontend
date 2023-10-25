@@ -1,5 +1,6 @@
 .text {
     position: absolute;
+    box-sizing: content-box;
 }
 
 .text p {

@@ -5,15 +5,16 @@ interface IImageBlock {
     selectedBlocks: Array<string>;
 }
 function ImageBlk({ imageBlock, selectedBlocks }: IImageBlock) {
-    let classNameList = css.image;
+    let classNameList = "border";
     if (selectedBlocks.includes(imageBlock.id)) {
         classNameList += " selected";
     }
     return (
         <div
-            className={classNameList}
+            className={css.image}
             style={{ ...imageBlock.size, ...imageBlock.position }}
         >
+            <div className={classNameList} />
             <img src={imageBlock.bgImage.data} alt="img" />
         </div>
     );

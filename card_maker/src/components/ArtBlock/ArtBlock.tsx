@@ -7,7 +7,7 @@ interface IArtBlock {
     selectedBlocks: Array<string>;
 }
 function ArtBlk({ artBlock, selectedBlocks }: IArtBlock) {
-    let classNameList = css.art;
+    let classNameList = "border";
     if (selectedBlocks.includes(artBlock.id)) {
         classNameList += " selected";
     }
@@ -20,14 +20,16 @@ function ArtBlk({ artBlock, selectedBlocks }: IArtBlock) {
     }
     return (
         <div
-            className={classNameList}
+            className={css.art}
             style={{
                 ...artBlock.size,
                 ...artBlock.position,
                 background: convertRGB(artBlock.bgColor),
             }}
-            dangerouslySetInnerHTML={{ __html: artData }}
-        />
+        >
+            <div className={classNameList} />
+            <div dangerouslySetInnerHTML={{ __html: artData }} />
+        </div>
     );
 }
 export default ArtBlk;
