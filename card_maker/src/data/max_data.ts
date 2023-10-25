@@ -58,7 +58,7 @@ const textBlockSource: Array<TextBlock> = [
         },
         type: "text",
         text: {
-            value: "Don`t worry be happy",
+            value: "I need Card Maker!!!",
             fontSize: 14,
             fontFamily: "Arial",
             color: {
