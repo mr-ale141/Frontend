@@ -4,12 +4,17 @@ import ToolsPanel from "./components/ToolsPanel/ToolsPanel";
 import WorkSpace from "./components/WorkSpace/WorkSpace";
 import Data from "../src/data/max_data";
 function App() {
-    const template = Data.templateSource[1];
+    const template = Data.session.template;
     return (
         <div className="app">
             <Header />
             <ToolsPanel />
-            {template && <WorkSpace template={template} />}
+            {template && (
+                <WorkSpace
+                    template={template}
+                    selectedBlocks={Data.session.selectedBlocks}
+                />
+            )}
         </div>
     );
 }

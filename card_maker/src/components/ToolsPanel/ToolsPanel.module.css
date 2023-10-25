@@ -8,4 +8,5 @@
     background-color: #353535;
     border-radius: 15px;
     border: 2px outset #575757;
+    z-index: 1;
 }

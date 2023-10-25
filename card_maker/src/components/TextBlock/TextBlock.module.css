@@ -1,3 +1,7 @@
 .text {
-    background-color: darkslateblue;
+    position: absolute;
+}
+
+.text p {
+    position: absolute;
 }

@@ -1,6 +1,6 @@
 .canvas {
     background-color: #f6f2c0;
-    position: absolute;
-    top: 15vh;
-    left: 30vw;
+    position: relative;
+    margin: auto;
+    top: 2vh;
 }

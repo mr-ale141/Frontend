@@ -5,12 +5,14 @@ import { Template } from "../../type/type";
 
 interface ITemplate {
     template: Template;
+    selectedBlocks: Array<string>;
 }
-function WorkSpace({ template }: ITemplate) {
+function WorkSpace({ template, selectedBlocks }: ITemplate) {
     return (
         <div className={css.workspace}>
             <Canvas
                 size={template.canvas.size}
+                selectedBlocks={selectedBlocks}
                 textBlocks={template.textBlocks}
                 artBlocks={template.artBlocks}
                 imageBlocks={template.imageBlocks}

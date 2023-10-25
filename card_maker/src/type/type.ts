@@ -9,8 +9,9 @@ type Image = {
 };
 
 type Position = {
-    marginLeft: number;
-    marginTop: number;
+    left: number;
+    top: number;
+    zIndex: number;
 };
 
 type Size = {
@@ -42,6 +43,7 @@ type Block = {
 };
 
 type TextBlock = Block & {
+    positionText: Position;
     type: "text";
     text: Text;
     bgImage: Image;

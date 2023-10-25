@@ -11,8 +11,14 @@ import {
 const textBlockHello: TextBlock = {
     id: "blk1",
     position: {
-        marginLeft: 0,
-        marginTop: 0,
+        left: 0,
+        top: 0,
+        zIndex: 20,
+    },
+    positionText: {
+        left: 0,
+        top: 0,
+        zIndex: 21,
     },
     size: {
         width: 50,
@@ -43,8 +49,9 @@ const textBlockHello: TextBlock = {
 const imageBlockBase64: ImageBlock = {
     id: "blk2",
     position: {
-        marginLeft: 20,
-        marginTop: 20,
+        left: 20,
+        top: 20,
+        zIndex: 0,
     },
     size: {
         width: 200,
@@ -60,8 +67,9 @@ const imageBlockBase64: ImageBlock = {
 const artBlockQuote: ArtBlock = {
     id: "blk3",
     position: {
-        marginLeft: 100,
-        marginTop: 100,
+        left: 100,
+        top: 100,
+        zIndex: 10,
     },
     size: {
         width: 50,

@@ -41,23 +41,29 @@ const artObjectSource: Array<ArtObject> = [
 
 const textBlockSource: Array<TextBlock> = [
     {
-        id: "tmp2_txt_blk_1",
+        id: "txt0",
         size: {
             width: 200,
-            height: 100,
+            height: 130,
         },
         position: {
-            marginLeft: 50,
-            marginTop: 80,
+            left: 425,
+            top: 40,
+            zIndex: 20,
+        },
+        positionText: {
+            left: 25,
+            top: 40,
+            zIndex: 21,
         },
         type: "text",
         text: {
-            value: "Template TEXT Block",
+            value: "Don`t worry be happy",
             fontSize: 14,
             fontFamily: "Arial",
             color: {
-                r: 0x0,
-                g: 0x0,
+                r: 0xff,
+                g: 0x00,
                 b: 0x0,
                 a: 1,
             },
@@ -70,24 +76,25 @@ const textBlockSource: Array<TextBlock> = [
             data: "",
         },
         bgColor: {
-            r: 0xff,
-            g: 0xff,
-            b: 0xff,
-            a: 0,
+            r: 0x36,
+            g: 0x23,
+            b: 0x45,
+            a: 1,
         },
     },
 ];
 
 const imageBlockSource: Array<ImageBlock> = [
     {
-        id: "tmp3_img_blk_0",
+        id: "img0",
         size: {
-            width: 200,
-            height: 200,
+            width: 300,
+            height: 300,
         },
         position: {
-            marginLeft: 0,
-            marginTop: 0,
+            left: 150,
+            top: 150,
+            zIndex: 0,
         },
         type: "image",
         bgImage: {
@@ -96,14 +103,15 @@ const imageBlockSource: Array<ImageBlock> = [
         },
     },
     {
-        id: "tmp3_img_blk_1",
+        id: "img1",
         size: {
             width: 300,
             height: 300,
         },
         position: {
-            marginLeft: 50,
-            marginTop: 50,
+            left: 50,
+            top: 50,
+            zIndex: 1,
         },
         type: "image",
         bgImage: {
@@ -112,14 +120,15 @@ const imageBlockSource: Array<ImageBlock> = [
         },
     },
     {
-        id: "tmp3_img_blk_2",
+        id: "img2",
         size: {
             width: 50,
             height: 50,
         },
         position: {
-            marginLeft: 10,
-            marginTop: 10,
+            left: 10,
+            top: 10,
+            zIndex: 2,
         },
         type: "image",
         bgImage: {
@@ -131,14 +140,15 @@ const imageBlockSource: Array<ImageBlock> = [
 
 const artBlockSource: Array<ArtBlock> = [
     {
-        id: "tmp4_art_blk_1",
+        id: "art0",
         size: {
-            width: 100,
-            height: 100,
+            width: 250,
+            height: 200,
         },
         position: {
-            marginLeft: 200,
-            marginTop: 0,
+            left: 400,
+            top: 0,
+            zIndex: 10,
         },
         type: "art",
         borderColor: {
@@ -147,7 +157,7 @@ const artBlockSource: Array<ArtBlock> = [
             b: 0x00,
             a: 1,
         },
-        artName: "like",
+        artName: "quote",
         bgImage: {
             type: "",
             data: "",
@@ -163,7 +173,7 @@ const artBlockSource: Array<ArtBlock> = [
 
 const templateSource: Array<Template> = [
     {
-        id: "tmp1",
+        id: "tmp0",
         canvas: {
             size: {
                 width: 200,
@@ -191,7 +201,7 @@ const templateSource: Array<Template> = [
         artBlocks: [],
     },
     {
-        id: "tmp2",
+        id: "tmp1",
         canvas: {
             size: {
                 width: 700,
@@ -219,7 +229,7 @@ const templateSource: Array<Template> = [
         artBlocks: [artBlockSource[0]],
     },
     {
-        id: "tmp3",
+        id: "tmp2",
         canvas: {
             size: {
                 width: 400,
@@ -247,7 +257,7 @@ const templateSource: Array<Template> = [
         artBlocks: [],
     },
     {
-        id: "tmp4",
+        id: "tmp3",
         canvas: {
             size: {
                 width: 297,
@@ -284,8 +294,9 @@ const userImageBlocks: Array<ImageBlock> = [
             height: 600,
         },
         position: {
-            marginLeft: 0,
-            marginTop: 0,
+            left: 0,
+            top: 0,
+            zIndex: 0,
         },
         type: "image",
         bgImage: {
@@ -299,7 +310,7 @@ const userTextBlocks: Array<TextBlock> = [];
 
 const userArtBlocks: Array<ArtBlock> = [];
 
-const selectedTemplate = templateSource[0];
+const selectedTemplate = templateSource[1];
 
 const cmd: DeltaHistory = {
     object: "blk1",
@@ -332,7 +343,7 @@ const session: Session = {
             },
         },
     ],
-    selectedBlocks: ["blk1"],
+    selectedBlocks: ["img0", "txt0"],
     template: selectedTemplate,
     file_name: "max_file.card",
 };
