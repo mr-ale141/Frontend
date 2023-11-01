@@ -1,17 +1,21 @@
-type ArtObject = {
-    name: string;
-    svg_data: string;
-};
+enum ArtName {
+    quote,
+    circle,
+    square,
+    rect,
+    line,
+    arrow,
+    like,
+}
 
 type Image = {
-    type: "link" | "base64" | "";
+    type: "link" | "base64" | "Path" | "";
     data: string;
 };
 
 type Position = {
     left: number;
     top: number;
-    zIndex: number;
 };
 
 type Size = {
@@ -53,17 +57,17 @@ type TextBlock = Block & {
 type ImageBlock = Block & {
     type: "image";
     bgImage: Image;
+    bgColor: Color;
 };
 
 type ArtBlock = Block & {
     type: "art";
     borderColor: Color;
-    artName: string;
-    bgImage: Image;
+    artName: ArtName;
     bgColor: Color;
 };
 
-type Canvas = {
+type CanvasType = {
     size: Size;
     filter: Color;
     bgImage: Image;
@@ -72,10 +76,8 @@ type Canvas = {
 
 type Template = {
     id: string;
-    canvas: Canvas;
-    textBlocks: Array<TextBlock>;
-    artBlocks: Array<ArtBlock>;
-    imageBlocks: Array<ImageBlock>;
+    canvas: CanvasType;
+    blocks: Array<ArtBlock | TextBlock | ImageBlock>;
 };
 
 type DeltaHistory = {
@@ -93,14 +95,15 @@ type Session = {
 };
 
 export type {
-    ArtObject,
     TextBlock,
     ImageBlock,
     ArtBlock,
     Template,
-    Canvas,
+    CanvasType,
     DeltaHistory,
     Session,
     Color,
     Size,
 };
+
+export { ArtName };

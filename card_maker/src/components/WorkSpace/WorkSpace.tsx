@@ -1,22 +1,11 @@
 import css from "./WorkSpace.module.css";
-import Canvas from "../Canvas/Canvas";
 import React from "react";
-import { Template } from "../../type/type";
+import Canvas from "../Canvas/Canvas";
 
-interface ITemplate {
-    template: Template;
-    selectedBlocks: Array<string>;
-}
-function WorkSpace({ template, selectedBlocks }: ITemplate) {
+function WorkSpace() {
     return (
         <div className={css.workspace}>
-            <Canvas
-                size={template.canvas.size}
-                selectedBlocks={selectedBlocks}
-                textBlocks={template.textBlocks}
-                artBlocks={template.artBlocks}
-                imageBlocks={template.imageBlocks}
-            />
+            <Canvas />
         </div>
     );
 }
