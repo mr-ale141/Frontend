@@ -257,7 +257,7 @@ const templateSource: Array<Template> = [
 
 const session: Session = {
     editHistory: [],
-    selectedBlocks: [],
+    selectedBlocks: ["txt0", "img0", "art0"],
     template: templateSource[1],
     file_name: "max_file.card",
 };
