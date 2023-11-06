@@ -1,7 +1,7 @@
 import React from "react";
 import { ArtBlock } from "../../../type/type";
-import getHexColor from "../../../function/getHexColor";
-import getOpacity from "../../../function/getOpacity";
+import getHexColor from "../../../utils/getHexColor";
+import getOpacity from "../../../utils/getOpacity";
 interface IArrow {
     artBlock: ArtBlock;
 }

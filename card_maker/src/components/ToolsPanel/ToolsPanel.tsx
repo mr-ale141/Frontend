@@ -1,20 +1,19 @@
 import css from "./ToolsPanel.module.css";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
-import { sessionState, setFillColorArt } from "../../data/sessionReducer";
+import { sessionState, setBGColorBlock } from "../../data/sessionReducer";
 import React from "react";
 import { Color } from "../../type/type";
 function ToolsPanel() {
     const state = useAppSelector(sessionState);
     const dispatch = useAppDispatch();
-    const idActiveBlocks = state.session.selectedBlocks;
     const activeBlocks: Array<{ id: string; type: string }> = [];
-    for (const id in idActiveBlocks) {
-        const blk = state.session.template.blocks.find(
-            (blk) => blk.id === idActiveBlocks[id],
+    state.session.selectedBlocks.forEach((id) => {
+        const block = state.session.template.blocks.find(
+            (block) => block.id === id,
         );
-        if (blk) activeBlocks.push({ type: blk.type, id: idActiveBlocks[id] });
-    }
-    function setColor(event: React.ChangeEvent<HTMLInputElement>, id: string) {
+        if (block) activeBlocks.push({ type: block.type, id });
+    });
+    function setColor(event: React.ChangeEvent<HTMLInputElement>) {
         const colorStr = event.target.value;
         let strR = colorStr[1];
         strR += colorStr[2];
@@ -28,7 +27,7 @@ function ToolsPanel() {
             b: parseInt(strB, 16),
             a: 1,
         };
-        dispatch(setFillColorArt({ id, color }));
+        dispatch(setBGColorBlock(color));
     }
     return (
         <div className={css.nav}>
@@ -49,9 +48,7 @@ function ToolsPanel() {
                                 <input
                                     id="color"
                                     type="color"
-                                    onChange={(event) =>
-                                        setColor(event, blk.id)
-                                    }
+                                    onChange={(event) => setColor(event)}
                                 />
                             </div>
                         );
@@ -70,9 +67,7 @@ function ToolsPanel() {
                                 <input
                                     id="color"
                                     type="color"
-                                    onChange={(event) =>
-                                        setColor(event, blk.id)
-                                    }
+                                    onChange={(event) => setColor(event)}
                                 />
                             </div>
                         );

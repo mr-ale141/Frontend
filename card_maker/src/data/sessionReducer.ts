@@ -15,23 +15,25 @@ export const sessionReducer = createSlice({
     name: "session",
     initialState,
     reducers: {
-        setSelectedBlock: (state, action: PayloadAction<string>) => {
-            state.session.selectedBlocks = [];
-            state.session.selectedBlocks.push(action.payload);
-        },
-        setFillColorArt: (
+        setSelectedBlock: (
             state,
-            action: PayloadAction<{ id: string; color: Color }>,
+            action: PayloadAction<{ id: string; withCtrl: boolean }>,
         ) => {
-            // session.selectedBlocks
-            blk
-                ? (blk.bgColor = action.payload.color)
-                : console.log("art block not found");
+            if (!action.payload.withCtrl) state.session.selectedBlocks = [];
+            state.session.selectedBlocks.push(action.payload.id);
+        },
+        setBGColorBlock: (state, action: PayloadAction<Color>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block) block.bgColor = action.payload;
+            });
         },
     },
 });
 
-export const { setSelectedBlock, setFillColorArt } = sessionReducer.actions;
+export const { setSelectedBlock, setBGColorBlock } = sessionReducer.actions;
 export const sessionState = (state: RootState) => state.session;
 
 export default sessionReducer.reducer;

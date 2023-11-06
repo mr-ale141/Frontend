@@ -5,7 +5,7 @@ import ArtBlk from "../ArtBlock/ArtBlock";
 import ImageBlk from "../ImageBlock/ImageBlock";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
 import { sessionState, setSelectedBlock } from "../../data/sessionReducer";
-// get renderer function
+// get renderer utils
 
 function Canvas() {
     const dispatch = useAppDispatch();
@@ -14,32 +14,40 @@ function Canvas() {
         <div
             className={css.canvas}
             style={state.session.template.canvas.size}
-            onClick={() => dispatch(setSelectedBlock(""))}
+            onClick={() =>
+                dispatch(setSelectedBlock({ id: "", withCtrl: false }))
+            }
         >
-            {state.session.template.blocks.map((blk) => {
-                switch (blk.type) {
+            {state.session.template.blocks.map((block) => {
+                switch (block.type) {
                     case "image":
                         return (
                             <ImageBlk
-                                key={blk.id}
-                                imageBlock={blk}
-                                selectedBlocks={state.session.selectedBlocks}
+                                key={block.id}
+                                imageBlock={block}
+                                isSelected={state.session.selectedBlocks.includes(
+                                    block.id,
+                                )}
                             />
                         );
                     case "text":
                         return (
                             <TextBlk
-                                key={blk.id}
-                                textBlock={blk}
-                                selectedBlocks={state.session.selectedBlocks}
+                                key={block.id}
+                                textBlock={block}
+                                isSelected={state.session.selectedBlocks.includes(
+                                    block.id,
+                                )}
                             />
                         );
                     case "art":
                         return (
                             <ArtBlk
-                                key={blk.id}
-                                artBlock={blk}
-                                selectedBlocks={state.session.selectedBlocks}
+                                key={block.id}
+                                artBlock={block}
+                                isSelected={state.session.selectedBlocks.includes(
+                                    block.id,
+                                )}
                             />
                         );
                     default:

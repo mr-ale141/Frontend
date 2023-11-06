@@ -1,4 +1,5 @@
 import css from "./ArtBlock.module.css";
+import commonCss from "../../common/Common.module.css";
 import { ArtBlock, ArtName } from "../../type/type";
 import Quote from "../art/quote/Quote";
 import Arrow from "../art/arrow/Arrow";
@@ -12,7 +13,7 @@ import { setSelectedBlock } from "../../data/sessionReducer";
 
 type ArtBlkProps = {
     artBlock: ArtBlock;
-    selectedBlocks: Array<string>;
+    isSelected: boolean;
 };
 
 const artBlkSrc = {
@@ -24,13 +25,12 @@ const artBlkSrc = {
     [ArtName.rect]: Rect,
     [ArtName.square]: Square,
 };
-function ArtBlk({ artBlock, selectedBlocks }: ArtBlkProps) {
+function ArtBlk({ artBlock, isSelected }: ArtBlkProps) {
     const dispatch = useAppDispatch();
-    let classNameList = "border";
-    if (selectedBlocks.includes(artBlock.id)) {
-        classNameList += " selected";
+    let classNameList = commonCss.border;
+    if (isSelected) {
+        classNameList += " " + commonCss.selected;
     }
-
     return (
         <div
             className={css.art}
@@ -40,7 +40,8 @@ function ArtBlk({ artBlock, selectedBlocks }: ArtBlkProps) {
             }}
             onClick={(event) => {
                 event.stopPropagation(); //
-                dispatch(setSelectedBlock(artBlock.id));
+                const withCtrl = event.ctrlKey;
+                dispatch(setSelectedBlock({ id: artBlock.id, withCtrl }));
             }}
         >
             <div className={classNameList} />

@@ -1,18 +1,19 @@
 import css from "./TextBlock.module.css";
+import commonCss from "../../common/Common.module.css";
 import { TextBlock } from "../../type/type";
-import ConvertRGB from "../../function/convertRGB";
+import ConvertRGB from "../../utils/convertRGB";
 import { useAppDispatch } from "../../data/hooks";
 import { setSelectedBlock } from "../../data/sessionReducer";
 
-interface ITextBlock {
+type textBlockProps = {
     textBlock: TextBlock;
-    selectedBlocks: Array<string>;
-}
-function TextBlk({ textBlock, selectedBlocks }: ITextBlock) {
+    isSelected: boolean;
+};
+function TextBlk({ textBlock, isSelected }: textBlockProps) {
     const dispatch = useAppDispatch();
-    let classNameList = "border";
-    if (selectedBlocks.includes(textBlock.id)) {
-        classNameList += " selected";
+    let classNameList = commonCss.border;
+    if (isSelected) {
+        classNameList += " " + commonCss.selected;
     }
     return (
         <div
@@ -24,7 +25,8 @@ function TextBlk({ textBlock, selectedBlocks }: ITextBlock) {
             }}
             onClick={(event) => {
                 event.stopPropagation();
-                dispatch(setSelectedBlock(textBlock.id));
+                const withCtrl = event.ctrlKey;
+                dispatch(setSelectedBlock({ id: textBlock.id, withCtrl }));
             }}
         >
             <div className={classNameList} />

@@ -1,0 +1,9 @@
+.border {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+}
+
+.selected {
+    border: 2px dashed rgb(255 00 00 / 100%);
+}

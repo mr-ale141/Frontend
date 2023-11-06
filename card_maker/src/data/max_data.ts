@@ -7,10 +7,11 @@ import {
     TextBlock,
 } from "../type/type";
 import stars from "./img/png/stars.png";
+import { v4 as uuidV4 } from "uuid";
 
 const textBlockSource: Array<TextBlock> = [
     {
-        id: "txt0", // uid
+        id: uuidV4(),
         size: {
             width: 200,
             height: 130,
@@ -53,7 +54,7 @@ const textBlockSource: Array<TextBlock> = [
 
 const imageBlockSource: Array<ImageBlock> = [
     {
-        id: "img0",
+        id: uuidV4(),
         size: {
             width: 300,
             height: 300,
@@ -75,7 +76,7 @@ const imageBlockSource: Array<ImageBlock> = [
         },
     },
     {
-        id: "img1",
+        id: uuidV4(),
         size: {
             width: 300,
             height: 300,
@@ -97,7 +98,7 @@ const imageBlockSource: Array<ImageBlock> = [
         },
     },
     {
-        id: "img2",
+        id: uuidV4(),
         size: {
             width: 50,
             height: 50,
@@ -122,13 +123,13 @@ const imageBlockSource: Array<ImageBlock> = [
 
 const artBlockSource: Array<ArtBlock> = [
     {
-        id: "art0",
+        id: uuidV4(),
         size: {
             width: 300,
             height: 250,
         },
         position: {
-            left: 150,
+            left: 375,
             top: 0,
         },
         type: "art",
@@ -150,7 +151,7 @@ const artBlockSource: Array<ArtBlock> = [
 
 const templateSource: Array<Template> = [
     {
-        id: "tmp0",
+        id: uuidV4(),
         canvas: {
             size: {
                 width: 700,
@@ -176,7 +177,7 @@ const templateSource: Array<Template> = [
         blocks: [],
     },
     {
-        id: "tmp1",
+        id: uuidV4(),
         canvas: {
             size: {
                 width: 700,
@@ -202,7 +203,7 @@ const templateSource: Array<Template> = [
         blocks: [imageBlockSource[0], artBlockSource[0], textBlockSource[0]],
     },
     {
-        id: "tmp2",
+        id: uuidV4(),
         canvas: {
             size: {
                 width: 400,
@@ -228,7 +229,7 @@ const templateSource: Array<Template> = [
         blocks: [imageBlockSource[1]],
     },
     {
-        id: "tmp3",
+        id: uuidV4(),
         canvas: {
             size: {
                 width: 297,
@@ -257,7 +258,7 @@ const templateSource: Array<Template> = [
 
 const session: Session = {
     editHistory: [],
-    selectedBlocks: ["txt0", "img0", "art0"],
+    selectedBlocks: [],
     template: templateSource[1],
     file_name: "max_file.card",
 };
