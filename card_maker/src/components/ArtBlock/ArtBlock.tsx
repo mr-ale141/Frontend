@@ -8,8 +8,6 @@ import Like from "../art/like/Like";
 import Line from "../art/line/Line";
 import Rect from "../art/rectangle/Rect";
 import Square from "../art/square/Square";
-import { useAppDispatch } from "../../data/hooks";
-import { setSelectedBlock } from "../../data/sessionReducer";
 
 type ArtBlkProps = {
     artBlock: ArtBlock;
@@ -26,25 +24,19 @@ const artBlkSrc = {
     [ArtName.square]: Square,
 };
 function ArtBlk({ artBlock, isSelected }: ArtBlkProps) {
-    const dispatch = useAppDispatch();
     let classNameList = commonCss.border;
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
     return (
         <div
-            className={css.art}
+            className={css.art + " " + classNameList}
             style={{
                 ...artBlock.position,
                 ...artBlock.size,
             }}
-            onClick={(event) => {
-                event.stopPropagation(); //
-                const withCtrl = event.ctrlKey;
-                dispatch(setSelectedBlock({ id: artBlock.id, withCtrl }));
-            }}
+            id={artBlock.id}
         >
-            <div className={classNameList} />
             {artBlkSrc[artBlock.artName]({ artBlock })}
         </div>
     );

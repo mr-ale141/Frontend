@@ -3,21 +3,13 @@ import css from "./Canvas.module.css";
 import TextBlk from "../TextBlock/TextBlock";
 import ArtBlk from "../ArtBlock/ArtBlock";
 import ImageBlk from "../ImageBlock/ImageBlock";
-import { useAppDispatch, useAppSelector } from "../../data/hooks";
-import { sessionState, setSelectedBlock } from "../../data/sessionReducer";
-// get renderer utils
+import { useAppSelector } from "../../data/hooks";
+import { sessionState } from "../../data/sessionReducer";
 
 function Canvas() {
-    const dispatch = useAppDispatch();
     const state = useAppSelector(sessionState);
     return (
-        <div
-            className={css.canvas}
-            style={state.session.template.canvas.size}
-            onClick={() =>
-                dispatch(setSelectedBlock({ id: "", withCtrl: false }))
-            }
-        >
+        <div className={css.canvas} style={state.session.template.canvas.size}>
             {state.session.template.blocks.map((block) => {
                 switch (block.type) {
                     case "image":

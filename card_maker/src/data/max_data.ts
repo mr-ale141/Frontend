@@ -153,6 +153,7 @@ const templateSource: Array<Template> = [
     {
         id: uuidV4(),
         canvas: {
+            id: uuidV4(),
             size: {
                 width: 700,
                 height: 500,
@@ -179,6 +180,7 @@ const templateSource: Array<Template> = [
     {
         id: uuidV4(),
         canvas: {
+            id: uuidV4(),
             size: {
                 width: 700,
                 height: 500,
@@ -205,6 +207,7 @@ const templateSource: Array<Template> = [
     {
         id: uuidV4(),
         canvas: {
+            id: uuidV4(),
             size: {
                 width: 400,
                 height: 400,
@@ -231,6 +234,7 @@ const templateSource: Array<Template> = [
     {
         id: uuidV4(),
         canvas: {
+            id: uuidV4(),
             size: {
                 width: 297,
                 height: 210,

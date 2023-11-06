@@ -68,6 +68,7 @@ type ArtBlock = Block & {
 };
 
 type CanvasType = {
+    id: string;
     size: Size;
     filter: Color;
     bgImage: Image;

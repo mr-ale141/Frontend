@@ -17,10 +17,14 @@ export const sessionReducer = createSlice({
     reducers: {
         setSelectedBlock: (
             state,
-            action: PayloadAction<{ id: string; withCtrl: boolean }>,
+            action: PayloadAction<{
+                id: string;
+                withCtrl: boolean;
+            }>,
         ) => {
             if (!action.payload.withCtrl) state.session.selectedBlocks = [];
-            state.session.selectedBlocks.push(action.payload.id);
+            if (!state.session.selectedBlocks.includes(action.payload.id))
+                state.session.selectedBlocks.push(action.payload.id);
         },
         setBGColorBlock: (state, action: PayloadAction<Color>) => {
             state.session.selectedBlocks.forEach((id) => {
