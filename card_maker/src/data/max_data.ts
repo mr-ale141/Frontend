@@ -10,7 +10,7 @@ import stars from "./img/png/stars.png";
 
 const textBlockSource: Array<TextBlock> = [
     {
-        id: "txt0",
+        id: "txt0", // uid
         size: {
             width: 200,
             height: 130,
@@ -128,7 +128,7 @@ const artBlockSource: Array<ArtBlock> = [
             height: 250,
         },
         position: {
-            left: 375,
+            left: 150,
             top: 0,
         },
         type: "art",

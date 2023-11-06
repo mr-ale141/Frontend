@@ -1,4 +1,5 @@
 import css from "./ImageBlock.module.css";
+import commonCss from "./common.module.css";
 import { ImageBlock } from "../../type/type";
 import { useAppDispatch } from "../../data/hooks";
 import { setSelectedBlock } from "../../data/sessionReducer";
@@ -6,12 +7,13 @@ import { setSelectedBlock } from "../../data/sessionReducer";
 interface IImageBlock {
     imageBlock: ImageBlock;
     selectedBlocks: Array<string>;
+    isSelected: boolean;
 }
-function ImageBlk({ imageBlock, selectedBlocks }: IImageBlock) {
+function ImageBlk({ imageBlock, isSelected }: IImageBlock) {
     const dispatch = useAppDispatch();
     let classNameList = "border";
-    if (selectedBlocks.includes(imageBlock.id)) {
-        classNameList += " selected";
+    if (isSelected) {
+        classNameList += " selected"; // use common css
     }
     return (
         <div
@@ -19,6 +21,7 @@ function ImageBlk({ imageBlock, selectedBlocks }: IImageBlock) {
             style={{ ...imageBlock.size, ...imageBlock.position }}
             onClick={(event) => {
                 event.stopPropagation();
+                event.ctrlKey;
                 dispatch(setSelectedBlock(imageBlock.id));
             }}
         >

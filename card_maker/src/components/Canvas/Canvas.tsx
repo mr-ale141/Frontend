@@ -5,6 +5,7 @@ import ArtBlk from "../ArtBlock/ArtBlock";
 import ImageBlk from "../ImageBlock/ImageBlock";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
 import { sessionState, setSelectedBlock } from "../../data/sessionReducer";
+// get renderer function
 
 function Canvas() {
     const dispatch = useAppDispatch();

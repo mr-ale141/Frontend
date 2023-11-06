@@ -23,9 +23,7 @@ export const sessionReducer = createSlice({
             state,
             action: PayloadAction<{ id: string; color: Color }>,
         ) => {
-            const blk = state.session.template.blocks.find(
-                (i) => i.id === action.payload.id,
-            );
+            // session.selectedBlocks
             blk
                 ? (blk.bgColor = action.payload.color)
                 : console.log("art block not found");

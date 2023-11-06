@@ -10,10 +10,11 @@ import Square from "../art/square/Square";
 import { useAppDispatch } from "../../data/hooks";
 import { setSelectedBlock } from "../../data/sessionReducer";
 
-interface IArtBlock {
+type ArtBlkProps = {
     artBlock: ArtBlock;
     selectedBlocks: Array<string>;
-}
+};
+
 const artBlkSrc = {
     [ArtName.arrow]: Arrow,
     [ArtName.circle]: Circle,
@@ -23,12 +24,13 @@ const artBlkSrc = {
     [ArtName.rect]: Rect,
     [ArtName.square]: Square,
 };
-function ArtBlk({ artBlock, selectedBlocks }: IArtBlock) {
+function ArtBlk({ artBlock, selectedBlocks }: ArtBlkProps) {
     const dispatch = useAppDispatch();
     let classNameList = "border";
     if (selectedBlocks.includes(artBlock.id)) {
         classNameList += " selected";
     }
+
     return (
         <div
             className={css.art}
@@ -37,7 +39,7 @@ function ArtBlk({ artBlock, selectedBlocks }: IArtBlock) {
                 ...artBlock.size,
             }}
             onClick={(event) => {
-                event.stopPropagation();
+                event.stopPropagation(); //
                 dispatch(setSelectedBlock(artBlock.id));
             }}
         >
