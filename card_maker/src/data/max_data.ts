@@ -30,9 +30,9 @@ const textBlockSource: Array<TextBlock> = [
             fontSize: 14,
             fontFamily: "Arial",
             color: {
-                r: 0xff,
+                r: 0xaa,
                 g: 0x00,
-                b: 0x0,
+                b: 0x55,
                 a: 1,
             },
             fontWeight: 800,
@@ -263,7 +263,6 @@ const templateSource: Array<Template> = [
 const session: Session = {
     editHistory: [],
     selectedBlocks: [],
-    selectedTagName: "",
     template: templateSource[1],
     file_name: "max_file.card",
 };

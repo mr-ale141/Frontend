@@ -1,4 +1,4 @@
-.color {
+.text-tool {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,11 +7,12 @@
     margin: 5px;
 }
 
-.color label {
+.text-tool label {
     margin: 5px;
     color: #cb9b51;
 }
 
-.color input {
-    margin: 5px;
+.text-tool input {
+    margin: 10px;
+    padding: 5px;
 }

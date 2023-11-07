@@ -1,0 +1,33 @@
+.image-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #462523;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.image-tool label[for="image-link"] {
+    margin: 5px;
+    color: #cb9b51;
+}
+
+.image-tool label[for="image-upload"] {
+    background-color: gold;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    color: #211d1d;
+    cursor: pointer;
+}
+
+.image-tool input[type="text"] {
+    margin: 5px;
+    padding: 5px;
+}
+
+.image-tool input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}

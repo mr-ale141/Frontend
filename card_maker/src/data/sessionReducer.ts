@@ -20,17 +20,14 @@ export const sessionReducer = createSlice({
             action: PayloadAction<{
                 id: string;
                 withCtrl: boolean;
-                targetTagName: string;
             }>,
         ) => {
-            if (action.payload.withCtrl) {
-                state.session.selectedTagName = "";
-            } else {
-                state.session.selectedBlocks = [];
-                state.session.selectedTagName = action.payload.targetTagName;
-            }
+            if (!action.payload.withCtrl) state.session.selectedBlocks = [];
             if (!state.session.selectedBlocks.includes(action.payload.id))
-                state.session.selectedBlocks.push(action.payload.id);
+                state.session.selectedBlocks = [
+                    ...state.session.selectedBlocks,
+                    action.payload.id,
+                ];
         },
         setBGColor: (state, action: PayloadAction<Color>) => {
             state.session.selectedBlocks.forEach((id) => {
