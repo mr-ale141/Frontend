@@ -1,7 +1,7 @@
 import css from "./TextBlock.module.css";
 import commonCss from "../../common/Common.module.css";
 import { TextBlock } from "../../type/type";
-import ConvertRGB from "../../utils/convertRGB";
+import GetRGBA from "../../utils/getRGBA";
 
 type textBlockProps = {
     textBlock: TextBlock;
@@ -19,14 +19,14 @@ function TextBlk({ textBlock, isSelected }: textBlockProps) {
             style={{
                 ...textBlock.size,
                 ...textBlock.position,
-                backgroundColor: ConvertRGB(textBlock.bgColor),
+                backgroundColor: GetRGBA(textBlock.bgColor),
             }}
         >
             <p
                 style={{
                     ...textBlock.text,
                     ...textBlock.positionText,
-                    color: ConvertRGB(textBlock.text.color),
+                    color: GetRGBA(textBlock.text.color),
                 }}
             >
                 {textBlock.text.value}

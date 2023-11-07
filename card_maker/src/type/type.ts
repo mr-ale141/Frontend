@@ -91,6 +91,7 @@ type DeltaHistory = {
 type Session = {
     editHistory: Array<DeltaHistory>;
     selectedBlocks: Array<string>;
+    selectedTagName: string;
     template: Template;
     file_name: string;
 };

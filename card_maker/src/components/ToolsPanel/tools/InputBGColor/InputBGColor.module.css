@@ -1,0 +1,10 @@
+.color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #211d1d;
+}
+
+.color label {
+    margin: 5px;
+}

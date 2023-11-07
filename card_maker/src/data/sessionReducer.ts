@@ -20,9 +20,15 @@ export const sessionReducer = createSlice({
             action: PayloadAction<{
                 id: string;
                 withCtrl: boolean;
+                targetTagName: string;
             }>,
         ) => {
-            if (!action.payload.withCtrl) state.session.selectedBlocks = [];
+            if (action.payload.withCtrl) {
+                state.session.selectedTagName = "";
+            } else {
+                state.session.selectedBlocks = [];
+                state.session.selectedTagName = action.payload.targetTagName;
+            }
             if (!state.session.selectedBlocks.includes(action.payload.id))
                 state.session.selectedBlocks.push(action.payload.id);
         },
@@ -31,7 +37,12 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                if (block) block.bgColor = action.payload;
+                if (block) {
+                    if (action.payload.r) block.bgColor.r = action.payload.r;
+                    if (action.payload.g) block.bgColor.g = action.payload.g;
+                    if (action.payload.b) block.bgColor.b = action.payload.b;
+                    if (action.payload.a) block.bgColor.a = action.payload.a;
+                }
             });
         },
     },

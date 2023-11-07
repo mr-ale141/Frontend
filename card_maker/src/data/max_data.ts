@@ -144,7 +144,7 @@ const artBlockSource: Array<ArtBlock> = [
             r: 0x00,
             g: 0x25,
             b: 0xff,
-            a: 1,
+            a: 0,
         },
     },
 ];
@@ -263,6 +263,7 @@ const templateSource: Array<Template> = [
 const session: Session = {
     editHistory: [],
     selectedBlocks: [],
+    selectedTagName: "",
     template: templateSource[1],
     file_name: "max_file.card",
 };

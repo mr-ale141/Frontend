@@ -6,16 +6,22 @@ import { setSelectedBlock } from "../../data/sessionReducer";
 
 function WorkSpace() {
     const dispatch = useAppDispatch();
-    function postSelected(event: React.MouseEvent) {
-        let targetElement = event.target as HTMLElement;
-        while (targetElement.tagName !== "DIV")
-            if (targetElement.parentElement)
-                targetElement = targetElement.parentElement;
+    function changeSelected(event: React.MouseEvent) {
+        const targetElement = event.target as HTMLElement;
+        const targetTagName = targetElement.tagName;
+        let parentDiv = targetElement;
+        while (parentDiv.tagName !== "DIV")
+            if (parentDiv.parentElement) parentDiv = parentDiv.parentElement;
+        let id: string;
+        parentDiv.id === "" ? (id = "canvas") : (id = parentDiv.id);
         const withCtrl = event.ctrlKey;
-        dispatch(setSelectedBlock({ id: targetElement.id, withCtrl }));
+        dispatch(setSelectedBlock({ id, withCtrl, targetTagName }));
     }
     return (
-        <div className={css.workspace} onClick={(event) => postSelected(event)}>
+        <div
+            className={css.workspace}
+            onClick={(event) => changeSelected(event)}
+        >
             <Canvas />
         </div>
     );

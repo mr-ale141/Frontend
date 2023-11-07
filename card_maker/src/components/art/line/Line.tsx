@@ -2,6 +2,7 @@ import React from "react";
 import { ArtBlock } from "../../../type/type";
 import getHexColor from "../../../utils/getHexColor";
 import getOpacity from "../../../utils/getOpacity";
+import getRGBA from "../../../utils/getRGBA";
 
 interface IArrow {
     artBlock: ArtBlock;
@@ -15,10 +16,11 @@ function Line({ artBlock }: IArrow) {
             viewBox="0 0 1280.000000 640.000000"
             width={artBlock.size.width}
             height={artBlock.size.height}
-            fill={getHexColor(artBlock.bgColor)}
-            fillOpacity={getOpacity(artBlock.bgColor)}
-            stroke={getHexColor(artBlock.borderColor)}
-            strokeOpacity={getOpacity(artBlock.borderColor)}
+            fill={getHexColor(artBlock.borderColor)}
+            fillOpacity={getOpacity(artBlock.borderColor)}
+            stroke={getHexColor(artBlock.bgColor)}
+            strokeOpacity={getOpacity(artBlock.bgColor)}
+            style={{ backgroundColor: getRGBA(artBlock.bgColor) }}
         >
             <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)">
                 <path d="M170 4090 l0 -70 6230 0 6230 0 0 70 0 70 -6230 0 -6230 0 0 -70z" />
