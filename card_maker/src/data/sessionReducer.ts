@@ -38,10 +38,14 @@ export const sessionReducer = createSlice({
                     (block) => block.id === id,
                 );
                 if (block) {
-                    if (action.payload.r) block.bgColor.r = action.payload.r;
-                    if (action.payload.g) block.bgColor.g = action.payload.g;
-                    if (action.payload.b) block.bgColor.b = action.payload.b;
-                    if (action.payload.a) block.bgColor.a = action.payload.a;
+                    if (action.payload.r >= 0)
+                        block.bgColor.r = action.payload.r;
+                    if (action.payload.g >= 0)
+                        block.bgColor.g = action.payload.g;
+                    if (action.payload.b >= 0)
+                        block.bgColor.b = action.payload.b;
+                    if (action.payload.a >= 0)
+                        block.bgColor.a = action.payload.a;
                 }
             });
         },
@@ -52,22 +56,22 @@ export const sessionReducer = createSlice({
                 );
                 if (block) {
                     if (block.type === "text") {
-                        if (action.payload.r)
+                        if (action.payload.r >= 0)
                             block.text.color.r = action.payload.r;
-                        if (action.payload.g)
+                        if (action.payload.g >= 0)
                             block.text.color.g = action.payload.g;
-                        if (action.payload.b)
+                        if (action.payload.b >= 0)
                             block.text.color.b = action.payload.b;
-                        if (action.payload.a)
+                        if (action.payload.a >= 0)
                             block.text.color.a = action.payload.a;
                     } else if (block.type === "art") {
-                        if (action.payload.r)
+                        if (action.payload.r >= 0)
                             block.borderColor.r = action.payload.r;
-                        if (action.payload.g)
+                        if (action.payload.g >= 0)
                             block.borderColor.g = action.payload.g;
-                        if (action.payload.b)
+                        if (action.payload.b >= 0)
                             block.borderColor.b = action.payload.b;
-                        if (action.payload.a)
+                        if (action.payload.a >= 0)
                             block.borderColor.a = action.payload.a;
                     }
                 }

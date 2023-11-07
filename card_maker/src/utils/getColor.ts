@@ -11,13 +11,13 @@ function GetColor(str: string): Color {
             r: parseInt(strR, 16),
             g: parseInt(strG, 16),
             b: parseInt(strB, 16),
-            a: 0,
+            a: -1,
         };
     } else {
         return {
-            r: 0,
-            g: 0,
-            b: 0,
+            r: -1,
+            g: -1,
+            b: -1,
             a: parseFloat(str),
         };
     }
