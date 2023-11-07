@@ -32,7 +32,7 @@ export const sessionReducer = createSlice({
             if (!state.session.selectedBlocks.includes(action.payload.id))
                 state.session.selectedBlocks.push(action.payload.id);
         },
-        setBGColorBlock: (state, action: PayloadAction<Color>) => {
+        setBGColor: (state, action: PayloadAction<Color>) => {
             state.session.selectedBlocks.forEach((id) => {
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
@@ -45,10 +45,39 @@ export const sessionReducer = createSlice({
                 }
             });
         },
+        setColor: (state, action: PayloadAction<Color>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block) {
+                    if (block.type === "text") {
+                        if (action.payload.r)
+                            block.text.color.r = action.payload.r;
+                        if (action.payload.g)
+                            block.text.color.g = action.payload.g;
+                        if (action.payload.b)
+                            block.text.color.b = action.payload.b;
+                        if (action.payload.a)
+                            block.text.color.a = action.payload.a;
+                    } else if (block.type === "art") {
+                        if (action.payload.r)
+                            block.borderColor.r = action.payload.r;
+                        if (action.payload.g)
+                            block.borderColor.g = action.payload.g;
+                        if (action.payload.b)
+                            block.borderColor.b = action.payload.b;
+                        if (action.payload.a)
+                            block.borderColor.a = action.payload.a;
+                    }
+                }
+            });
+        },
     },
 });
 
-export const { setSelectedBlock, setBGColorBlock } = sessionReducer.actions;
+export const { setSelectedBlock, setBGColor, setColor } =
+    sessionReducer.actions;
 export const sessionState = (state: RootState) => state.session;
 
 export default sessionReducer.reducer;

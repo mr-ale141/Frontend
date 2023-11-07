@@ -3,6 +3,7 @@ import { useAppSelector } from "../../data/hooks";
 import { sessionState } from "../../data/sessionReducer";
 import React from "react";
 import InputBGColor from "./tools/InputBGColor/InputBGColor";
+import InputColor from "./tools/InputColor/InputColor";
 function ToolsPanel() {
     const state = useAppSelector(sessionState);
     const activeBlocks: Array<{ id: string; type: string }> = [];
@@ -17,9 +18,19 @@ function ToolsPanel() {
             {activeBlocks.map((blk) => {
                 switch (blk.type) {
                     case "text":
-                        return <InputBGColor />;
+                        return (
+                            <>
+                                <InputBGColor />
+                                <InputColor />
+                            </>
+                        );
                     case "art":
-                        return <InputBGColor />;
+                        return (
+                            <>
+                                <InputBGColor />
+                                <InputColor />
+                            </>
+                        );
                     case "image":
                         return <div>Image Block {blk.id}</div>;
                     default:
