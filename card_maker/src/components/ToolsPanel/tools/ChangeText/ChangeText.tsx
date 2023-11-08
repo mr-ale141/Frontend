@@ -1,11 +1,11 @@
 import React from "react";
-import css from "./ChangeText.module.css";
+import commonCss from "../../../../common/Common.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
 import { changeText } from "../../../../data/sessionReducer";
 function ChangeText() {
     const dispatch = useAppDispatch();
     return (
-        <div className={css["text-tool"]}>
+        <div className={commonCss.tool}>
             <label htmlFor="new-text">Change text</label>
             <input
                 id="new-text"

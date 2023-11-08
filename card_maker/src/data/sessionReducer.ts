@@ -22,12 +22,18 @@ export const sessionReducer = createSlice({
                 withCtrl: boolean;
             }>,
         ) => {
-            if (!action.payload.withCtrl) state.session.selectedBlocks = [];
-            if (!state.session.selectedBlocks.includes(action.payload.id))
-                state.session.selectedBlocks = [
-                    ...state.session.selectedBlocks,
-                    action.payload.id,
-                ];
+            if (
+                state.session.selectedBlocks.length <= 1 ||
+                action.payload.withCtrl ||
+                action.payload.id === "canvas"
+            ) {
+                if (!action.payload.withCtrl) state.session.selectedBlocks = [];
+                if (!state.session.selectedBlocks.includes(action.payload.id))
+                    state.session.selectedBlocks = [
+                        ...state.session.selectedBlocks,
+                        action.payload.id,
+                    ];
+            }
         },
         setBGColor: (state, action: PayloadAction<Color>) => {
             state.session.selectedBlocks.forEach((id) => {
@@ -111,12 +117,15 @@ export const sessionReducer = createSlice({
             });
         },
         changeImage: (state, action: PayloadAction<string>) => {
+            const type = action.payload.includes("http") ? "link" : "base64";
             state.session.selectedBlocks.forEach((id) => {
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                if (block && block.type === "image")
+                if (block && block.type === "image") {
                     block.bgImage.data = action.payload;
+                    block.bgImage.type = type;
+                }
             });
         },
     },
@@ -132,6 +141,6 @@ export const {
     changeArt,
     changeImage,
 } = sessionReducer.actions;
-export const sessionState = (state: RootState) => state.session;
+export const sessionState = (state: RootState) => state.session.present;
 
 export default sessionReducer.reducer;

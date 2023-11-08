@@ -3,7 +3,7 @@ import css from "./TextBlock.module.css";
 import commonCss from "../../common/Common.module.css";
 import { TextBlockType } from "../../type/type";
 import GetRGBA from "../../utils/getRGBA";
-import dragStartHandler from "../../utils/gragStartHandler";
+import dragStartHandler from "../../utils/dragStartHandler";
 import dragEndHandler from "../../utils/dragEndHandler";
 import { useAppDispatch } from "../../data/hooks";
 

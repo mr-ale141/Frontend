@@ -9,7 +9,7 @@ import Line from "../art/line/Line";
 import Rect from "../art/rectangle/Rect";
 import Square from "../art/square/Square";
 import React from "react";
-import dragStartHandler from "../../utils/gragStartHandler";
+import dragStartHandler from "../../utils/dragStartHandler";
 import dragEndHandler from "../../utils/dragEndHandler";
 import { useAppDispatch } from "../../data/hooks";
 

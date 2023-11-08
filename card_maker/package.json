@@ -41,6 +41,7 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
+    "redux-undo": "^1.1.0",
     "stylelint": "^15.10.3",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-order": "^6.0.3",

@@ -11,3 +11,42 @@
 .draggable {
     cursor: grab;
 }
+
+.tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #462523;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.tool label {
+    margin: 5px;
+    color: #cb9b51;
+}
+
+.tool input {
+    margin: 10px;
+    padding: 5px;
+}
+
+.tool select {
+    margin: 10px;
+    padding: 5px;
+}
+
+.tool label[for="image-upload"] {
+    background-color: gold;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    color: #211d1d;
+    cursor: pointer;
+}
+
+.tool input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}

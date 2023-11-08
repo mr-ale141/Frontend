@@ -1,5 +1,5 @@
 import React from "react";
-import css from "./ChangeArt.module.css";
+import commonCss from "../../../../common/Common.module.css";
 import { ArtName } from "../../../../type/type";
 import { useAppDispatch } from "../../../../data/hooks";
 import { changeArt } from "../../../../data/sessionReducer";
@@ -12,7 +12,7 @@ function ChangeArt() {
         dispatch(changeArt(num));
     }
     return (
-        <div className={css["art-tool"]}>
+        <div className={commonCss.tool}>
             <label htmlFor="new-art">Change art</label>
             <select id="new-art" onChange={(event) => changeArtHandler(event)}>
                 <option value={ArtName.arrow}>Arrow</option>

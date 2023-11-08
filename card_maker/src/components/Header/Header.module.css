@@ -5,12 +5,14 @@
     border-bottom: 2px outset #575757;
     border-right: 2px outset #575757;
     border-radius: 2px;
+    display: flex;
 }
 
 .logo {
     width: 170px;
     height: 35px;
     padding: 3px;
+    margin-left: 20px;
     border-radius: 15px;
     border: 2px outset #575757;
     text-align: center;
@@ -28,4 +30,12 @@
 
 .logo span {
     font: bold italic 150% serif;
+}
+
+.header button {
+    cursor: pointer;
+    width: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 20px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import css from "./ChangeImage.module.css";
+import commonCss from "../../../../common/Common.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
 import { changeImage } from "../../../../data/sessionReducer";
 function ChangeImage() {
@@ -14,15 +14,15 @@ function ChangeImage() {
     ) {
         const file = event.target.files ? event.target.files[0] : null;
         const reader = new FileReader();
-        let base64: string;
+        let base64: string | null;
         reader.onloadend = function () {
-            base64 = typeof reader.result === "string" ? reader.result : "";
+            base64 = typeof reader.result === "string" ? reader.result : null;
             if (base64) dispatch(changeImage(base64));
         };
         if (file) reader.readAsDataURL(file);
     }
     return (
-        <div className={css["image-tool"]}>
+        <div className={commonCss.tool}>
             <label htmlFor="image-link">Set link</label>
             <input
                 id="image-link"
