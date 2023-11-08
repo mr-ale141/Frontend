@@ -1,37 +1,28 @@
 import React from "react";
 import css from "./TextBlock.module.css";
 import commonCss from "../../common/Common.module.css";
-import { Position, TextBlock } from "../../type/type";
+import { TextBlockType } from "../../type/type";
 import GetRGBA from "../../utils/getRGBA";
+import dragStartHandler from "../../utils/gragStartHandler";
+import dragEndHandler from "../../utils/dragEndHandler";
 import { useAppDispatch } from "../../data/hooks";
-import { setPosition } from "../../data/sessionReducer";
 
 type textBlockProps = {
-    textBlock: TextBlock;
+    textBlock: TextBlockType;
     isSelected: boolean;
 };
-function TextBlk({ textBlock, isSelected }: textBlockProps) {
+function TextBlock({ textBlock, isSelected }: textBlockProps) {
     const dispatch = useAppDispatch();
     let classNameList = commonCss.border + " " + commonCss.draggable;
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
-    const newPosition: Position = { left: 0, top: 0 };
-    function dragStartHandler(e: React.DragEvent) {
-        newPosition.left = e.pageX;
-        newPosition.top = e.pageY;
-    }
-    function dragEndHandler(e: React.DragEvent) {
-        newPosition.left = textBlock.position.left + e.pageX - newPosition.left;
-        newPosition.top = textBlock.position.top + e.pageY - newPosition.top;
-        dispatch(setPosition({ id: textBlock.id, newPosition }));
-    }
     return (
         <div
             className={css.text + " " + classNameList}
             draggable
-            onDragStart={(e) => dragStartHandler(e)}
-            onDragEnd={(e) => dragEndHandler(e)}
+            onDragStart={(e) => dragStartHandler(e, dispatch)}
+            onDragEnd={(e) => dragEndHandler(e, dispatch)}
             id={textBlock.id}
             style={{
                 ...textBlock.size,
@@ -51,4 +42,4 @@ function TextBlk({ textBlock, isSelected }: textBlockProps) {
         </div>
     );
 }
-export default TextBlk;
+export default TextBlock;

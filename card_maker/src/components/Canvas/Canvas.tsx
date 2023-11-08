@@ -1,8 +1,8 @@
 import React from "react";
 import css from "./Canvas.module.css";
-import TextBlk from "../TextBlock/TextBlock";
-import ArtBlk from "../ArtBlock/ArtBlock";
-import ImageBlk from "../ImageBlock/ImageBlock";
+import TextBlock from "../TextBlock/TextBlock";
+import ArtBlock from "../ArtBlock/ArtBlock";
+import ImageBlock from "../ImageBlock/ImageBlock";
 import { useAppSelector } from "../../data/hooks";
 import { sessionState } from "../../data/sessionReducer";
 import commonCss from "../../common/Common.module.css";
@@ -20,7 +20,7 @@ function Canvas() {
                     switch (block.type) {
                         case "image":
                             return (
-                                <ImageBlk
+                                <ImageBlock
                                     key={block.id}
                                     imageBlock={block}
                                     isSelected={state.session.selectedBlocks.includes(
@@ -30,7 +30,7 @@ function Canvas() {
                             );
                         case "text":
                             return (
-                                <TextBlk
+                                <TextBlock
                                     key={block.id}
                                     textBlock={block}
                                     isSelected={state.session.selectedBlocks.includes(
@@ -40,7 +40,7 @@ function Canvas() {
                             );
                         case "art":
                             return (
-                                <ArtBlk
+                                <ArtBlock
                                     key={block.id}
                                     artBlock={block}
                                     isSelected={state.session.selectedBlocks.includes(

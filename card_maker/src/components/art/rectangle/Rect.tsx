@@ -1,10 +1,10 @@
 import React from "react";
-import { ArtBlock } from "../../../type/type";
+import { ArtBlockType } from "../../../type/type";
 import getHexColor from "../../../utils/getHexColor";
 import getOpacity from "../../../utils/getOpacity";
 import getRGBA from "../../../utils/getRGBA";
 interface IArrow {
-    artBlock: ArtBlock;
+    artBlock: ArtBlockType;
 }
 function Rect({ artBlock }: IArrow) {
     return (

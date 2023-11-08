@@ -2,16 +2,23 @@ import React from "react";
 import css from "./ToolsPanel.module.css";
 import InputBGColor from "./tools/InputBGColor/InputBGColor";
 import InputColor from "./tools/InputColor/InputColor";
-import { ArtBlock, Color, ImageBlock, TextBlock } from "../../type/type";
+import {
+    ArtBlockType,
+    Color,
+    ImageBlockType,
+    TextBlockType,
+} from "../../type/type";
 import { useAppSelector } from "../../data/hooks";
 import { sessionState } from "../../data/sessionReducer";
 import ChangeImage from "./tools/ChangeImage/ChangeImage";
 import ChangeText from "./tools/ChangeText/ChangeText";
+import ChangeArt from "./tools/ChangeArt/ChangeArt";
 
 function ToolsPanel() {
     const defaultColor: Color = { r: 0, g: 0, b: 0, a: 0 };
     const state = useAppSelector(sessionState);
-    const activeBlocks: Array<ArtBlock | TextBlock | ImageBlock> = [];
+    const activeBlocks: Array<ArtBlockType | TextBlockType | ImageBlockType> =
+        [];
     state.session.selectedBlocks.forEach((id) => {
         const block = state.session.template.blocks.find(
             (block) => block.id === id,
@@ -40,6 +47,7 @@ function ToolsPanel() {
                     <div className={css.tools}>
                         <InputBGColor bgColor={activeBlocks[0].bgColor} />
                         <InputColor color={activeBlocks[0].borderColor} />
+                        <ChangeArt />
                     </div>
                 );
             case "image":

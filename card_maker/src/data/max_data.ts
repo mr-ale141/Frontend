@@ -1,15 +1,15 @@
 import {
-    ArtBlock,
+    ArtBlockType,
     ArtName,
-    ImageBlock,
+    ImageBlockType,
     Session,
     Template,
-    TextBlock,
+    TextBlockType,
 } from "../type/type";
 import stars from "./img/png/stars.png";
 import { v4 as uuidV4 } from "uuid";
 
-const textBlockSource: Array<TextBlock> = [
+const textBlockSource: Array<TextBlockType> = [
     {
         id: uuidV4(),
         size: {
@@ -52,7 +52,7 @@ const textBlockSource: Array<TextBlock> = [
     },
 ];
 
-const imageBlockSource: Array<ImageBlock> = [
+const imageBlockSource: Array<ImageBlockType> = [
     {
         id: uuidV4(),
         size: {
@@ -121,7 +121,7 @@ const imageBlockSource: Array<ImageBlock> = [
     },
 ];
 
-const artBlockSource: Array<ArtBlock> = [
+const artBlockSource: Array<ArtBlockType> = [
     {
         id: uuidV4(),
         size: {
@@ -263,6 +263,7 @@ const templateSource: Array<Template> = [
 const session: Session = {
     editHistory: [],
     selectedBlocks: [],
+    startPosition: { left: 0, top: 0 },
     template: templateSource[1],
     file_name: "max_file.card",
 };

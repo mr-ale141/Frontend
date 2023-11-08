@@ -1,5 +1,5 @@
 import session from "./max_data";
-import { Color, Position, Session } from "../type/type";
+import { ArtName, Color, Position, Session } from "../type/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
@@ -74,20 +74,64 @@ export const sessionReducer = createSlice({
                 }
             });
         },
-        setPosition: (
-            state,
-            action: PayloadAction<{ id: string; newPosition: Position }>,
-        ) => {
-            const block = state.session.template.blocks.find(
-                (block) => block.id === action.payload.id,
-            );
-            if (block) block.position = action.payload.newPosition;
+        setStartPosition: (state, action: PayloadAction<Position>) => {
+            state.session.startPosition = action.payload;
+        },
+        setEndPosition: (state, action: PayloadAction<Position>) => {
+            const offset: Position = {
+                left: action.payload.left - state.session.startPosition.left,
+                top: action.payload.top - state.session.startPosition.top,
+            };
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block) {
+                    block.position.left += offset.left;
+                    block.position.top += offset.top;
+                }
+            });
+        },
+        changeText: (state, action: PayloadAction<string>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block && block.type === "text")
+                    block.text.value = action.payload;
+            });
+        },
+        changeArt: (state, action: PayloadAction<ArtName>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block && block.type === "art")
+                    block.artName = action.payload;
+            });
+        },
+        changeImage: (state, action: PayloadAction<string>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block && block.type === "image")
+                    block.bgImage.data = action.payload;
+            });
         },
     },
 });
 
-export const { setSelectedBlock, setBGColor, setColor, setPosition } =
-    sessionReducer.actions;
+export const {
+    setSelectedBlock,
+    setBGColor,
+    setColor,
+    setStartPosition,
+    setEndPosition,
+    changeText,
+    changeArt,
+    changeImage,
+} = sessionReducer.actions;
 export const sessionState = (state: RootState) => state.session;
 
 export default sessionReducer.reducer;

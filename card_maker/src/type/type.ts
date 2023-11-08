@@ -46,7 +46,7 @@ type Block = {
     size: Size;
 };
 
-type TextBlock = Block & {
+type TextBlockType = Block & {
     positionText: Position;
     type: "text";
     text: Text;
@@ -54,13 +54,13 @@ type TextBlock = Block & {
     bgColor: Color;
 };
 
-type ImageBlock = Block & {
+type ImageBlockType = Block & {
     type: "image";
     bgImage: Image;
     bgColor: Color;
 };
 
-type ArtBlock = Block & {
+type ArtBlockType = Block & {
     type: "art";
     borderColor: Color;
     artName: ArtName;
@@ -78,7 +78,7 @@ type CanvasType = {
 type Template = {
     id: string;
     canvas: CanvasType;
-    blocks: Array<ArtBlock | TextBlock | ImageBlock>;
+    blocks: Array<ArtBlockType | TextBlockType | ImageBlockType>;
 };
 
 type DeltaHistory = {
@@ -91,14 +91,15 @@ type DeltaHistory = {
 type Session = {
     editHistory: Array<DeltaHistory>;
     selectedBlocks: Array<string>;
+    startPosition: Position;
     template: Template;
     file_name: string;
 };
 
 export type {
-    TextBlock,
-    ImageBlock,
-    ArtBlock,
+    TextBlockType,
+    ImageBlockType,
+    ArtBlockType,
     Template,
     CanvasType,
     DeltaHistory,
