@@ -1,5 +1,5 @@
 import session from "./max_data";
-import { Color, Session } from "../type/type";
+import { Color, Position, Session } from "../type/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
@@ -74,10 +74,19 @@ export const sessionReducer = createSlice({
                 }
             });
         },
+        setPosition: (
+            state,
+            action: PayloadAction<{ id: string; newPosition: Position }>,
+        ) => {
+            const block = state.session.template.blocks.find(
+                (block) => block.id === action.payload.id,
+            );
+            if (block) block.position = action.payload.newPosition;
+        },
     },
 });
 
-export const { setSelectedBlock, setBGColor, setColor } =
+export const { setSelectedBlock, setBGColor, setColor, setPosition } =
     sessionReducer.actions;
 export const sessionState = (state: RootState) => state.session;
 

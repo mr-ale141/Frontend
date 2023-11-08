@@ -105,6 +105,7 @@ export type {
     Session,
     Color,
     Size,
+    Position,
 };
 
 export { ArtName };
