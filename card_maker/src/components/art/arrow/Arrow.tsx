@@ -13,8 +13,8 @@ function Arrow({ artBlock }: IArrow) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1280.000000 640.000000"
             preserveAspectRatio="xMidYMid meet"
-            width={artBlock.size.width}
-            height={artBlock.size.height}
+            width="100%"
+            height="100%"
             fill={getHexColor(artBlock.borderColor)}
             fillOpacity={getOpacity(artBlock.borderColor)}
             stroke={getHexColor(artBlock.bgColor)}

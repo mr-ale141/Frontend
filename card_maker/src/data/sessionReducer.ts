@@ -107,6 +107,24 @@ export const sessionReducer = createSlice({
                     block.text.value = action.payload;
             });
         },
+        setTextJustifyContent: (state, action: PayloadAction<string>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block && block.type === "text")
+                    block.positionText.justifyContent = action.payload;
+            });
+        },
+        setTextAlignItems: (state, action: PayloadAction<string>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block && block.type === "text")
+                    block.positionText.alignItems = action.payload;
+            });
+        },
         changeArt: (state, action: PayloadAction<ArtName>) => {
             state.session.selectedBlocks.forEach((id) => {
                 const block = state.session.template.blocks.find(
@@ -138,6 +156,8 @@ export const {
     setStartPosition,
     setEndPosition,
     changeText,
+    setTextJustifyContent,
+    setTextAlignItems,
     changeArt,
     changeImage,
 } = sessionReducer.actions;

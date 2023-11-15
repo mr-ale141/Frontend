@@ -12,8 +12,8 @@ function Quote({ artBlock }: IArrow) {
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 468 468"
-            width={artBlock.size.width}
-            height={artBlock.size.height}
+            width="100%"
+            height="100%"
             fill={getHexColor(artBlock.borderColor)}
             fillOpacity={getOpacity(artBlock.borderColor)}
             stroke={getHexColor(artBlock.bgColor)}

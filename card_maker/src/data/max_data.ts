@@ -13,16 +13,16 @@ const textBlockSource: Array<TextBlockType> = [
     {
         id: uuidV4(),
         size: {
-            width: 200,
-            height: 130,
+            width: 180,
+            height: 110,
         },
         position: {
             left: 425,
             top: 40,
         },
         positionText: {
-            left: 25,
-            top: 40,
+            justifyContent: "center",
+            alignItems: "center",
         },
         type: "text",
         text: {

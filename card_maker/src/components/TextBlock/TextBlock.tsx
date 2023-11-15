@@ -27,13 +27,13 @@ function TextBlock({ textBlock, isSelected }: textBlockProps) {
             style={{
                 ...textBlock.size,
                 ...textBlock.position,
+                ...textBlock.positionText,
                 backgroundColor: GetRGBA(textBlock.bgColor),
             }}
         >
             <p
                 style={{
                     ...textBlock.text,
-                    ...textBlock.positionText,
                     color: GetRGBA(textBlock.text.color),
                 }}
             >

@@ -47,7 +47,10 @@ type Block = {
 };
 
 type TextBlockType = Block & {
-    positionText: Position;
+    positionText: {
+        justifyContent: string;
+        alignItems: string;
+    };
     type: "text";
     text: Text;
     bgImage: Image;

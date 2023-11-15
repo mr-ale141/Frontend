@@ -1,6 +1,8 @@
 .text {
     position: absolute;
     box-sizing: content-box;
+    display: flex;
+    padding: 10px;
 }
 
 .text p {

@@ -14,45 +14,46 @@ function Canvas() {
         classNameList += " " + commonCss.selected;
     }
     return (
-        <div className={css.canvas} style={state.session.template.canvas.size}>
-            <div className={classNameList}>
-                {state.session.template.blocks.map((block) => {
-                    switch (block.type) {
-                        case "image":
-                            return (
-                                <ImageBlock
-                                    key={block.id}
-                                    imageBlock={block}
-                                    isSelected={state.session.selectedBlocks.includes(
-                                        block.id,
-                                    )}
-                                />
-                            );
-                        case "text":
-                            return (
-                                <TextBlock
-                                    key={block.id}
-                                    textBlock={block}
-                                    isSelected={state.session.selectedBlocks.includes(
-                                        block.id,
-                                    )}
-                                />
-                            );
-                        case "art":
-                            return (
-                                <ArtBlock
-                                    key={block.id}
-                                    artBlock={block}
-                                    isSelected={state.session.selectedBlocks.includes(
-                                        block.id,
-                                    )}
-                                />
-                            );
-                        default:
-                            return null;
-                    }
-                })}
-            </div>
+        <div
+            className={css.canvas + " " + classNameList}
+            style={state.session.template.canvas.size}
+        >
+            {state.session.template.blocks.map((block) => {
+                switch (block.type) {
+                    case "image":
+                        return (
+                            <ImageBlock
+                                key={block.id}
+                                imageBlock={block}
+                                isSelected={state.session.selectedBlocks.includes(
+                                    block.id,
+                                )}
+                            />
+                        );
+                    case "text":
+                        return (
+                            <TextBlock
+                                key={block.id}
+                                textBlock={block}
+                                isSelected={state.session.selectedBlocks.includes(
+                                    block.id,
+                                )}
+                            />
+                        );
+                    case "art":
+                        return (
+                            <ArtBlock
+                                key={block.id}
+                                artBlock={block}
+                                isSelected={state.session.selectedBlocks.includes(
+                                    block.id,
+                                )}
+                            />
+                        );
+                    default:
+                        return null;
+                }
+            })}
         </div>
     );
 }
