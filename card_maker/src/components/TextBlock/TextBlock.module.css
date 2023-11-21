@@ -6,5 +6,6 @@
 }
 
 .text p {
+    cursor: text;
     position: absolute;
 }
