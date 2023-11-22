@@ -1,27 +1,64 @@
 import css from "./ImageBlock.module.css";
 import commonCss from "../../common/Common.module.css";
 import { ImageBlockType } from "../../type/type";
-import React from "react";
-import dragStartHandler from "../../utils/dragStartHandler";
-import dragEndHandler from "../../utils/dragEndHandler";
+import React, { useEffect, useRef } from "react";
+import { RegisterDndItemFn } from "../../hooks/useDnd";
 import { useAppDispatch } from "../../data/hooks";
+import { setSelectedBlock } from "../../data/sessionReducer";
 
 type imageBlockProps = {
     imageBlock: ImageBlockType;
     isSelected: boolean;
+    registerDndItem: RegisterDndItemFn;
 };
-function ImageBlock({ imageBlock, isSelected }: imageBlockProps) {
-    const dispatch = useAppDispatch();
+function ImageBlock({
+    imageBlock,
+    isSelected,
+    registerDndItem,
+}: imageBlockProps) {
     let classNameList = commonCss.border + " " + commonCss.draggable;
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
+    const dispatch = useAppDispatch();
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const { onDragStart } = registerDndItem(ref);
+        const onMouseDown = (mouseDownEvent: MouseEvent) => {
+            mouseDownEvent.preventDefault();
+            dispatch(
+                setSelectedBlock({
+                    id: imageBlock.id,
+                    withCtrl: mouseDownEvent.ctrlKey,
+                }),
+            );
+            onDragStart({
+                onDrag: (dragEvent) => {
+                    ref.current!.style.zIndex = "1";
+                    ref.current!.style.top = `${
+                        imageBlock.position.top +
+                        dragEvent.clientY -
+                        mouseDownEvent.clientY
+                    }px`;
+                    ref.current!.style.left = `${
+                        imageBlock.position.left +
+                        dragEvent.clientX -
+                        mouseDownEvent.clientX
+                    }px`;
+                },
+                onDrop: () => {
+                    ref.current!.style.zIndex = "";
+                },
+            });
+        };
+        const control = ref.current!;
+        control.addEventListener("mousedown", onMouseDown);
+        return () => control.removeEventListener("mousedown", onMouseDown);
+    }, [imageBlock.position, registerDndItem]);
     return (
         <div
+            ref={ref}
             className={css.image + " " + classNameList}
-            draggable
-            onDragStart={(e) => dragStartHandler(e, dispatch)}
-            onDragEnd={(e) => dragEndHandler(e, dispatch)}
             style={{ ...imageBlock.size, ...imageBlock.position }}
             id={imageBlock.id}
         >

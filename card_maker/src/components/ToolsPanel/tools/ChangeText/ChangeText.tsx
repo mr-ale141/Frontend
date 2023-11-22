@@ -59,13 +59,6 @@ function ChangeText() {
     }
     return (
         <div className={commonCss.tool}>
-            <label htmlFor="new-text">Change text</label>
-            {/* <input */}
-            {/*   id="new-text" */}
-            {/*   type="text" */}
-            {/*   placeholder="Insert new text here" */}
-            {/*   onChange={(event) => dispatch(changeText(event.target.value))} */}
-            {/* /> */}
             <div
                 className={commonCss.horizontal}
                 onClick={(e) => setHorizontal(e)}

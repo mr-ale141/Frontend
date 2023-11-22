@@ -94,7 +94,6 @@ type DeltaHistory = {
 type Session = {
     editHistory: Array<DeltaHistory>;
     selectedBlocks: Array<string>;
-    startPosition: Position;
     template: Template;
     file_name: string;
 };

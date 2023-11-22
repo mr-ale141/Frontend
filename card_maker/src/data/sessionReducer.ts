@@ -33,6 +33,10 @@ export const sessionReducer = createSlice({
                         ...state.session.selectedBlocks,
                         action.payload.id,
                     ];
+            } else {
+                if (!action.payload.withCtrl) state.session.selectedBlocks = [];
+                if (!state.session.selectedBlocks.includes(action.payload.id))
+                    state.session.selectedBlocks = [action.payload.id];
             }
         },
         setBGColor: (state, action: PayloadAction<Color>) => {
@@ -80,21 +84,14 @@ export const sessionReducer = createSlice({
                 }
             });
         },
-        setStartPosition: (state, action: PayloadAction<Position>) => {
-            state.session.startPosition = action.payload;
-        },
-        setEndPosition: (state, action: PayloadAction<Position>) => {
-            const offset: Position = {
-                left: action.payload.left - state.session.startPosition.left,
-                top: action.payload.top - state.session.startPosition.top,
-            };
+        setNewPosition: (state, action: PayloadAction<Position>) => {
             state.session.selectedBlocks.forEach((id) => {
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
                 if (block) {
-                    block.position.left += offset.left;
-                    block.position.top += offset.top;
+                    block.position.left += action.payload.left;
+                    block.position.top += action.payload.top;
                 }
             });
         },
@@ -153,8 +150,7 @@ export const {
     setSelectedBlock,
     setBGColor,
     setColor,
-    setStartPosition,
-    setEndPosition,
+    setNewPosition,
     changeText,
     setTextJustifyContent,
     setTextAlignItems,

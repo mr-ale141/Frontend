@@ -8,14 +8,15 @@ import Like from "../art/like/Like";
 import Line from "../art/line/Line";
 import Rect from "../art/rectangle/Rect";
 import Square from "../art/square/Square";
-import React from "react";
-import dragStartHandler from "../../utils/dragStartHandler";
-import dragEndHandler from "../../utils/dragEndHandler";
+import React, { useEffect, useRef } from "react";
+import { RegisterDndItemFn } from "../../hooks/useDnd";
 import { useAppDispatch } from "../../data/hooks";
+import { setSelectedBlock } from "../../data/sessionReducer";
 
 type ArtBlkProps = {
     artBlock: ArtBlockType;
     isSelected: boolean;
+    registerDndItem: RegisterDndItemFn;
 };
 
 const artBlkSrc = {
@@ -27,18 +28,49 @@ const artBlkSrc = {
     [ArtName.rect]: Rect,
     [ArtName.square]: Square,
 };
-function ArtBlock({ artBlock, isSelected }: ArtBlkProps) {
-    const dispatch = useAppDispatch();
+function ArtBlock({ artBlock, isSelected, registerDndItem }: ArtBlkProps) {
     let classNameList = commonCss.border + " " + commonCss.draggable;
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
+    const dispatch = useAppDispatch();
+    const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const { onDragStart } = registerDndItem(ref);
+        const onMouseDown = (mouseDownEvent: MouseEvent) => {
+            dispatch(
+                setSelectedBlock({
+                    id: artBlock.id,
+                    withCtrl: mouseDownEvent.ctrlKey,
+                }),
+            );
+            onDragStart({
+                onDrag: (dragEvent) => {
+                    ref.current!.style.zIndex = "1";
+                    ref.current!.style.top = `${
+                        artBlock.position.top +
+                        dragEvent.clientY -
+                        mouseDownEvent.clientY
+                    }px`;
+                    ref.current!.style.left = `${
+                        artBlock.position.left +
+                        dragEvent.clientX -
+                        mouseDownEvent.clientX
+                    }px`;
+                },
+                onDrop: () => {
+                    ref.current!.style.zIndex = "";
+                },
+            });
+        };
+        const control = ref.current!;
+        control.addEventListener("mousedown", onMouseDown);
+        return () => control.removeEventListener("mousedown", onMouseDown);
+    }, [artBlock.position, registerDndItem]);
     return (
         <div
+            ref={ref}
             className={css.art + " " + classNameList}
-            draggable
-            onDragStart={(e) => dragStartHandler(e, dispatch)}
-            onDragEnd={(e) => dragEndHandler(e, dispatch)}
             style={{
                 ...artBlock.position,
                 ...artBlock.size,

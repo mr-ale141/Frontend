@@ -263,7 +263,6 @@ const templateSource: Array<Template> = [
 const session: Session = {
     editHistory: [],
     selectedBlocks: [],
-    startPosition: { left: 0, top: 0 },
     template: templateSource[1],
     file_name: "max_file.card",
 };
