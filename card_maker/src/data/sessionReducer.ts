@@ -22,21 +22,19 @@ export const sessionReducer = createSlice({
                 withCtrl: boolean;
             }>,
         ) => {
-            if (
-                state.session.selectedBlocks.length <= 1 ||
-                action.payload.withCtrl ||
-                action.payload.id === "canvas"
-            ) {
-                if (!action.payload.withCtrl) state.session.selectedBlocks = [];
-                if (!state.session.selectedBlocks.includes(action.payload.id))
+            const selectedId = action.payload.id;
+            const withCtrl = action.payload.withCtrl;
+            if (selectedId === "") {
+                state.session.selectedBlocks = [];
+            } else {
+                if (withCtrl) {
                     state.session.selectedBlocks = [
                         ...state.session.selectedBlocks,
-                        action.payload.id,
+                        selectedId,
                     ];
-            } else {
-                if (!action.payload.withCtrl) state.session.selectedBlocks = [];
-                if (!state.session.selectedBlocks.includes(action.payload.id))
-                    state.session.selectedBlocks = [action.payload.id];
+                } else {
+                    state.session.selectedBlocks = [selectedId];
+                }
             }
         },
         setBGColor: (state, action: PayloadAction<Color>) => {

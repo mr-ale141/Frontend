@@ -55,12 +55,24 @@ function ImageBlock({
         control.addEventListener("mousedown", onMouseDown);
         return () => control.removeEventListener("mousedown", onMouseDown);
     }, [imageBlock.position, registerDndItem]);
+    function onMouseDownHandler(e: React.MouseEvent) {
+        if (!e.isDefaultPrevented()) {
+            dispatch(
+                setSelectedBlock({
+                    id: imageBlock.id,
+                    withCtrl: e.ctrlKey,
+                }),
+            );
+        }
+        e.preventDefault();
+    }
     return (
         <div
             ref={ref}
             className={css.image + " " + classNameList}
             style={{ ...imageBlock.size, ...imageBlock.position }}
             id={imageBlock.id}
+            onMouseDown={onMouseDownHandler}
         >
             <img src={imageBlock.bgImage.data} alt="img" />
         </div>

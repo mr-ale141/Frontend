@@ -60,6 +60,14 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
         }
     }
     const [isEdit, setIsEdit] = useState(false);
+    function onMouseDownHandler(e: React.MouseEvent) {
+        if (!e.isDefaultPrevented()) {
+            dispatch(
+                setSelectedBlock({ id: textBlock.id, withCtrl: e.ctrlKey }),
+            );
+        }
+        e.preventDefault();
+    }
     return (
         <div
             ref={ref}
@@ -71,6 +79,7 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
                 ...textBlock.positionText,
                 backgroundColor: GetRGBA(textBlock.bgColor),
             }}
+            onMouseDown={onMouseDownHandler}
         >
             {!isEdit && (
                 <p

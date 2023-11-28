@@ -23,14 +23,14 @@ function ChangeImage() {
     }
     return (
         <div className={commonCss.tool}>
-            <label htmlFor="image-link">Set link</label>
+            <label htmlFor="image-link">Change image</label>
             <input
                 id="image-link"
                 type="text"
                 placeholder="Insert URL-address"
                 onChange={(event) => changeImageLinkHandler(event)}
             />
-            <label htmlFor="image-upload">Upload file (PNG, JPG)</label>
+            <label htmlFor="image-upload">Upload file</label>
             <input
                 id="image-upload"
                 type="file"

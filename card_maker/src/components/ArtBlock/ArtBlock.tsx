@@ -67,6 +67,14 @@ function ArtBlock({ artBlock, isSelected, registerDndItem }: ArtBlkProps) {
         control.addEventListener("mousedown", onMouseDown);
         return () => control.removeEventListener("mousedown", onMouseDown);
     }, [artBlock.position, registerDndItem]);
+    function onMouseDownHandler(e: React.MouseEvent) {
+        if (!e.isDefaultPrevented()) {
+            dispatch(
+                setSelectedBlock({ id: artBlock.id, withCtrl: e.ctrlKey }),
+            );
+        }
+        e.preventDefault();
+    }
     return (
         <div
             ref={ref}
@@ -76,6 +84,7 @@ function ArtBlock({ artBlock, isSelected, registerDndItem }: ArtBlkProps) {
                 ...artBlock.size,
             }}
             id={artBlock.id}
+            onMouseDown={onMouseDownHandler}
         >
             {artBlkSrc[artBlock.artName]({ artBlock })}
         </div>

@@ -1,7 +1,5 @@
 import React from "react";
 import css from "./ToolsPanel.module.css";
-import InputBGColor from "./tools/InputBGColor/InputBGColor";
-import InputColor from "./tools/InputColor/InputColor";
 import {
     ArtBlockType,
     Color,
@@ -10,6 +8,7 @@ import {
 } from "../../type/type";
 import { useAppSelector } from "../../data/hooks";
 import { sessionState } from "../../data/sessionReducer";
+import ChangeColor from "./tools/ChangeColor/ChangeColor";
 import ChangeImage from "./tools/ChangeImage/ChangeImage";
 import ChangeText from "./tools/ChangeText/ChangeText";
 import ChangeArt from "./tools/ChangeArt/ChangeArt";
@@ -28,8 +27,7 @@ function ToolsPanel() {
     if (activeBlocks.length > 1) {
         return (
             <div className={css.tools}>
-                <InputBGColor bgColor={defaultColor} />
-                <InputColor color={defaultColor} />
+                <ChangeColor color={defaultColor} bgColor={defaultColor} />
             </div>
         );
     } else if (activeBlocks.length === 1) {
@@ -37,16 +35,20 @@ function ToolsPanel() {
             case "text":
                 return (
                     <div className={css.tools}>
-                        <InputBGColor bgColor={activeBlocks[0].bgColor} />
-                        <InputColor color={activeBlocks[0].text.color} />
+                        <ChangeColor
+                            color={activeBlocks[0].text.color}
+                            bgColor={activeBlocks[0].bgColor}
+                        />
                         <ChangeText />
                     </div>
                 );
             case "art":
                 return (
                     <div className={css.tools}>
-                        <InputBGColor bgColor={activeBlocks[0].bgColor} />
-                        <InputColor color={activeBlocks[0].borderColor} />
+                        <ChangeColor
+                            color={activeBlocks[0].borderColor}
+                            bgColor={activeBlocks[0].bgColor}
+                        />
                         <ChangeArt />
                     </div>
                 );
@@ -62,9 +64,7 @@ function ToolsPanel() {
     } else {
         return (
             <div className={css.tools}>
-                <div style={{ color: "#cb9b51", margin: "10px" }}>
-                    Select item
-                </div>
+                <div>Select item</div>
             </div>
         );
     }

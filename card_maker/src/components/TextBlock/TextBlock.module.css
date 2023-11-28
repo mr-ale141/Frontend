@@ -9,3 +9,7 @@
     cursor: text;
     position: absolute;
 }
+
+.text input {
+    outline: none;
+}

@@ -5,10 +5,10 @@ import {
     setTextAlignItems,
     setTextJustifyContent,
 } from "../../../../data/sessionReducer";
-import left from "./left.png";
-import center from "./center.png";
-import right from "./right.png";
-import centerSmall from "./center_small.png";
+import left from "./icon/left.png";
+import center from "./icon/center.png";
+import right from "./icon/right.png";
+import centerSmall from "./icon/center_small.png";
 function ChangeText() {
     const dispatch = useAppDispatch();
     function setHorizontal(e: React.MouseEvent) {

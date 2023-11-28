@@ -14,37 +14,56 @@
 }
 
 .tool {
+    width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #462523;
+    background-color: #373737;
     border-radius: 10px;
     margin: 5px;
-    padding: 5px 0;
+    padding: 0 0 5px;
+    border: 1px solid;
 }
 
 .tool label {
-    margin: 5px;
+    margin: 2px;
     color: #cb9b51;
 }
 
 .tool input {
-    margin: 10px;
-    padding: 5px;
+    width: 140px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.tool input[type="text"] {
+    padding: 3px;
+    margin: 3px;
 }
 
 .tool select {
-    margin: 10px;
-    padding: 5px;
+    width: 140px;
+    border: none;
+    outline: none;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+.tool label[for="bg-opacity"] {
+    font-size: 12px;
+    color: lightgrey;
 }
 
 .tool label[for="image-upload"] {
     background-color: gold;
     border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
+    margin: 3px;
+    padding: 3px;
     color: #211d1d;
     cursor: pointer;
+    width: 140px;
+    text-align: center;
 }
 
 .tool input[type="file"] {
