@@ -39,9 +39,14 @@ export const sessionReducer = createSlice({
         },
         setBGColor: (state, action: PayloadAction<Color>) => {
             state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
+                let block;
+                if (id === state.session.template.canvas.id) {
+                    block = state.session.template.canvas;
+                } else {
+                    block = state.session.template.blocks.find(
+                        (block) => block.id === id,
+                    );
+                }
                 if (block) {
                     if (action.payload.r >= 0)
                         block.bgColor.r = action.payload.r;
@@ -132,10 +137,19 @@ export const sessionReducer = createSlice({
         changeImage: (state, action: PayloadAction<string>) => {
             const type = action.payload.includes("http") ? "link" : "base64";
             state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block && block.type === TypeBlock.image) {
+                let block;
+                if (id === state.session.template.canvas.id) {
+                    block = state.session.template.canvas;
+                } else {
+                    block = state.session.template.blocks.find(
+                        (block) => block.id === id,
+                    );
+                }
+                if (
+                    block &&
+                    (block.type === TypeBlock.image ||
+                        block.type === TypeBlock.canvas)
+                ) {
                     block.bgImage.data = action.payload;
                     block.bgImage.type = type;
                 }

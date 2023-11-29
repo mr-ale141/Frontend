@@ -5,9 +5,12 @@ import { changeImage } from "../../../../data/sessionReducer";
 function ChangeImage() {
     const dispatch = useAppDispatch();
     function changeImageLinkHandler(
-        event: React.ChangeEvent<HTMLInputElement>,
+        event: React.KeyboardEvent<HTMLInputElement>,
     ) {
-        dispatch(changeImage(event.target.value));
+        if (event.key === "Enter") {
+            dispatch(changeImage(event.currentTarget.value));
+            event.currentTarget.value = "";
+        }
     }
     function changeImageFileHandler(
         event: React.ChangeEvent<HTMLInputElement>,
@@ -28,7 +31,7 @@ function ChangeImage() {
                 id="image-link"
                 type="text"
                 placeholder="Insert URL-address"
-                onChange={(event) => changeImageLinkHandler(event)}
+                onKeyDown={(event) => changeImageLinkHandler(event)}
             />
             <label htmlFor="image-upload">Upload file</label>
             <input

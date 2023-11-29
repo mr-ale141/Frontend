@@ -12,6 +12,7 @@ import {
 import commonCss from "../../common/Common.module.css";
 import { useDnd } from "../../hooks/useDnd";
 import { TypeBlock } from "../../type/type";
+import getRGBA from "../../utils/getRGBA";
 
 function Canvas() {
     const state = useAppSelector(sessionState);
@@ -37,10 +38,18 @@ function Canvas() {
         }
         e.preventDefault();
     }
+    const styleCanvas: React.CSSProperties = {
+        ...canvas.size,
+        backgroundColor: getRGBA(canvas.bgColor),
+    };
+    if (canvas.bgImage.data.length !== 0) {
+        styleCanvas.backgroundImage = `url(${canvas.bgImage.data})`;
+        styleCanvas.backgroundSize = "cover";
+    }
     return (
         <div
             className={css.canvas + " " + classNameList}
-            style={canvas.size}
+            style={styleCanvas}
             id={canvas.id}
             onMouseDown={onMouseDownHandler}
         >
