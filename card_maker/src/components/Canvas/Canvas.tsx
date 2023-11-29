@@ -11,6 +11,7 @@ import {
 } from "../../data/sessionReducer";
 import commonCss from "../../common/Common.module.css";
 import { useDnd } from "../../hooks/useDnd";
+import { TypeBlock } from "../../type/type";
 
 function Canvas() {
     const state = useAppSelector(sessionState);
@@ -45,7 +46,7 @@ function Canvas() {
         >
             {state.session.template.blocks.map((block) => {
                 switch (block.type) {
-                    case "image":
+                    case TypeBlock.image:
                         return (
                             <ImageBlock
                                 key={block.id}
@@ -54,7 +55,7 @@ function Canvas() {
                                 registerDndItem={registerDndItem}
                             />
                         );
-                    case "text":
+                    case TypeBlock.text:
                         return (
                             <TextBlock
                                 key={block.id}
@@ -63,7 +64,7 @@ function Canvas() {
                                 registerDndItem={registerDndItem}
                             />
                         );
-                    case "art":
+                    case TypeBlock.art:
                         return (
                             <ArtBlock
                                 key={block.id}

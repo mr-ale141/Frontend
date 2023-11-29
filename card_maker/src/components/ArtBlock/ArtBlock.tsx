@@ -72,8 +72,8 @@ function ArtBlock({ artBlock, isSelected, registerDndItem }: ArtBlkProps) {
             dispatch(
                 setSelectedBlock({ id: artBlock.id, withCtrl: e.ctrlKey }),
             );
+            e.preventDefault();
         }
-        e.preventDefault();
     }
     return (
         <div

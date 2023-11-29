@@ -63,8 +63,8 @@ function ImageBlock({
                     withCtrl: e.ctrlKey,
                 }),
             );
+            e.preventDefault();
         }
-        e.preventDefault();
     }
     return (
         <div

@@ -51,6 +51,7 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
         control.addEventListener("mousedown", onMouseDown);
         return () => control.removeEventListener("mousedown", onMouseDown);
     }, [textBlock.position, registerDndItem]);
+    const [isEdit, setIsEdit] = useState(false);
     function endEditNew(e: React.KeyboardEvent) {
         if (e.key === "Enter") {
             const target = e.target as HTMLInputElement;
@@ -59,14 +60,19 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
             setIsEdit(false);
         }
     }
-    const [isEdit, setIsEdit] = useState(false);
     function onMouseDownHandler(e: React.MouseEvent) {
         if (!e.isDefaultPrevented()) {
             dispatch(
                 setSelectedBlock({ id: textBlock.id, withCtrl: e.ctrlKey }),
             );
+            e.preventDefault();
         }
-        e.preventDefault();
+    }
+    function onDoubleClickHandler(e: React.MouseEvent) {
+        if (!e.isDefaultPrevented()) {
+            setIsEdit(true);
+            e.preventDefault();
+        }
     }
     return (
         <div
@@ -87,7 +93,7 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
                         ...textBlock.text,
                         color: GetRGBA(textBlock.text.color),
                     }}
-                    onDoubleClick={() => setIsEdit(true)}
+                    onDoubleClick={onDoubleClickHandler}
                 >
                     {textBlock.text.value}
                 </p>
@@ -101,6 +107,7 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
                     }}
                     id="new-text"
                     onKeyDown={(e) => endEditNew(e)}
+                    onClick={(e) => e.preventDefault()}
                     onBlur={() => setIsEdit(false)}
                     defaultValue={textBlock.text.value}
                 />

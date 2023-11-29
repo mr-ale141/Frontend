@@ -5,6 +5,7 @@ import {
     Session,
     Template,
     TextBlockType,
+    TypeBlock,
 } from "../type/type";
 import stars from "./img/png/stars.png";
 import { v4 as uuidV4 } from "uuid";
@@ -24,7 +25,7 @@ const textBlockSource: Array<TextBlockType> = [
             justifyContent: "center",
             alignItems: "center",
         },
-        type: "text",
+        type: TypeBlock.text,
         text: {
             value: "I need Card Maker!!!",
             fontSize: 14,
@@ -63,7 +64,7 @@ const imageBlockSource: Array<ImageBlockType> = [
             left: 150,
             top: 150,
         },
-        type: "image",
+        type: TypeBlock.image,
         bgImage: {
             type: "link",
             data: "https://i.pravatar.cc/200",
@@ -85,7 +86,7 @@ const imageBlockSource: Array<ImageBlockType> = [
             left: 50,
             top: 50,
         },
-        type: "image",
+        type: TypeBlock.image,
         bgImage: {
             type: "Path",
             data: stars,
@@ -107,7 +108,7 @@ const imageBlockSource: Array<ImageBlockType> = [
             left: 10,
             top: 10,
         },
-        type: "image",
+        type: TypeBlock.image,
         bgImage: {
             type: "",
             data: "stars.png",
@@ -132,7 +133,7 @@ const artBlockSource: Array<ArtBlockType> = [
             left: 375,
             top: 0,
         },
-        type: "art",
+        type: TypeBlock.art,
         borderColor: {
             r: 0x00,
             g: 0xff,
@@ -154,6 +155,7 @@ const templateSource: Array<Template> = [
         id: uuidV4(),
         canvas: {
             id: uuidV4(),
+            type: TypeBlock.canvas,
             size: {
                 width: 700,
                 height: 500,
@@ -181,6 +183,7 @@ const templateSource: Array<Template> = [
         id: uuidV4(),
         canvas: {
             id: uuidV4(),
+            type: TypeBlock.canvas,
             size: {
                 width: 700,
                 height: 500,
@@ -208,6 +211,7 @@ const templateSource: Array<Template> = [
         id: uuidV4(),
         canvas: {
             id: uuidV4(),
+            type: TypeBlock.canvas,
             size: {
                 width: 400,
                 height: 400,
@@ -235,6 +239,7 @@ const templateSource: Array<Template> = [
         id: uuidV4(),
         canvas: {
             id: uuidV4(),
+            type: TypeBlock.canvas,
             size: {
                 width: 297,
                 height: 210,

@@ -1,5 +1,5 @@
 import session from "./max_data";
-import { ArtName, Color, Position, Session } from "../type/type";
+import { ArtName, Color, Position, Session, TypeBlock } from "../type/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
@@ -60,7 +60,7 @@ export const sessionReducer = createSlice({
                     (block) => block.id === id,
                 );
                 if (block) {
-                    if (block.type === "text") {
+                    if (block.type === TypeBlock.text) {
                         if (action.payload.r >= 0)
                             block.text.color.r = action.payload.r;
                         if (action.payload.g >= 0)
@@ -69,7 +69,7 @@ export const sessionReducer = createSlice({
                             block.text.color.b = action.payload.b;
                         if (action.payload.a >= 0)
                             block.text.color.a = action.payload.a;
-                    } else if (block.type === "art") {
+                    } else if (block.type === TypeBlock.art) {
                         if (action.payload.r >= 0)
                             block.borderColor.r = action.payload.r;
                         if (action.payload.g >= 0)
@@ -98,7 +98,7 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                if (block && block.type === "text")
+                if (block && block.type === TypeBlock.text)
                     block.text.value = action.payload;
             });
         },
@@ -107,7 +107,7 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                if (block && block.type === "text")
+                if (block && block.type === TypeBlock.text)
                     block.positionText.justifyContent = action.payload;
             });
         },
@@ -116,7 +116,7 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                if (block && block.type === "text")
+                if (block && block.type === TypeBlock.text)
                     block.positionText.alignItems = action.payload;
             });
         },
@@ -125,7 +125,7 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                if (block && block.type === "art")
+                if (block && block.type === TypeBlock.art)
                     block.artName = action.payload;
             });
         },
@@ -135,7 +135,7 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                if (block && block.type === "image") {
+                if (block && block.type === TypeBlock.image) {
                     block.bgImage.data = action.payload;
                     block.bgImage.type = type;
                 }

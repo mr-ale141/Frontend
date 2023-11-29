@@ -8,6 +8,13 @@ enum ArtName {
     like,
 }
 
+enum TypeBlock {
+    art,
+    text,
+    image,
+    canvas,
+}
+
 type Image = {
     type: "link" | "base64" | "Path" | "";
     data: string;
@@ -51,20 +58,20 @@ type TextBlockType = Block & {
         justifyContent: string;
         alignItems: string;
     };
-    type: "text";
+    type: TypeBlock.text;
     text: Text;
     bgImage: Image;
     bgColor: Color;
 };
 
 type ImageBlockType = Block & {
-    type: "image";
+    type: TypeBlock.image;
     bgImage: Image;
     bgColor: Color;
 };
 
 type ArtBlockType = Block & {
-    type: "art";
+    type: TypeBlock.art;
     borderColor: Color;
     artName: ArtName;
     bgColor: Color;
@@ -72,6 +79,7 @@ type ArtBlockType = Block & {
 
 type CanvasType = {
     id: string;
+    type: TypeBlock.canvas;
     size: Size;
     filter: Color;
     bgImage: Image;
@@ -111,4 +119,4 @@ export type {
     Position,
 };
 
-export { ArtName };
+export { ArtName, TypeBlock };
