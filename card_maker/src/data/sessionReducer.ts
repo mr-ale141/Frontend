@@ -92,6 +92,7 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
+                console.log("!!!!");
                 if (block) {
                     block.position.left += action.payload.left;
                     block.position.top += action.payload.top;

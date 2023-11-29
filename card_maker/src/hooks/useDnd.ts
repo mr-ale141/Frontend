@@ -1,58 +1,50 @@
 import { Position } from "../type/type";
-import { RefObject, useCallback } from "react";
+import { Dispatch, RefObject, SetStateAction } from "react";
+import { setNewPosition } from "../data/sessionReducer";
+import { useAppDispatch } from "../data/hooks";
 
-type OnDragStartFn = (args: {
-    onDrag: (event: MouseEvent) => void;
-    onDrop: (event: MouseEvent) => void;
-}) => void;
+type OnDragStartFn = (event: MouseEvent) => void;
 
-type RegisterDndItemFn = (arg: RefObject<HTMLDivElement>) => {
+type RegisterDndItemFn = (
+    arg1: RefObject<HTMLDivElement>,
+    arg2: Position,
+    arg3: Dispatch<SetStateAction<{ top: number; left: number }>>,
+) => {
     onDragStart: OnDragStartFn;
 };
 
-type useDndParams = {
-    onChangePosition: (offset: Position) => void;
-};
-
-function useDnd({ onChangePosition }: useDndParams) {
-    const registerDndItem = useCallback(
-        (elementRef: RefObject<HTMLDivElement>) => {
-            const onDragStart: OnDragStartFn = ({ onDrag, onDrop }) => {
-                const startPositionPage = {
-                    top: elementRef.current!.getBoundingClientRect().top,
-                    left: elementRef.current!.getBoundingClientRect().left,
+function useDnd() {
+    const dispatch = useAppDispatch();
+    const registerDndItem: RegisterDndItemFn = (
+        elementRef: RefObject<HTMLDivElement>,
+        offset,
+        setOffset,
+    ) => {
+        const onDragStart: OnDragStartFn = (mouseDownEvent) => {
+            const onMouseMove = (dragEvent: MouseEvent) => {
+                const newOffset = {
+                    top: dragEvent.clientY - mouseDownEvent.clientY,
+                    left: dragEvent.clientX - mouseDownEvent.clientX,
                 };
-                const onMouseUp = (event: MouseEvent) => {
-                    const offset: Position = { top: 0, left: 0 };
-                    const endPositionPage = {
-                        top: elementRef.current!.getBoundingClientRect().top,
-                        left: elementRef.current!.getBoundingClientRect().left,
-                    };
-                    offset.top = endPositionPage.top - startPositionPage.top;
-                    offset.left = endPositionPage.left - startPositionPage.left;
-                    onChangePosition(offset);
-                    onDrop(event);
-                    elementRef.current!.removeEventListener(
-                        "mousemove",
-                        onDrag,
-                    );
-                    elementRef.current!.removeEventListener(
-                        "mouseup",
-                        onMouseUp,
-                    );
-                };
-                elementRef.current!.addEventListener("mousemove", onDrag);
-                elementRef.current!.addEventListener("mouseup", onMouseUp);
+                setOffset(newOffset);
             };
-            return {
-                onDragStart,
+            const onMouseDrop = () => {
+                dispatch(setNewPosition(offset));
+                // setOffset({ top: 0, left: 0 });
+                elementRef.current!.removeEventListener(
+                    "mousemove",
+                    onMouseMove,
+                );
+                elementRef.current!.removeEventListener("mouseup", onMouseDrop);
             };
-        },
-        [onChangePosition],
-    );
-    return {
-        registerDndItem,
+            elementRef.current!.addEventListener("mousemove", onMouseMove);
+            elementRef.current!.addEventListener("mouseup", onMouseDrop);
+        };
+        return {
+            onDragStart,
+        };
     };
+    return registerDndItem;
 }
 
 export { useDnd };

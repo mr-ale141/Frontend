@@ -48,7 +48,7 @@ const textBlockSource: Array<TextBlockType> = [
             r: 0x36,
             g: 0x23,
             b: 0x45,
-            a: 1,
+            a: 0,
         },
     },
 ];

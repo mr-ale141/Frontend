@@ -4,13 +4,8 @@ import TextBlock from "../TextBlock/TextBlock";
 import ArtBlock from "../ArtBlock/ArtBlock";
 import ImageBlock from "../ImageBlock/ImageBlock";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
-import {
-    sessionState,
-    setNewPosition,
-    setSelectedBlock,
-} from "../../data/sessionReducer";
+import { sessionState, setSelectedBlock } from "../../data/sessionReducer";
 import commonCss from "../../common/Common.module.css";
-import { useDnd } from "../../hooks/useDnd";
 import { TypeBlock } from "../../type/type";
 import getRGBA from "../../utils/getRGBA";
 
@@ -24,9 +19,6 @@ function Canvas() {
         classNameList += " " + commonCss.selected;
     }
     const dispatch = useAppDispatch();
-    const { registerDndItem } = useDnd({
-        onChangePosition: (offset) => dispatch(setNewPosition(offset)),
-    });
     function onMouseDownHandler(e: React.MouseEvent) {
         if (!e.isDefaultPrevented()) {
             dispatch(
@@ -61,7 +53,6 @@ function Canvas() {
                                 key={block.id}
                                 imageBlock={block}
                                 isSelected={selectedBlocks.includes(block.id)}
-                                registerDndItem={registerDndItem}
                             />
                         );
                     case TypeBlock.text:
@@ -70,7 +61,6 @@ function Canvas() {
                                 key={block.id}
                                 textBlock={block}
                                 isSelected={selectedBlocks.includes(block.id)}
-                                registerDndItem={registerDndItem}
                             />
                         );
                     case TypeBlock.art:
@@ -79,7 +69,6 @@ function Canvas() {
                                 key={block.id}
                                 artBlock={block}
                                 isSelected={selectedBlocks.includes(block.id)}
-                                registerDndItem={registerDndItem}
                             />
                         );
                     default:

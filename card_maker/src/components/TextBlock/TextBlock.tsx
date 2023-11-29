@@ -1,55 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import css from "./TextBlock.module.css";
 import commonCss from "../../common/Common.module.css";
-import { TextBlockType } from "../../type/type";
+import { Position, TextBlockType } from "../../type/type";
 import GetRGBA from "../../utils/getRGBA";
 import { useAppDispatch } from "../../data/hooks";
 import { changeText, setSelectedBlock } from "../../data/sessionReducer";
-import { RegisterDndItemFn } from "../../hooks/useDnd";
+import { useDnd } from "../../hooks/useDnd";
 
 type textBlockProps = {
     textBlock: TextBlockType;
     isSelected: boolean;
-    registerDndItem: RegisterDndItemFn;
 };
-function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
+
+function TextBlock({ textBlock, isSelected }: textBlockProps) {
     let classNameList = commonCss.border + " " + commonCss.draggable;
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
+    const [offset, setOffset] = useState({ top: 0, left: 0 });
     const dispatch = useAppDispatch();
+    const registerDndItem = useDnd();
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        const { onDragStart } = registerDndItem(ref);
-        const onMouseDown = (mouseDownEvent: MouseEvent) => {
-            dispatch(
-                setSelectedBlock({
-                    id: textBlock.id,
-                    withCtrl: mouseDownEvent.ctrlKey,
-                }),
-            );
-            onDragStart({
-                onDrag: (dragEvent) => {
-                    ref.current!.style.zIndex = "1";
-                    ref.current!.style.top = `${
-                        textBlock.position.top +
-                        dragEvent.clientY -
-                        mouseDownEvent.clientY
-                    }px`;
-                    ref.current!.style.left = `${
-                        textBlock.position.left +
-                        dragEvent.clientX -
-                        mouseDownEvent.clientX
-                    }px`;
-                },
-                onDrop: () => {
-                    ref.current!.style.zIndex = "";
-                },
-            });
-        };
+        const { onDragStart } = registerDndItem(ref, offset, setOffset);
         const control = ref.current!;
-        control.addEventListener("mousedown", onMouseDown);
-        return () => control.removeEventListener("mousedown", onMouseDown);
+        control.addEventListener("mousedown", onDragStart);
+        return () => control.removeEventListener("mousedown", onDragStart);
     }, [textBlock.position, registerDndItem]);
     const [isEdit, setIsEdit] = useState(false);
     function endEditNew(e: React.KeyboardEvent) {
@@ -74,6 +50,10 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
             e.preventDefault();
         }
     }
+    const position: Position = {
+        top: textBlock.position.top + offset.top,
+        left: textBlock.position.left + offset.left,
+    };
     return (
         <div
             ref={ref}
@@ -81,7 +61,7 @@ function TextBlock({ textBlock, isSelected, registerDndItem }: textBlockProps) {
             id={textBlock.id}
             style={{
                 ...textBlock.size,
-                ...textBlock.position,
+                ...position,
                 ...textBlock.positionText,
                 backgroundColor: GetRGBA(textBlock.bgColor),
             }}

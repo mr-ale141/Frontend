@@ -1,60 +1,30 @@
 import css from "./ImageBlock.module.css";
 import commonCss from "../../common/Common.module.css";
-import { ImageBlockType } from "../../type/type";
-import React, { useEffect, useRef } from "react";
-import { RegisterDndItemFn } from "../../hooks/useDnd";
+import { ImageBlockType, Position } from "../../type/type";
+import React, { useEffect, useRef, useState } from "react";
+import { useDnd } from "../../hooks/useDnd";
 import { useAppDispatch } from "../../data/hooks";
 import { setSelectedBlock } from "../../data/sessionReducer";
 
 type imageBlockProps = {
     imageBlock: ImageBlockType;
     isSelected: boolean;
-    registerDndItem: RegisterDndItemFn;
 };
-function ImageBlock({
-    imageBlock,
-    isSelected,
-    registerDndItem,
-}: imageBlockProps) {
+function ImageBlock({ imageBlock, isSelected }: imageBlockProps) {
     let classNameList = commonCss.border + " " + commonCss.draggable;
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
+    const [offset, setOffset] = useState({ top: 0, left: 0 });
     const dispatch = useAppDispatch();
+    const registerDndItem = useDnd();
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        const { onDragStart } = registerDndItem(ref);
-        const onMouseDown = (mouseDownEvent: MouseEvent) => {
-            mouseDownEvent.preventDefault();
-            dispatch(
-                setSelectedBlock({
-                    id: imageBlock.id,
-                    withCtrl: mouseDownEvent.ctrlKey,
-                }),
-            );
-            onDragStart({
-                onDrag: (dragEvent) => {
-                    ref.current!.style.zIndex = "1";
-                    ref.current!.style.top = `${
-                        imageBlock.position.top +
-                        dragEvent.clientY -
-                        mouseDownEvent.clientY
-                    }px`;
-                    ref.current!.style.left = `${
-                        imageBlock.position.left +
-                        dragEvent.clientX -
-                        mouseDownEvent.clientX
-                    }px`;
-                },
-                onDrop: () => {
-                    ref.current!.style.zIndex = "";
-                },
-            });
-        };
+        const { onDragStart } = registerDndItem(ref, offset, setOffset);
         const control = ref.current!;
-        control.addEventListener("mousedown", onMouseDown);
-        return () => control.removeEventListener("mousedown", onMouseDown);
-    }, [imageBlock.position, registerDndItem]);
+        control.addEventListener("mousedown", onDragStart);
+        return () => control.removeEventListener("mousedown", onDragStart);
+    }, []);
     function onMouseDownHandler(e: React.MouseEvent) {
         if (!e.isDefaultPrevented()) {
             dispatch(
@@ -66,11 +36,19 @@ function ImageBlock({
             e.preventDefault();
         }
     }
+    const position: Position = {
+        top: imageBlock.position.top + offset.top,
+        left: imageBlock.position.left + offset.left,
+    };
+    console.log("offset", offset);
+    console.log("position", position);
+    console.log("imageBlock.position", imageBlock.position);
+
     return (
         <div
             ref={ref}
             className={css.image + " " + classNameList}
-            style={{ ...imageBlock.size, ...imageBlock.position }}
+            style={{ ...imageBlock.size, ...position }}
             id={imageBlock.id}
             onMouseDown={onMouseDownHandler}
         >
