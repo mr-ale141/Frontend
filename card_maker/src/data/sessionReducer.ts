@@ -92,11 +92,13 @@ export const sessionReducer = createSlice({
                 const block = state.session.template.blocks.find(
                     (block) => block.id === id,
                 );
-                console.log("!!!!");
+                console.log("block1", JSON.stringify(block!.position));
+                console.log("action", JSON.stringify(action));
                 if (block) {
                     block.position.left += action.payload.left;
                     block.position.top += action.payload.top;
                 }
+                console.log("block2", JSON.stringify(block!.position));
             });
         },
         changeText: (state, action: PayloadAction<string>) => {

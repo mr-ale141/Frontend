@@ -15,15 +15,15 @@ function ImageBlock({ imageBlock, isSelected }: imageBlockProps) {
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
-    const [offset, setOffset] = useState({ top: 0, left: 0 });
+    const offsetZero: Position = { top: 0, left: 0 };
+    const [offset, setOffset] = useState(offsetZero);
     const dispatch = useAppDispatch();
-    const registerDndItem = useDnd();
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        const { onDragStart } = registerDndItem(ref, offset, setOffset);
-        const control = ref.current!;
-        control.addEventListener("mousedown", onDragStart);
-        return () => control.removeEventListener("mousedown", onDragStart);
+        const registerDndItem = useDnd(ref, offset, setOffset, dispatch);
+        ref.current!.addEventListener("mousedown", registerDndItem);
+        return () =>
+            ref.current!.removeEventListener("mousedown", registerDndItem);
     }, []);
     function onMouseDownHandler(e: React.MouseEvent) {
         if (!e.isDefaultPrevented()) {
@@ -40,10 +40,8 @@ function ImageBlock({ imageBlock, isSelected }: imageBlockProps) {
         top: imageBlock.position.top + offset.top,
         left: imageBlock.position.left + offset.left,
     };
+    console.log("Block_pos", imageBlock.position);
     console.log("offset", offset);
-    console.log("position", position);
-    console.log("imageBlock.position", imageBlock.position);
-
     return (
         <div
             ref={ref}

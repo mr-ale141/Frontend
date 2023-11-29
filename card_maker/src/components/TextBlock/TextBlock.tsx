@@ -17,16 +17,16 @@ function TextBlock({ textBlock, isSelected }: textBlockProps) {
     if (isSelected) {
         classNameList += " " + commonCss.selected;
     }
-    const [offset, setOffset] = useState({ top: 0, left: 0 });
+    const offsetZero: Position = { top: 0, left: 0 };
+    const [offset, setOffset] = useState(offsetZero);
     const dispatch = useAppDispatch();
-    const registerDndItem = useDnd();
     const ref = useRef<HTMLDivElement>(null);
+    const registerDndItem = useDnd(ref, offset, setOffset, dispatch);
     useEffect(() => {
-        const { onDragStart } = registerDndItem(ref, offset, setOffset);
-        const control = ref.current!;
-        control.addEventListener("mousedown", onDragStart);
-        return () => control.removeEventListener("mousedown", onDragStart);
-    }, [textBlock.position, registerDndItem]);
+        ref.current!.addEventListener("mousedown", registerDndItem);
+        return () =>
+            ref.current!.removeEventListener("mousedown", registerDndItem);
+    }, []);
     const [isEdit, setIsEdit] = useState(false);
     function endEditNew(e: React.KeyboardEvent) {
         if (e.key === "Enter") {
