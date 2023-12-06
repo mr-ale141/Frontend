@@ -1,14 +1,12 @@
 import { Position } from "../type/type";
-import { Dispatch, RefObject, SetStateAction } from "react";
 import { ISession, setNewPosition } from "../data/sessionReducer";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { StateWithHistory } from "redux-undo";
+import { Dispatch, SetStateAction } from "react";
 
-type RegisterDndItemFn = (arg0: MouseEvent) => void;
+type RegisterDndItemFn = (arg0: React.MouseEvent) => void;
 
 type useDndFn = (
-    arg1: RefObject<HTMLDivElement>,
-    arg2: Position,
     arg3: Dispatch<SetStateAction<Position>>,
     arg4: ThunkDispatch<
         { session: StateWithHistory<ISession> },
@@ -17,19 +15,28 @@ type useDndFn = (
     >,
 ) => RegisterDndItemFn;
 
-const useDnd: useDndFn = (elementRef, offset, setOffset, dispatch) => {
-    const registerDndItem: RegisterDndItemFn = (mouseDownEvent) => {
+const useDnd: useDndFn = (setOffset, dispatch) => {
+    const registerDndItem: RegisterDndItemFn = (
+        mouseDownEvent: React.MouseEvent,
+    ) => {
+        let newOffset: Position;
         const onMouseMove = (dragEvent: MouseEvent) => {
-            const newOffset = {
+            newOffset = {
                 top: dragEvent.clientY - mouseDownEvent.clientY,
                 left: dragEvent.clientX - mouseDownEvent.clientX,
             };
             setOffset(newOffset);
         };
         const onMouseDrop = () => {
-            console.log("offsetOnMouseDrop", offset);
-            dispatch(setNewPosition({ top: offset.top, left: offset.left }));
-            setOffset({ top: 0, left: 0 });
+            if (newOffset) {
+                dispatch(
+                    setNewPosition({
+                        top: newOffset.top,
+                        left: newOffset.left,
+                    }),
+                );
+                setOffset({ top: 0, left: 0 });
+            }
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("mouseup", onMouseDrop);
         };

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import css from "./TextBlock.module.css";
 import commonCss from "../../common/Common.module.css";
 import { Position, TextBlockType } from "../../type/type";
@@ -21,12 +21,7 @@ function TextBlock({ textBlock, isSelected }: textBlockProps) {
     const [offset, setOffset] = useState(offsetZero);
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLDivElement>(null);
-    const registerDndItem = useDnd(ref, offset, setOffset, dispatch);
-    useEffect(() => {
-        ref.current!.addEventListener("mousedown", registerDndItem);
-        return () =>
-            ref.current!.removeEventListener("mousedown", registerDndItem);
-    }, []);
+    const registerDndItem = useDnd(setOffset, dispatch);
     const [isEdit, setIsEdit] = useState(false);
     function endEditNew(e: React.KeyboardEvent) {
         if (e.key === "Enter") {
@@ -36,12 +31,13 @@ function TextBlock({ textBlock, isSelected }: textBlockProps) {
             setIsEdit(false);
         }
     }
-    function onMouseDownHandler(e: React.MouseEvent) {
-        if (!e.isDefaultPrevented()) {
+    function onMouseDownHandler(event: React.MouseEvent) {
+        if (!event.isDefaultPrevented()) {
             dispatch(
-                setSelectedBlock({ id: textBlock.id, withCtrl: e.ctrlKey }),
+                setSelectedBlock({ id: textBlock.id, withCtrl: event.ctrlKey }),
             );
-            e.preventDefault();
+            registerDndItem(event);
+            event.preventDefault();
         }
     }
     function onDoubleClickHandler(e: React.MouseEvent) {

@@ -1,7 +1,7 @@
 import css from "./ImageBlock.module.css";
 import commonCss from "../../common/Common.module.css";
 import { ImageBlockType, Position } from "../../type/type";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDnd } from "../../hooks/useDnd";
 import { useAppDispatch } from "../../data/hooks";
 import { setSelectedBlock } from "../../data/sessionReducer";
@@ -19,29 +19,23 @@ function ImageBlock({ imageBlock, isSelected }: imageBlockProps) {
     const [offset, setOffset] = useState(offsetZero);
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        const registerDndItem = useDnd(ref, offset, setOffset, dispatch);
-        ref.current!.addEventListener("mousedown", registerDndItem);
-        return () =>
-            ref.current!.removeEventListener("mousedown", registerDndItem);
-    }, []);
-    function onMouseDownHandler(e: React.MouseEvent) {
-        if (!e.isDefaultPrevented()) {
+    const registerDndItem = useDnd(setOffset, dispatch);
+    function onMouseDownHandler(event: React.MouseEvent) {
+        if (!event.isDefaultPrevented()) {
             dispatch(
                 setSelectedBlock({
                     id: imageBlock.id,
-                    withCtrl: e.ctrlKey,
+                    withCtrl: event.ctrlKey,
                 }),
             );
-            e.preventDefault();
+            registerDndItem(event);
+            event.preventDefault();
         }
     }
     const position: Position = {
         top: imageBlock.position.top + offset.top,
         left: imageBlock.position.left + offset.left,
     };
-    console.log("Block_pos", imageBlock.position);
-    console.log("offset", offset);
     return (
         <div
             ref={ref}

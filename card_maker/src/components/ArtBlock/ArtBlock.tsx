@@ -8,7 +8,7 @@ import Like from "../art/like/Like";
 import Line from "../art/line/Line";
 import Rect from "../art/rectangle/Rect";
 import Square from "../art/square/Square";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useAppDispatch } from "../../data/hooks";
 import { setSelectedBlock } from "../../data/sessionReducer";
 import { useDnd } from "../../hooks/useDnd";
@@ -36,18 +36,14 @@ function ArtBlock({ artBlock, isSelected }: ArtBlkProps) {
     const [offset, setOffset] = useState(offsetZero);
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLDivElement>(null);
-    const registerDndItem = useDnd(ref, offset, setOffset, dispatch);
-    useEffect(() => {
-        ref.current!.addEventListener("mousedown", registerDndItem);
-        return () =>
-            ref.current!.removeEventListener("mousedown", registerDndItem);
-    }, []);
-    function onMouseDownHandler(e: React.MouseEvent) {
-        if (!e.isDefaultPrevented()) {
+    const registerDndItem = useDnd(setOffset, dispatch);
+    function onMouseDownHandler(event: React.MouseEvent) {
+        if (!event.isDefaultPrevented()) {
             dispatch(
-                setSelectedBlock({ id: artBlock.id, withCtrl: e.ctrlKey }),
+                setSelectedBlock({ id: artBlock.id, withCtrl: event.ctrlKey }),
             );
-            e.preventDefault();
+            registerDndItem(event);
+            event.preventDefault();
         }
     }
     const position: Position = {
