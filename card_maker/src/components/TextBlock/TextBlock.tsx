@@ -20,7 +20,7 @@ function TextBlock({ block }: textBlockProps) {
             setIsEdit(false);
         }
     }
-    function onDoubleClickHandler(e: React.MouseEvent) {
+    function onMouseDownHandler(e: React.MouseEvent) {
         if (!e.isDefaultPrevented()) {
             setIsEdit(true);
             e.preventDefault();
@@ -41,7 +41,7 @@ function TextBlock({ block }: textBlockProps) {
                         ...block.text,
                         color: GetRGBA(block.text.color),
                     }}
-                    onDoubleClick={onDoubleClickHandler}
+                    onMouseDown={onMouseDownHandler}
                 >
                     {block.text.value}
                 </p>
@@ -55,7 +55,7 @@ function TextBlock({ block }: textBlockProps) {
                     }}
                     id="new-text"
                     onKeyDown={(e) => endEditNew(e)}
-                    onClick={(e) => e.preventDefault()}
+                    onMouseDown={(e) => e.preventDefault()}
                     onBlur={() => setIsEdit(false)}
                     defaultValue={block.text.value}
                 />
