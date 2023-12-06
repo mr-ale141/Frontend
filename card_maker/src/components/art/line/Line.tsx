@@ -5,10 +5,10 @@ import getOpacity from "../../../utils/getOpacity";
 import getRGBA from "../../../utils/getRGBA";
 
 interface IArrow {
-    artBlock: ArtBlockType;
+    block: ArtBlockType;
 }
 
-function Line({ artBlock }: IArrow) {
+function Line({ block }: IArrow) {
     return (
         <svg
             version="1.0"
@@ -16,11 +16,11 @@ function Line({ artBlock }: IArrow) {
             viewBox="0 0 1280.000000 640.000000"
             width="100%"
             height="100%"
-            fill={getHexColor(artBlock.borderColor)}
-            fillOpacity={getOpacity(artBlock.borderColor)}
-            stroke={getHexColor(artBlock.bgColor)}
-            strokeOpacity={getOpacity(artBlock.bgColor)}
-            style={{ backgroundColor: getRGBA(artBlock.bgColor) }}
+            fill={getHexColor(block.borderColor)}
+            fillOpacity={getOpacity(block.borderColor)}
+            stroke={getHexColor(block.bgColor)}
+            strokeOpacity={getOpacity(block.bgColor)}
+            style={{ backgroundColor: getRGBA(block.bgColor) }}
         >
             <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)">
                 <path d="M170 4090 l0 -70 6230 0 6230 0 0 70 0 70 -6230 0 -6230 0 0 -70z" />

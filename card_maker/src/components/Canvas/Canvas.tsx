@@ -1,23 +1,16 @@
 import React from "react";
 import css from "./Canvas.module.css";
-import TextBlock from "../TextBlock/TextBlock";
-import ArtBlock from "../ArtBlock/ArtBlock";
-import ImageBlock from "../ImageBlock/ImageBlock";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
 import { sessionState, setSelectedBlock } from "../../data/sessionReducer";
-import commonCss from "../../common/Common.module.css";
-import { TypeBlock } from "../../type/type";
 import getRGBA from "../../utils/getRGBA";
+import BlockContainer from "../BlockContainer/BlockContainer";
+import SelectedBorder from "../SelectedBorder/SelectedBorder";
 
 function Canvas() {
     const state = useAppSelector(sessionState);
     const canvasId = state.session.template.canvas.id;
     const canvas = state.session.template.canvas;
     const selectedBlocks = state.session.selectedBlocks;
-    let classNameList = commonCss.border;
-    if (selectedBlocks.includes(canvasId)) {
-        classNameList += " " + commonCss.selected;
-    }
     const dispatch = useAppDispatch();
     function onMouseDownHandler(e: React.MouseEvent) {
         if (!e.isDefaultPrevented()) {
@@ -40,40 +33,20 @@ function Canvas() {
     }
     return (
         <div
-            className={css.canvas + " " + classNameList}
+            className={css.canvas}
             style={styleCanvas}
             id={canvas.id}
             onMouseDown={onMouseDownHandler}
         >
+            {selectedBlocks.includes(canvas.id) && <SelectedBorder />}
             {state.session.template.blocks.map((block) => {
-                switch (block.type) {
-                    case TypeBlock.image:
-                        return (
-                            <ImageBlock
-                                key={block.id}
-                                imageBlock={block}
-                                isSelected={selectedBlocks.includes(block.id)}
-                            />
-                        );
-                    case TypeBlock.text:
-                        return (
-                            <TextBlock
-                                key={block.id}
-                                textBlock={block}
-                                isSelected={selectedBlocks.includes(block.id)}
-                            />
-                        );
-                    case TypeBlock.art:
-                        return (
-                            <ArtBlock
-                                key={block.id}
-                                artBlock={block}
-                                isSelected={selectedBlocks.includes(block.id)}
-                            />
-                        );
-                    default:
-                        return null;
-                }
+                return (
+                    <BlockContainer
+                        key={block.id}
+                        block={block}
+                        isSelected={selectedBlocks.includes(block.id)}
+                    />
+                );
             })}
         </div>
     );

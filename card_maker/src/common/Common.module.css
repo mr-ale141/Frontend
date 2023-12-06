@@ -1,16 +1,6 @@
-.border {
-    position: absolute;
-    border: 2px dashed rgb(255 00 00 / 0%);
-}
-
-.selected {
-    border: 2px dashed rgb(255 00 00 / 100%);
-    resize: both;
-    overflow: hidden;
-}
-
 .draggable {
-    cursor: grab;
+    cursor: move;
+    position: absolute;
 }
 
 .tool {
