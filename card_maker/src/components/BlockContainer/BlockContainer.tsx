@@ -19,11 +19,6 @@ type blockContainerProps = {
     block: ArtBlockType | TextBlockType | ImageBlockType;
     isSelected: boolean;
 };
-// const blockSource = {
-//     [TypeBlock.art]: ArtBlock,
-//     [TypeBlock.text]: TextBlock,
-//     [TypeBlock.image]: ImageBlock,
-// };
 function BlockContainer({ block, isSelected }: blockContainerProps) {
     const dispatch = useAppDispatch();
     const offsetZero: Position = { top: 0, left: 0 };
@@ -53,7 +48,6 @@ function BlockContainer({ block, isSelected }: blockContainerProps) {
             onMouseDown={onMouseDownHandler}
         >
             {isSelected && <SelectedBorder />}
-            {/* {blockSource[block.type]({ block })} */}
             {block.type === TypeBlock.art && <ArtBlock block={block} />}
             {block.type === TypeBlock.text && <TextBlock block={block} />}
             {block.type === TypeBlock.image && <ImageBlock block={block} />}

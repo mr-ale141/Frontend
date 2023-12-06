@@ -9,8 +9,8 @@ function WorkSpace() {
     function onMouseDownHandler(e: React.MouseEvent) {
         if (!e.isDefaultPrevented()) {
             dispatch(setSelectedBlock({ id: "", withCtrl: e.ctrlKey }));
+            e.preventDefault();
         }
-        e.preventDefault();
     }
     return (
         <div className={css.workspace} onMouseDown={onMouseDownHandler}>

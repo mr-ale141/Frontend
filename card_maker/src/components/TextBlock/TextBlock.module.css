@@ -12,6 +12,8 @@
 }
 
 .text input {
+    z-index: 1;
+    cursor: text;
     outline: none;
     width: 95%;
 }

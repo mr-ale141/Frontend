@@ -20,8 +20,8 @@ function Canvas() {
                     withCtrl: e.ctrlKey,
                 }),
             );
+            e.preventDefault();
         }
-        e.preventDefault();
     }
     const styleCanvas: React.CSSProperties = {
         ...canvas.size,
