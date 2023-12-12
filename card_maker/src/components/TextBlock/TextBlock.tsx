@@ -18,7 +18,6 @@ function TextBlock({ block }: textBlockProps) {
             const text = target.value ? target.value : "Insert text here...";
             dispatch(changeText(text));
             setIsEdit(false);
-            console.log(text);
         }
     }
     function onMouseDownHandler() {
