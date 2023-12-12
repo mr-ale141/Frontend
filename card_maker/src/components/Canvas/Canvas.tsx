@@ -12,15 +12,18 @@ function Canvas() {
     const canvas = state.session.template.canvas;
     const selectedBlocks = state.session.selectedBlocks;
     const dispatch = useAppDispatch();
-    function onMouseDownHandler(e: React.MouseEvent) {
-        if (!e.isDefaultPrevented()) {
-            dispatch(
-                setSelectedBlock({
-                    id: canvasId,
-                    withCtrl: e.ctrlKey,
-                }),
-            );
-            e.preventDefault();
+    function onMouseDownHandler(event: React.MouseEvent) {
+        const inputNewText = document.getElementById("new-text");
+        if (!inputNewText) {
+            if (!event.isDefaultPrevented()) {
+                dispatch(
+                    setSelectedBlock({
+                        id: canvasId,
+                        withCtrl: event.ctrlKey,
+                    }),
+                );
+                event.preventDefault();
+            }
         }
     }
     const styleCanvas: React.CSSProperties = {

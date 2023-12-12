@@ -25,12 +25,15 @@ function BlockContainer({ block, isSelected }: blockContainerProps) {
     const [offset, setOffset] = useState(offsetZero);
     const registerDndItem = useDnd(setOffset, dispatch);
     function onMouseDownHandler(event: React.MouseEvent) {
-        if (!event.isDefaultPrevented()) {
-            dispatch(
-                setSelectedBlock({ id: block.id, withCtrl: event.ctrlKey }),
-            );
-            registerDndItem(event);
-            event.preventDefault();
+        const inputNewText = document.getElementById("new-text");
+        if (!inputNewText) {
+            if (!event.isDefaultPrevented()) {
+                dispatch(
+                    setSelectedBlock({ id: block.id, withCtrl: event.ctrlKey }),
+                );
+                registerDndItem(event);
+                event.preventDefault();
+            }
         }
     }
     const position: Position = {

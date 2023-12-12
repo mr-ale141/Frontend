@@ -6,10 +6,13 @@ import { setSelectedBlock } from "../../data/sessionReducer";
 
 function WorkSpace() {
     const dispatch = useAppDispatch();
-    function onMouseDownHandler(e: React.MouseEvent) {
-        if (!e.isDefaultPrevented()) {
-            dispatch(setSelectedBlock({ id: "", withCtrl: e.ctrlKey }));
-            e.preventDefault();
+    function onMouseDownHandler(event: React.MouseEvent) {
+        const inputNewText = document.getElementById("new-text");
+        if (!inputNewText) {
+            if (!event.isDefaultPrevented()) {
+                dispatch(setSelectedBlock({ id: "", withCtrl: event.ctrlKey }));
+                event.preventDefault();
+            }
         }
     }
     return (

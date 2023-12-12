@@ -18,13 +18,11 @@ function TextBlock({ block }: textBlockProps) {
             const text = target.value ? target.value : "Insert text here...";
             dispatch(changeText(text));
             setIsEdit(false);
+            console.log(text);
         }
     }
-    function onMouseDownHandler(e: React.MouseEvent) {
-        if (!e.isDefaultPrevented()) {
-            setIsEdit(true);
-            e.preventDefault();
-        }
+    function onMouseDownHandler() {
+        setIsEdit(true);
     }
     return (
         <div
@@ -55,7 +53,6 @@ function TextBlock({ block }: textBlockProps) {
                     }}
                     id="new-text"
                     onKeyDown={(e) => endEditNew(e)}
-                    onMouseDown={(e) => e.preventDefault()}
                     onBlur={() => setIsEdit(false)}
                     defaultValue={block.text.value}
                 />
