@@ -3,6 +3,7 @@ import {
     ArtBlockType,
     ImageBlockType,
     Position,
+    Size,
     TextBlockType,
     TypeBlock,
 } from "../../type/type";
@@ -13,6 +14,7 @@ import { useAppDispatch } from "../../data/hooks";
 import { useDnd } from "../../hooks/useDnd";
 import { setSelectedBlock } from "../../data/sessionReducer";
 import commonCss from "../../common/Common.module.css";
+import { useResize } from "../../hooks/useResize";
 
 type blockContainerProps = {
     block: ArtBlockType | TextBlockType | ImageBlockType;
@@ -20,9 +22,17 @@ type blockContainerProps = {
 };
 function BlockContainer({ block, isSelected }: blockContainerProps) {
     const dispatch = useAppDispatch();
-    const offsetZero: Position = { top: 0, left: 0 };
-    const [offset, setOffset] = useState(offsetZero);
-    const registerDndItem = useDnd(setOffset, dispatch);
+    const offsetPositionZero: Position = { top: 0, left: 0 };
+    const offsetSizeZero: Size = { width: 0, height: 0 };
+    const [offsetPosition, setOffsetPosition] = useState(offsetPositionZero);
+    const [offsetSize, setOffsetSize] = useState(offsetSizeZero);
+    const registerDndItem = useDnd(setOffsetPosition, dispatch);
+    const registerResizeItem = useResize(
+        block,
+        setOffsetPosition,
+        setOffsetSize,
+        dispatch,
+    );
     function onMouseDownHandler(event: React.MouseEvent) {
         const inputNewText = document.getElementById("new-text");
         const targetClassName = (event.target as HTMLElement).classList;
@@ -36,12 +46,17 @@ function BlockContainer({ block, isSelected }: blockContainerProps) {
                 event.preventDefault();
             }
         } else if (isResize) {
+            registerResizeItem(event);
             event.preventDefault();
         }
     }
     const position: Position = {
-        top: block.position.top + offset.top,
-        left: block.position.left + offset.left,
+        top: block.position.top + offsetPosition.top,
+        left: block.position.left + offsetPosition.left,
+    };
+    const size: Size = {
+        width: block.size.width + offsetSize.width,
+        height: block.size.height + offsetSize.height,
     };
     let classNameIfSelected = "";
     if (isSelected) {
@@ -52,7 +67,7 @@ function BlockContainer({ block, isSelected }: blockContainerProps) {
             className={commonCss.draggable + " " + classNameIfSelected}
             style={{
                 ...position,
-                ...block.size,
+                ...size,
             }}
             onMouseDown={onMouseDownHandler}
         >

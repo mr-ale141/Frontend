@@ -1,5 +1,12 @@
 import session from "./max_data";
-import { ArtName, Color, Position, Session, TypeBlock } from "../type/type";
+import {
+    ArtName,
+    Color,
+    Position,
+    Session,
+    Size,
+    TypeBlock,
+} from "../type/type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
@@ -98,6 +105,17 @@ export const sessionReducer = createSlice({
                 }
             });
         },
+        setNewSize: (state, action: PayloadAction<Size>) => {
+            state.session.selectedBlocks.forEach((id) => {
+                const block = state.session.template.blocks.find(
+                    (block) => block.id === id,
+                );
+                if (block) {
+                    block.size.width += action.payload.width;
+                    block.size.height += action.payload.height;
+                }
+            });
+        },
         changeText: (state, action: PayloadAction<string>) => {
             state.session.selectedBlocks.forEach((id) => {
                 const block = state.session.template.blocks.find(
@@ -163,6 +181,7 @@ export const {
     setBGColor,
     setColor,
     setNewPosition,
+    setNewSize,
     changeText,
     setTextJustifyContent,
     setTextAlignItems,

@@ -7,8 +7,8 @@ import { Dispatch, SetStateAction } from "react";
 type RegisterDndItemFn = (arg0: React.MouseEvent) => void;
 
 type useDndFn = (
-    arg3: Dispatch<SetStateAction<Position>>,
-    arg4: ThunkDispatch<
+    arg0: Dispatch<SetStateAction<Position>>,
+    arg1: ThunkDispatch<
         { session: StateWithHistory<ISession> },
         undefined,
         AnyAction
@@ -29,12 +29,7 @@ const useDnd: useDndFn = (setOffset, dispatch) => {
         };
         const onMouseDrop = () => {
             if (newOffset) {
-                dispatch(
-                    setNewPosition({
-                        top: newOffset.top,
-                        left: newOffset.left,
-                    }),
-                );
+                dispatch(setNewPosition(newOffset));
                 setOffset({ top: 0, left: 0 });
             }
             window.removeEventListener("mousemove", onMouseMove);
