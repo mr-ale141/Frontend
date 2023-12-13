@@ -1,11 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import {
-    ArtBlockType,
-    ImageBlockType,
-    Position,
-    Size,
-    TextBlockType,
-} from "../type/type";
+import { Position, Size } from "../type/type";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { StateWithHistory } from "redux-undo";
 import { ISession, setNewPosition, setNewSize } from "../data/sessionReducer";
@@ -13,7 +7,6 @@ import { ISession, setNewPosition, setNewSize } from "../data/sessionReducer";
 type RegisterResizeItemFn = (arg0: React.MouseEvent) => void;
 
 type useResizeFn = (
-    arg0: ArtBlockType | TextBlockType | ImageBlockType,
     arg1: Dispatch<SetStateAction<Position>>,
     arg2: Dispatch<SetStateAction<Size>>,
     arg3: ThunkDispatch<
@@ -34,12 +27,7 @@ enum mode {
     leftCenter,
 }
 
-const useResize: useResizeFn = (
-    block,
-    setOffsetPosition,
-    setOffsetSize,
-    dispatch,
-) => {
+const useResize: useResizeFn = (setOffsetPosition, setOffsetSize, dispatch) => {
     const registerResizeItem: RegisterResizeItemFn = (
         mouseDownEvent: React.MouseEvent,
     ) => {

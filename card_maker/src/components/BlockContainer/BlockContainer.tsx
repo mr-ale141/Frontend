@@ -28,7 +28,6 @@ function BlockContainer({ block, isSelected }: blockContainerProps) {
     const [offsetSize, setOffsetSize] = useState(offsetSizeZero);
     const registerDndItem = useDnd(setOffsetPosition, dispatch);
     const registerResizeItem = useResize(
-        block,
         setOffsetPosition,
         setOffsetSize,
         dispatch,

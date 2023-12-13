@@ -27,8 +27,6 @@ function Canvas() {
                 );
                 event.preventDefault();
             }
-        } else if (isResize) {
-            event.preventDefault();
         }
     }
     const styleCanvas: React.CSSProperties = {
@@ -39,61 +37,17 @@ function Canvas() {
         styleCanvas.backgroundImage = `url(${canvas.bgImage.data})`;
         styleCanvas.backgroundSize = "cover";
     }
-    let classNameIfSelected = "";
+    let classNameList = css.canvas;
     if (isSelected) {
-        classNameIfSelected += commonCss.border;
+        classNameList += " " + commonCss.border;
     }
     return (
         <div
-            className={css.canvas + " " + classNameIfSelected}
+            className={classNameList}
             style={styleCanvas}
             id={canvas.id}
             onMouseDown={onMouseDownHandler}
         >
-            {isSelected && (
-                <>
-                    <div
-                        className={
-                            commonCss["top-left"] + " " + commonCss.resize
-                        }
-                    />
-                    <div
-                        className={
-                            commonCss["top-center"] + " " + commonCss.resize
-                        }
-                    />
-                    <div
-                        className={
-                            commonCss["top-right"] + " " + commonCss.resize
-                        }
-                    />
-                    <div
-                        className={
-                            commonCss["right-center"] + " " + commonCss.resize
-                        }
-                    />
-                    <div
-                        className={
-                            commonCss["bottom-right"] + " " + commonCss.resize
-                        }
-                    />
-                    <div
-                        className={
-                            commonCss["bottom-center"] + " " + commonCss.resize
-                        }
-                    />
-                    <div
-                        className={
-                            commonCss["bottom-left"] + " " + commonCss.resize
-                        }
-                    />
-                    <div
-                        className={
-                            commonCss["left-center"] + " " + commonCss.resize
-                        }
-                    />
-                </>
-            )}
             {state.session.template.blocks.map((block) => {
                 return (
                     <BlockContainer
