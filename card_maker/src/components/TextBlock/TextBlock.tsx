@@ -50,6 +50,7 @@ function TextBlock({ block }: textBlockProps) {
                         ...block.text,
                         color: GetRGBA(block.text.color),
                     }}
+                    autoFocus
                     id="new-text"
                     onKeyDown={(e) => endEditNew(e)}
                     onBlur={() => setIsEdit(false)}
