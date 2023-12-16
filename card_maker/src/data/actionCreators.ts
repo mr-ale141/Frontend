@@ -57,7 +57,7 @@ export const changeArt = (newArt: ArtName): Action => {
 };
 export const changeImage = (newSrc: string): Action => {
     return {
-        type: TitleActionType.CHANGE_ART,
+        type: TitleActionType.CHANGE_IMAGE,
         payload: newSrc,
     };
 };
