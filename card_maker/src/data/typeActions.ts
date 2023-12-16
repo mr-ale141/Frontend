@@ -1,4 +1,4 @@
-import { ArtName, Color, Position, Size } from "../type/type";
+import { ArtName, Color, Position, Size, Template } from "../type/type";
 
 const TitleActionType = {
     SET_SELECTED_BLOCK: "SET_SELECTED_BLOCK",
@@ -11,6 +11,7 @@ const TitleActionType = {
     SET_TEXT_ALIGN_ITEMS: "SET_TEXT_ALIGN_ITEMS",
     CHANGE_ART: "CHANGE_ART",
     CHANGE_IMAGE: "CHANGE_IMAGE",
+    SET_NEW_TEMPLATE: "SET_NEW_TEMPLATE",
 };
 
 interface ISetSelectedBlock {
@@ -56,6 +57,10 @@ interface IChangeImage {
     type: typeof TitleActionType.CHANGE_IMAGE;
     payload: string;
 }
+interface ISetNewTemplate {
+    type: typeof TitleActionType.SET_NEW_TEMPLATE;
+    payload: Template;
+}
 
 type Action =
     | ISetSelectedBlock
@@ -67,7 +72,8 @@ type Action =
     | ISetTextJustifyContent
     | ISetTextAlignItems
     | IChangeArt
-    | IChangeImage;
+    | IChangeImage
+    | ISetNewTemplate;
 export type {
     Action,
     ISetSelectedBlock,
@@ -80,5 +86,6 @@ export type {
     ISetTextAlignItems,
     IChangeArt,
     IChangeImage,
+    ISetNewTemplate,
 };
 export { TitleActionType };

@@ -1,4 +1,4 @@
-import { ArtName, Color, Position, Size } from "../type/type";
+import { ArtName, Color, Position, Size, Template } from "../type/type";
 import { TitleActionType, Action } from "./typeActions";
 
 export const setSelectedBlock = (id: string, withCtrl: boolean) => {
@@ -59,5 +59,11 @@ export const changeImage = (newSrc: string): Action => {
     return {
         type: TitleActionType.CHANGE_IMAGE,
         payload: newSrc,
+    };
+};
+export const setNewTemplate = (newTemplate: Template): Action => {
+    return {
+        type: TitleActionType.SET_NEW_TEMPLATE,
+        payload: newTemplate,
     };
 };

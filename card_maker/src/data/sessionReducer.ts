@@ -12,6 +12,7 @@ import {
     ISetTextAlignItems,
     IChangeArt,
     IChangeImage,
+    ISetNewTemplate,
 } from "./typeActions";
 
 function sessionReducer(state = session, action: Action): Session {
@@ -245,6 +246,15 @@ function sessionReducer(state = session, action: Action): Session {
                         }
                     }),
                 },
+            };
+        }
+        case TitleActionType.SET_NEW_TEMPLATE: {
+            const newTemplate = (action as ISetNewTemplate).payload;
+            return {
+                editHistory: [],
+                selectedBlocks: [],
+                template: newTemplate,
+                file_name: state.file_name,
             };
         }
         default:
