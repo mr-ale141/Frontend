@@ -1,18 +1,40 @@
 import React from "react";
 import commonCss from "../../../../common/Common.module.css";
 import GetColor from "../../../../utils/getColor";
-import { setBGColor, setColor } from "../../../../data/sessionReducer";
 import { useAppDispatch } from "../../../../data/hooks";
 
-function ChangeColor() {
-    const dispatch = useAppDispatch();
+type ChangeColorProps = {
+    currentColor: {
+        hexColor: string;
+        opacity: number;
+    };
+    currentBGColor: {
+        hexColor: string;
+        opacity: number;
+    };
+};
+
+function ChangeColor({ currentColor, currentBGColor }: ChangeColorProps) {
+    const { setBGColor, setColor } = useAppDispatch();
     function changeColor(event: React.ChangeEvent<HTMLInputElement>) {
         const color = GetColor(event.target.value);
-        dispatch(setColor(color));
+        color.a = currentColor.opacity;
+        setColor(color);
+    }
+    function changeOpacity(event: React.ChangeEvent<HTMLInputElement>) {
+        const color = GetColor(currentColor.hexColor);
+        color.a = Number(event.target.value);
+        setColor(color);
     }
     function changeBGColor(event: React.ChangeEvent<HTMLInputElement>) {
         const color = GetColor(event.target.value);
-        dispatch(setBGColor(color));
+        color.a = currentBGColor.opacity;
+        setBGColor(color);
+    }
+    function changeBGOpacity(event: React.ChangeEvent<HTMLInputElement>) {
+        const color = GetColor(currentBGColor.hexColor);
+        color.a = Number(event.target.value);
+        setBGColor(color);
     }
     return (
         <>
@@ -21,6 +43,7 @@ function ChangeColor() {
                 <input
                     id="bg-color"
                     type="color"
+                    defaultValue={currentColor.hexColor}
                     onChange={(event) => changeColor(event)}
                 />
                 <label htmlFor="bg-opacity">Change opacity</label>
@@ -30,7 +53,8 @@ function ChangeColor() {
                     min="0"
                     max="1"
                     step="0.1"
-                    onChange={(event) => changeColor(event)}
+                    defaultValue={currentColor.opacity}
+                    onChange={(event) => changeOpacity(event)}
                 />
             </div>
             <div className={commonCss.tool}>
@@ -38,6 +62,7 @@ function ChangeColor() {
                 <input
                     id="bg-color"
                     type="color"
+                    defaultValue={currentBGColor.hexColor}
                     onChange={(event) => changeBGColor(event)}
                 />
                 <label htmlFor="bg-opacity">Change BG opacity</label>
@@ -47,7 +72,8 @@ function ChangeColor() {
                     min="0"
                     max="1"
                     step="0.1"
-                    onChange={(event) => changeBGColor(event)}
+                    defaultValue={currentBGColor.opacity}
+                    onChange={(event) => changeBGOpacity(event)}
                 />
             </div>
         </>

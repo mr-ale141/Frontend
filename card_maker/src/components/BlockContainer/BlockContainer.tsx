@@ -12,7 +12,6 @@ import TextBlock from "../TextBlock/TextBlock";
 import ImageBlock from "../ImageBlock/ImageBlock";
 import { useAppDispatch } from "../../data/hooks";
 import { useDnd } from "../../hooks/useDnd";
-import { setSelectedBlock } from "../../data/sessionReducer";
 import commonCss from "../../common/Common.module.css";
 import { useResize } from "../../hooks/useResize";
 
@@ -21,26 +20,20 @@ type blockContainerProps = {
     isSelected: boolean;
 };
 function BlockContainer({ block, isSelected }: blockContainerProps) {
-    const dispatch = useAppDispatch();
+    const { setSelectedBlock } = useAppDispatch();
     const offsetPositionZero: Position = { top: 0, left: 0 };
     const offsetSizeZero: Size = { width: 0, height: 0 };
     const [offsetPosition, setOffsetPosition] = useState(offsetPositionZero);
     const [offsetSize, setOffsetSize] = useState(offsetSizeZero);
-    const registerDndItem = useDnd(setOffsetPosition, dispatch);
-    const registerResizeItem = useResize(
-        setOffsetPosition,
-        setOffsetSize,
-        dispatch,
-    );
+    const registerDndItem = useDnd(setOffsetPosition);
+    const registerResizeItem = useResize(setOffsetPosition, setOffsetSize);
     function onMouseDownHandler(event: React.MouseEvent) {
         const inputNewText = document.getElementById("new-text");
         const targetClassName = (event.target as HTMLElement).classList;
         const isResize = targetClassName.contains(commonCss.resize);
         if (!inputNewText && !isResize) {
             if (!event.isDefaultPrevented()) {
-                dispatch(
-                    setSelectedBlock({ id: block.id, withCtrl: event.ctrlKey }),
-                );
+                setSelectedBlock(block.id, event.ctrlKey);
                 registerDndItem(event);
                 event.preventDefault();
             }

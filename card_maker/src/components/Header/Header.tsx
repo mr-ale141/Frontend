@@ -1,29 +1,26 @@
 import css from "./Header.module.css";
-import { ActionCreators } from "redux-undo";
 import HeadButton from "./HeadButton/HeadButton";
 import undoIcon from "./icons/undo.png";
 import redoIcon from "./icons/redo.png";
 import saveIcon from "./icons/save.png";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
-import { sessionState, setSelectedBlock } from "../../data/sessionReducer";
 import React from "react";
 
 function Header() {
-    const dispatch = useAppDispatch();
-    const state = useAppSelector(sessionState);
-    const canvasId = state.session.template.canvas.id;
+    const { setSelectedBlock } = useAppDispatch();
+    const canvasId = useAppSelector((state) => state.template.canvas.id);
     function onMouseDownHandler(event: React.MouseEvent) {
         const inputNewText = document.getElementById("new-text");
         if (!inputNewText) {
             if (!event.isDefaultPrevented()) {
-                dispatch(setSelectedBlock({ id: "", withCtrl: event.ctrlKey }));
+                setSelectedBlock("", event.ctrlKey);
                 event.preventDefault();
             }
         }
     }
     function saveHandler() {
-        dispatch(setSelectedBlock({ id: "", withCtrl: false }));
+        setSelectedBlock("", false);
         const canvasDiv = document.getElementById(canvasId);
         html2canvas(canvasDiv as HTMLElement, {
             allowTaint: true,
@@ -45,12 +42,12 @@ function Header() {
             </div>
             <HeadButton handler={saveHandler} icon={saveIcon} alt="save" />
             <HeadButton
-                handler={() => dispatch(ActionCreators.undo())}
+                handler={() => console.log("not handler!!")}
                 icon={undoIcon}
                 alt="undo"
             />
             <HeadButton
-                handler={() => dispatch(ActionCreators.redo())}
+                handler={() => console.log("not handler!!")}
                 icon={redoIcon}
                 alt="redo"
             />

@@ -1,11 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { createStore } from "redux";
 import sessionReducer from "./sessionReducer";
-import undoable from "redux-undo";
 
-export const store = configureStore({
-    reducer: {
-        session: undoable(sessionReducer),
-    },
-});
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export const store = createStore(sessionReducer);
+
+export type RootState = ReturnType<typeof sessionReducer>;

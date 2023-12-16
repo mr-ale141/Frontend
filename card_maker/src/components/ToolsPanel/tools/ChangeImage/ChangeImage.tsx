@@ -1,14 +1,13 @@
 import React from "react";
 import commonCss from "../../../../common/Common.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
-import { changeImage } from "../../../../data/sessionReducer";
 function ChangeImage() {
-    const dispatch = useAppDispatch();
+    const { changeImage } = useAppDispatch();
     function changeImageLinkHandler(
         event: React.KeyboardEvent<HTMLInputElement>,
     ) {
         if (event.key === "Enter") {
-            dispatch(changeImage(event.currentTarget.value));
+            changeImage(event.currentTarget.value);
             event.currentTarget.value = "";
         }
     }
@@ -20,7 +19,7 @@ function ChangeImage() {
         let base64: string | null;
         reader.onloadend = function () {
             base64 = typeof reader.result === "string" ? reader.result : null;
-            if (base64) dispatch(changeImage(base64));
+            if (base64) changeImage(base64);
         };
         if (file) reader.readAsDataURL(file);
     }

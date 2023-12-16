@@ -2,15 +2,14 @@ import css from "./WorkSpace.module.css";
 import React from "react";
 import Canvas from "../Canvas/Canvas";
 import { useAppDispatch } from "../../data/hooks";
-import { setSelectedBlock } from "../../data/sessionReducer";
 
 function WorkSpace() {
-    const dispatch = useAppDispatch();
+    const { setSelectedBlock } = useAppDispatch();
     function onMouseDownHandler(event: React.MouseEvent) {
         const inputNewText = document.getElementById("new-text");
         if (!inputNewText) {
             if (!event.isDefaultPrevented()) {
-                dispatch(setSelectedBlock({ id: "", withCtrl: event.ctrlKey }));
+                setSelectedBlock("", event.ctrlKey);
                 event.preventDefault();
             }
         }

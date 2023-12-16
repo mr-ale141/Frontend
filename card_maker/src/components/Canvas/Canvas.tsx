@@ -1,30 +1,24 @@
 import React from "react";
 import css from "./Canvas.module.css";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
-import { sessionState, setSelectedBlock } from "../../data/sessionReducer";
 import getRGBA from "../../utils/getRGBA";
 import BlockContainer from "../BlockContainer/BlockContainer";
 import commonCss from "../../common/Common.module.css";
 
 function Canvas() {
-    const state = useAppSelector(sessionState);
-    const canvasId = state.session.template.canvas.id;
-    const canvas = state.session.template.canvas;
-    const selectedBlocks = state.session.selectedBlocks;
+    const canvasId = useAppSelector((state) => state.template.canvas.id);
+    const blocks = useAppSelector((state) => state.template.blocks);
+    const canvas = useAppSelector((state) => state.template.canvas);
+    const selectedBlocks = useAppSelector((state) => state.selectedBlocks);
     const isSelected = selectedBlocks.includes(canvas.id);
-    const dispatch = useAppDispatch();
+    const { setSelectedBlock } = useAppDispatch();
     function onMouseDownHandler(event: React.MouseEvent) {
         const inputNewText = document.getElementById("new-text");
         const targetClassName = (event.target as HTMLElement).classList;
         const isResize = targetClassName.contains(commonCss.resize);
         if (!inputNewText && !isResize) {
             if (!event.isDefaultPrevented()) {
-                dispatch(
-                    setSelectedBlock({
-                        id: canvasId,
-                        withCtrl: event.ctrlKey,
-                    }),
-                );
+                setSelectedBlock(canvasId, event.ctrlKey);
                 event.preventDefault();
             }
         }
@@ -48,7 +42,7 @@ function Canvas() {
             id={canvas.id}
             onMouseDown={onMouseDownHandler}
         >
-            {state.session.template.blocks.map((block) => {
+            {blocks.map((block) => {
                 return (
                     <BlockContainer
                         key={block.id}

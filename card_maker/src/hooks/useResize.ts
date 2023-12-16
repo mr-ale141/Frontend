@@ -1,19 +1,12 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Position, Size } from "../type/type";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import { StateWithHistory } from "redux-undo";
-import { ISession, setNewPosition, setNewSize } from "../data/sessionReducer";
+import { useAppDispatch } from "../data/hooks";
 
 type RegisterResizeItemFn = (arg0: React.MouseEvent) => void;
 
 type useResizeFn = (
     arg1: Dispatch<SetStateAction<Position>>,
     arg2: Dispatch<SetStateAction<Size>>,
-    arg3: ThunkDispatch<
-        { session: StateWithHistory<ISession> },
-        undefined,
-        AnyAction
-    >,
 ) => RegisterResizeItemFn;
 
 enum mode {
@@ -27,7 +20,8 @@ enum mode {
     leftCenter,
 }
 
-const useResize: useResizeFn = (setOffsetPosition, setOffsetSize, dispatch) => {
+const useResize: useResizeFn = (setOffsetPosition, setOffsetSize) => {
+    const { setNewPosition, setNewSize } = useAppDispatch();
     const registerResizeItem: RegisterResizeItemFn = (
         mouseDownEvent: React.MouseEvent,
     ) => {
@@ -109,11 +103,11 @@ const useResize: useResizeFn = (setOffsetPosition, setOffsetSize, dispatch) => {
         };
         const onMouseDrop = () => {
             if (offsetPosition) {
-                dispatch(setNewPosition(offsetPosition));
+                setNewPosition(offsetPosition);
                 setOffsetPosition({ top: 0, left: 0 });
             }
             if (offsetSize) {
-                dispatch(setNewSize(offsetSize));
+                setNewSize(offsetSize);
                 setOffsetSize({ width: 0, height: 0 });
             }
             window.removeEventListener("mousemove", onMouseMove);
@@ -125,34 +119,3 @@ const useResize: useResizeFn = (setOffsetPosition, setOffsetSize, dispatch) => {
     return registerResizeItem;
 };
 export { useResize };
-
-// offsetMove = zeroOffset
-// dX = zeroDX
-// dY = zeroDY
-// dW = zeroDW
-// dH = zeroDH
-// select_item_drop
-//     top-left
-//         update dX, dY
-//         update dW, dH
-//     top-center
-//         update dY
-//         update dH
-//     top-right
-//         update dY
-//         update dW, dH
-//     right-center
-//         update dW
-//     bottom-right
-//         update dW, dH
-//     bottom-center
-//         update dH
-//     bottom-left
-//         update dX
-//         update dW, dH
-//     left-center
-//         update dX
-//         update dW
-// dispatch newOffset
-// dispatch newSize
-// set zeroOffset

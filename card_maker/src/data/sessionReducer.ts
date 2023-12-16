@@ -1,193 +1,255 @@
 import session from "./max_data";
+import { Session, TypeBlock, Image } from "../type/type";
 import {
-    ArtName,
-    Color,
-    Position,
-    Session,
-    Size,
-    TypeBlock,
-} from "../type/type";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+    TitleActionType,
+    Action,
+    ISetSelectedBlock,
+    ISetBGColor,
+    ISetNewPosition,
+    ISetNewSize,
+    IChangeText,
+    ISetTextJustifyContent,
+    ISetTextAlignItems,
+    IChangeArt,
+    IChangeImage,
+} from "./typeActions";
 
-export interface ISession {
-    session: Session;
-}
-
-const initialState: ISession = {
-    session,
-};
-
-export const sessionReducer = createSlice({
-    name: "session",
-    initialState,
-    reducers: {
-        setSelectedBlock: (
-            state,
-            action: PayloadAction<{
-                id: string;
-                withCtrl: boolean;
-            }>,
-        ) => {
-            const selectedId = action.payload.id;
-            const withCtrl = action.payload.withCtrl;
-            if (selectedId === "") {
-                state.session.selectedBlocks = [];
+function sessionReducer(state = session, action: Action): Session {
+    switch (action.type) {
+        case TitleActionType.SET_SELECTED_BLOCK: {
+            let newList: Array<string>;
+            const id = (action as ISetSelectedBlock).payload.id;
+            const withCtrl = (action as ISetSelectedBlock).payload.withCtrl;
+            if (id === "") {
+                newList = [];
             } else {
                 if (withCtrl) {
-                    state.session.selectedBlocks = [
-                        ...state.session.selectedBlocks,
-                        selectedId,
-                    ];
+                    newList = [...state.selectedBlocks, id];
                 } else {
-                    state.session.selectedBlocks = [selectedId];
+                    newList = [id];
                 }
             }
-        },
-        setBGColor: (state, action: PayloadAction<Color>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                let block;
-                if (id === state.session.template.canvas.id) {
-                    block = state.session.template.canvas;
-                } else {
-                    block = state.session.template.blocks.find(
-                        (block) => block.id === id,
-                    );
-                }
-                if (block) {
-                    if (action.payload.r >= 0)
-                        block.bgColor.r = action.payload.r;
-                    if (action.payload.g >= 0)
-                        block.bgColor.g = action.payload.g;
-                    if (action.payload.b >= 0)
-                        block.bgColor.b = action.payload.b;
-                    if (action.payload.a >= 0)
-                        block.bgColor.a = action.payload.a;
-                }
-            });
-        },
-        setColor: (state, action: PayloadAction<Color>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block) {
-                    if (block.type === TypeBlock.text) {
-                        if (action.payload.r >= 0)
-                            block.text.color.r = action.payload.r;
-                        if (action.payload.g >= 0)
-                            block.text.color.g = action.payload.g;
-                        if (action.payload.b >= 0)
-                            block.text.color.b = action.payload.b;
-                        if (action.payload.a >= 0)
-                            block.text.color.a = action.payload.a;
-                    } else if (block.type === TypeBlock.art) {
-                        if (action.payload.r >= 0)
-                            block.borderColor.r = action.payload.r;
-                        if (action.payload.g >= 0)
-                            block.borderColor.g = action.payload.g;
-                        if (action.payload.b >= 0)
-                            block.borderColor.b = action.payload.b;
-                        if (action.payload.a >= 0)
-                            block.borderColor.a = action.payload.a;
-                    }
-                }
-            });
-        },
-        setNewPosition: (state, action: PayloadAction<Position>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block) {
-                    block.position.left += action.payload.left;
-                    block.position.top += action.payload.top;
-                }
-            });
-        },
-        setNewSize: (state, action: PayloadAction<Size>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block) {
-                    block.size.width += action.payload.width;
-                    block.size.height += action.payload.height;
-                }
-            });
-        },
-        changeText: (state, action: PayloadAction<string>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block && block.type === TypeBlock.text)
-                    block.text.value = action.payload;
-            });
-        },
-        setTextJustifyContent: (state, action: PayloadAction<string>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block && block.type === TypeBlock.text)
-                    block.positionText.justifyContent = action.payload;
-            });
-        },
-        setTextAlignItems: (state, action: PayloadAction<string>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block && block.type === TypeBlock.text)
-                    block.positionText.alignItems = action.payload;
-            });
-        },
-        changeArt: (state, action: PayloadAction<ArtName>) => {
-            state.session.selectedBlocks.forEach((id) => {
-                const block = state.session.template.blocks.find(
-                    (block) => block.id === id,
-                );
-                if (block && block.type === TypeBlock.art)
-                    block.artName = action.payload;
-            });
-        },
-        changeImage: (state, action: PayloadAction<string>) => {
-            const type = action.payload.includes("http") ? "link" : "base64";
-            state.session.selectedBlocks.forEach((id) => {
-                let block;
-                if (id === state.session.template.canvas.id) {
-                    block = state.session.template.canvas;
-                } else {
-                    block = state.session.template.blocks.find(
-                        (block) => block.id === id,
-                    );
-                }
-                if (
-                    block &&
-                    (block.type === TypeBlock.image ||
-                        block.type === TypeBlock.canvas)
-                ) {
-                    block.bgImage.data = action.payload;
-                    block.bgImage.type = type;
-                }
-            });
-        },
-    },
-});
+            return {
+                ...state,
+                selectedBlocks: newList,
+            };
+        }
+        case TitleActionType.SET_BG_COLOR: {
+            const newColor = (action as ISetBGColor).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    canvas: state.selectedBlocks.includes(
+                        state.template.canvas.id,
+                    )
+                        ? { ...state.template.canvas, bgColor: newColor }
+                        : state.template.canvas,
+                    blocks: state.template.blocks.map((block) => {
+                        if (state.selectedBlocks.includes(block.id)) {
+                            return { ...block, bgColor: newColor };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.SET_COLOR: {
+            const newColor = (action as ISetBGColor).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (state.selectedBlocks.includes(block.id)) {
+                            if (block.type === TypeBlock.text) {
+                                return {
+                                    ...block,
+                                    text: { ...block.text, color: newColor },
+                                };
+                            } else if (block.type === TypeBlock.art) {
+                                return { ...block, borderColor: newColor };
+                            } else {
+                                return block;
+                            }
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.SET_NEW_POSITION: {
+            const offset = (action as ISetNewPosition).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (state.selectedBlocks.includes(block.id)) {
+                            const newBlock = {
+                                ...block,
+                                position: { ...block.position },
+                            };
+                            newBlock.position.top += offset.top;
+                            newBlock.position.left += offset.left;
+                            return newBlock;
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.SET_NEW_SIZE: {
+            const offset = (action as ISetNewSize).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (state.selectedBlocks.includes(block.id)) {
+                            const newBlock = {
+                                ...block,
+                                size: { ...block.size },
+                            };
+                            newBlock.size.width += offset.width;
+                            newBlock.size.height += offset.height;
+                            return newBlock;
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.CHANGE_TEXT: {
+            const newText = (action as IChangeText).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.text
+                        ) {
+                            return {
+                                ...block,
+                                text: { ...block.text, value: newText },
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.SET_TEXT_JUSTIFY_CONTENT: {
+            const newSetting = (action as ISetTextJustifyContent).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.text
+                        ) {
+                            return {
+                                ...block,
+                                positionText: {
+                                    ...block.positionText,
+                                    justifyContent: newSetting,
+                                },
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.SET_TEXT_ALIGN_ITEMS: {
+            const newSetting = (action as ISetTextAlignItems).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.text
+                        ) {
+                            return {
+                                ...block,
+                                positionText: {
+                                    ...block.positionText,
+                                    alignItems: newSetting,
+                                },
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.CHANGE_ART: {
+            const newArtName = (action as IChangeArt).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.art
+                        ) {
+                            return {
+                                ...block,
+                                artName: newArtName,
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.CHANGE_IMAGE: {
+            const newSrc = (action as IChangeImage).payload;
+            const typeSrc = newSrc.includes("http") ? "link" : "base64";
+            const newBgImage: Image = { data: newSrc, type: typeSrc };
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    canvas: state.selectedBlocks.includes(
+                        state.template.canvas.id,
+                    )
+                        ? { ...state.template.canvas, bgImage: newBgImage }
+                        : state.template.canvas,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.image
+                        ) {
+                            return {
+                                ...block,
+                                bgImage: newBgImage,
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        default:
+            return state;
+    }
+}
 
-export const {
-    setSelectedBlock,
-    setBGColor,
-    setColor,
-    setNewPosition,
-    setNewSize,
-    changeText,
-    setTextJustifyContent,
-    setTextAlignItems,
-    changeArt,
-    changeImage,
-} = sessionReducer.actions;
-export const sessionState = (state: RootState) => state.session.present;
-
-export default sessionReducer.reducer;
+export default sessionReducer;

@@ -1,16 +1,12 @@
 import React from "react";
 import commonCss from "../../../../common/Common.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
-import {
-    setTextAlignItems,
-    setTextJustifyContent,
-} from "../../../../data/sessionReducer";
 import left from "./icon/left.png";
 import center from "./icon/center.png";
 import right from "./icon/right.png";
 import centerSmall from "./icon/center_small.png";
 function ChangeText() {
-    const dispatch = useAppDispatch();
+    const { setTextAlignItems, setTextJustifyContent } = useAppDispatch();
     function setHorizontal(e: React.MouseEvent) {
         let targetNode = e.target as ChildNode;
         while (targetNode.nodeName !== "DIV")
@@ -22,13 +18,13 @@ function ChangeText() {
         }
         switch (i) {
             case 0:
-                dispatch(setTextJustifyContent("start"));
+                setTextJustifyContent("start");
                 break;
             case 1:
-                dispatch(setTextJustifyContent("center"));
+                setTextJustifyContent("center");
                 break;
             case 2:
-                dispatch(setTextJustifyContent("end"));
+                setTextJustifyContent("end");
                 break;
             default:
                 break;
@@ -45,13 +41,13 @@ function ChangeText() {
         }
         switch (i) {
             case 0:
-                dispatch(setTextAlignItems("start"));
+                setTextAlignItems("start");
                 break;
             case 1:
-                dispatch(setTextAlignItems("center"));
+                setTextAlignItems("center");
                 break;
             case 2:
-                dispatch(setTextAlignItems("end"));
+                setTextAlignItems("end");
                 break;
             default:
                 break;

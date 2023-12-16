@@ -3,20 +3,19 @@ import css from "./TextBlock.module.css";
 import { TextBlockType } from "../../type/type";
 import GetRGBA from "../../utils/getRGBA";
 import { useAppDispatch } from "../../data/hooks";
-import { changeText } from "../../data/sessionReducer";
 
 type textBlockProps = {
     block: TextBlockType;
 };
 
 function TextBlock({ block }: textBlockProps) {
-    const dispatch = useAppDispatch();
+    const { changeText } = useAppDispatch();
     const [isEdit, setIsEdit] = useState(false);
     function endEditNew(e: React.KeyboardEvent) {
         if (e.key === "Enter") {
             const target = e.target as HTMLInputElement;
             const text = target.value ? target.value : "Insert text here...";
-            dispatch(changeText(text));
+            changeText(text);
             setIsEdit(false);
         }
     }

@@ -1,21 +1,13 @@
 import { Position } from "../type/type";
-import { ISession, setNewPosition } from "../data/sessionReducer";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
-import { StateWithHistory } from "redux-undo";
 import { Dispatch, SetStateAction } from "react";
+import { useAppDispatch } from "../data/hooks";
 
 type RegisterDndItemFn = (arg0: React.MouseEvent) => void;
 
-type useDndFn = (
-    arg0: Dispatch<SetStateAction<Position>>,
-    arg1: ThunkDispatch<
-        { session: StateWithHistory<ISession> },
-        undefined,
-        AnyAction
-    >,
-) => RegisterDndItemFn;
+type useDndFn = (arg0: Dispatch<SetStateAction<Position>>) => RegisterDndItemFn;
 
-const useDnd: useDndFn = (setOffset, dispatch) => {
+const useDnd: useDndFn = (setOffset) => {
+    const { setNewPosition } = useAppDispatch();
     const registerDndItem: RegisterDndItemFn = (
         mouseDownEvent: React.MouseEvent,
     ) => {
@@ -29,7 +21,7 @@ const useDnd: useDndFn = (setOffset, dispatch) => {
         };
         const onMouseDrop = () => {
             if (newOffset) {
-                dispatch(setNewPosition(newOffset));
+                setNewPosition(newOffset);
                 setOffset({ top: 0, left: 0 });
             }
             window.removeEventListener("mousemove", onMouseMove);

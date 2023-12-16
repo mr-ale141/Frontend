@@ -117,6 +117,7 @@ export type {
     Color,
     Size,
     Position,
+    Image,
 };
 
 export { ArtName, TypeBlock };

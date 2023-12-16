@@ -2,14 +2,13 @@ import React from "react";
 import commonCss from "../../../../common/Common.module.css";
 import { ArtName } from "../../../../type/type";
 import { useAppDispatch } from "../../../../data/hooks";
-import { changeArt } from "../../../../data/sessionReducer";
 
 function ChangeArt() {
-    const dispatch = useAppDispatch();
+    const { changeArt } = useAppDispatch();
     function changeArtHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         const strNum = event.target.value;
         const num = parseInt(strNum, 10);
-        dispatch(changeArt(num));
+        changeArt(num);
     }
     return (
         <div className={commonCss.tool}>
