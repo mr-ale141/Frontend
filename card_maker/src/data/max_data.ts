@@ -376,7 +376,6 @@ const session: Session = {
     editHistory: [],
     selectedBlocks: [],
     template: templateSource[1],
-    file_name: "max_file.jpg",
 };
 
 export default session;

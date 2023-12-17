@@ -368,7 +368,6 @@ function sessionReducer(state = session, action: Action): Session {
                 editHistory: [],
                 selectedBlocks: [],
                 template: newTemplate,
-                file_name: state.file_name,
             };
         }
         case TitleActionType.DELETE_SELECTED_BLOCKS: {
