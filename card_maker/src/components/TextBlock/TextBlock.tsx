@@ -22,6 +22,7 @@ function TextBlock({ block }: textBlockProps) {
     function onMouseDownHandler() {
         setIsEdit(true);
     }
+    const textAlign = block.positionText.justifyContent;
     return (
         <div
             className={css.text}
@@ -35,6 +36,7 @@ function TextBlock({ block }: textBlockProps) {
                 <p
                     style={{
                         ...block.text,
+                        textAlign,
                         color: GetRGBA(block.text.color),
                     }}
                     onMouseDown={onMouseDownHandler}

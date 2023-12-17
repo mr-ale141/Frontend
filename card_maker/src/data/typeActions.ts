@@ -46,11 +46,11 @@ interface IChangeText {
 }
 interface ISetTextJustifyContent {
     type: typeof TitleActionType.SET_TEXT_JUSTIFY_CONTENT;
-    payload: string;
+    payload: "center" | "start" | "end";
 }
 interface ISetTextAlignItems {
     type: typeof TitleActionType.SET_TEXT_ALIGN_ITEMS;
-    payload: string;
+    payload: "center" | "start" | "end";
 }
 interface IChangeStyleText {
     type: typeof TitleActionType.CHANGE_STYLE_TEXT;

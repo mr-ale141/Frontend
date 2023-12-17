@@ -55,8 +55,8 @@ type Block = {
 
 type TextBlockType = Block & {
     positionText: {
-        justifyContent: string;
-        alignItems: string;
+        justifyContent: "center" | "start" | "end";
+        alignItems: "center" | "start" | "end";
     };
     type: TypeBlock.text;
     text: Text;

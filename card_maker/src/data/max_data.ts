@@ -8,9 +8,91 @@ import {
     TypeBlock,
 } from "../type/type";
 import stars from "./img/png/stars.png";
+import newImage from "./img/png/newImage.png";
+import santa from "./img/jpg/santaWithNoteBook.jpg";
 import { v4 as uuidV4 } from "uuid";
 
 const textBlockSource: Array<TextBlockType> = [
+    {
+        id: uuidV4(),
+        size: {
+            width: 180,
+            height: 110,
+        },
+        position: {
+            left: 425,
+            top: 40,
+        },
+        positionText: {
+            justifyContent: "center",
+            alignItems: "center",
+        },
+        type: TypeBlock.text,
+        text: {
+            value: "New text",
+            fontSize: 14,
+            fontFamily: "Arial",
+            color: {
+                r: 0x00,
+                g: 0x00,
+                b: 0x00,
+                a: 1,
+            },
+            fontWeight: 400,
+            fontStyle: "normal",
+            textDecoration: "none",
+        },
+        bgImage: {
+            type: "",
+            data: "",
+        },
+        bgColor: {
+            r: 0xff,
+            g: 0xff,
+            b: 0xff,
+            a: 0,
+        },
+    },
+    {
+        id: uuidV4(),
+        size: {
+            width: 300,
+            height: 110,
+        },
+        position: {
+            left: 50,
+            top: 40,
+        },
+        positionText: {
+            justifyContent: "center",
+            alignItems: "center",
+        },
+        type: TypeBlock.text,
+        text: {
+            value: "Go to sleep. I will finish",
+            fontSize: 22,
+            fontFamily: "Arial",
+            color: {
+                r: 0xaa,
+                g: 0xaa,
+                b: 0x00,
+                a: 1,
+            },
+            fontWeight: 800,
+            fontStyle: "normal",
+            textDecoration: "none",
+        },
+        bgImage: {
+            type: "",
+            data: "",
+        },
+        bgColor: {
+            r: 0x36,
+            g: 0x23,
+            b: 0x45,
+            a: 0,
+        },
+    },
     {
         id: uuidV4(),
         size: {
@@ -57,6 +139,28 @@ const imageBlockSource: Array<ImageBlockType> = [
     {
         id: uuidV4(),
         size: {
+            width: 100,
+            height: 100,
+        },
+        position: {
+            left: 10,
+            top: 10,
+        },
+        type: TypeBlock.image,
+        bgImage: {
+            type: "Path",
+            data: newImage,
+        },
+        bgColor: {
+            r: 0xff,
+            g: 0xff,
+            b: 0xff,
+            a: 0,
+        },
+    },
+    {
+        id: uuidV4(),
+        size: {
             width: 300,
             height: 300,
         },
@@ -90,28 +194,6 @@ const imageBlockSource: Array<ImageBlockType> = [
         bgImage: {
             type: "Path",
             data: stars,
-        },
-        bgColor: {
-            r: 0xff,
-            g: 0xff,
-            b: 0xff,
-            a: 0,
-        },
-    },
-    {
-        id: uuidV4(),
-        size: {
-            width: 50,
-            height: 50,
-        },
-        position: {
-            left: 10,
-            top: 10,
-        },
-        type: TypeBlock.image,
-        bgImage: {
-            type: "",
-            data: "stars.png",
         },
         bgColor: {
             r: 0xff,
@@ -195,8 +277,8 @@ const templateSource: Array<Template> = [
                 a: 0,
             },
             bgImage: {
-                type: "",
-                data: "",
+                type: "Path",
+                data: santa,
             },
             bgColor: {
                 r: 0xf6,
@@ -205,7 +287,7 @@ const templateSource: Array<Template> = [
                 a: 1,
             },
         },
-        blocks: [imageBlockSource[0], artBlockSource[0], textBlockSource[0]],
+        blocks: [textBlockSource[1]],
     },
     {
         id: uuidV4(),

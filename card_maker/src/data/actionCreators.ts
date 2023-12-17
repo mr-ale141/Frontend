@@ -37,13 +37,17 @@ export const changeText = (newText: string): Action => {
         payload: newText,
     };
 };
-export const setTextJustifyContent = (newSetting: string): Action => {
+export const setTextJustifyContent = (
+    newSetting: "center" | "start" | "end",
+): Action => {
     return {
         type: TitleActionType.SET_TEXT_JUSTIFY_CONTENT,
         payload: newSetting,
     };
 };
-export const setTextAlignItems = (newSetting: string): Action => {
+export const setTextAlignItems = (
+    newSetting: "center" | "start" | "end",
+): Action => {
     return {
         type: TitleActionType.SET_TEXT_ALIGN_ITEMS,
         payload: newSetting,
