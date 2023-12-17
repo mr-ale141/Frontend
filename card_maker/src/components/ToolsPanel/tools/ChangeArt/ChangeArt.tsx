@@ -12,7 +12,7 @@ function ChangeArt() {
     }
     return (
         <div className={commonCss.tool}>
-            <label htmlFor="new-art">Change art</label>
+            <label htmlFor="new-art">Change ART</label>
             <select id="new-art" onChange={(event) => changeArtHandler(event)}>
                 <option value={ArtName.arrow}>Arrow</option>
                 <option value={ArtName.circle}>Circle</option>

@@ -39,17 +39,17 @@ function ChangeColor({ currentColor, currentBGColor }: ChangeColorProps) {
     return (
         <>
             <div className={commonCss.tool}>
-                <label htmlFor="bg-color">Change color</label>
+                <label htmlFor="bg-color">Color</label>
                 <input
                     id="bg-color"
                     type="color"
                     defaultValue={currentColor.hexColor}
                     onChange={(event) => changeColor(event)}
                 />
-                <label htmlFor="bg-opacity">Change opacity</label>
+                <label htmlFor="bg-opacity">Opacity</label>
                 <input
                     id="bg-opacity"
-                    type="range"
+                    type="number"
                     min="0"
                     max="1"
                     step="0.1"
@@ -58,17 +58,17 @@ function ChangeColor({ currentColor, currentBGColor }: ChangeColorProps) {
                 />
             </div>
             <div className={commonCss.tool}>
-                <label htmlFor="bg-color">Change BG color</label>
+                <label htmlFor="bg-color">Phone</label>
                 <input
                     id="bg-color"
                     type="color"
                     defaultValue={currentBGColor.hexColor}
                     onChange={(event) => changeBGColor(event)}
                 />
-                <label htmlFor="bg-opacity">Change BG opacity</label>
+                <label htmlFor="bg-opacity">Opacity</label>
                 <input
                     id="bg-opacity"
-                    type="range"
+                    type="number"
                     min="0"
                     max="1"
                     step="0.1"

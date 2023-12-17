@@ -25,20 +25,21 @@ function ChangeImage() {
     }
     return (
         <div className={commonCss.tool}>
-            <label htmlFor="image-link">Change image</label>
-            <input
-                id="image-link"
-                type="text"
-                placeholder="Insert URL-address"
-                onKeyDown={(event) => changeImageLinkHandler(event)}
-            />
-            <label htmlFor="image-upload">Upload file</label>
-            <input
-                id="image-upload"
-                type="file"
-                accept="image/png, image/jpeg"
-                onChange={(event) => changeImageFileHandler(event)}
-            />
+            <div>
+                <input
+                    id="image-link"
+                    type="text"
+                    placeholder="Insert URL and press enter"
+                    onKeyDown={(event) => changeImageLinkHandler(event)}
+                />
+                <label htmlFor="image-upload">Upload local file</label>
+                <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    onChange={(event) => changeImageFileHandler(event)}
+                />
+            </div>
         </div>
     );
 }

@@ -29,9 +29,8 @@ function Canvas() {
     };
     if (canvas.bgImage.data.length !== 0) {
         styleCanvas.backgroundImage = `url(${canvas.bgImage.data})`;
-        styleCanvas.backgroundSize = "cover";
     }
-    let classNameList = css.canvas;
+    let classNameList = css.canvas + " " + commonCss.draggable;
     if (isSelected) {
         classNameList += " " + commonCss.border;
     }

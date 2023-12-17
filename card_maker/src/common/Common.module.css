@@ -76,15 +76,22 @@
 }
 
 .tool {
-    width: 150px;
+    width: 230px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     background-color: #373737;
     border-radius: 10px;
     margin: 5px;
-    padding: 0 0 5px;
+    padding: 5px;
     border: 1px solid;
+}
+
+.tool div {
+    width: min-content;
+    height: min-content;
+    margin: 0 3px;
 }
 
 .tool label {
@@ -93,39 +100,24 @@
 }
 
 .tool input {
-    width: 140px;
     border-radius: 5px;
     border: none;
     outline: none;
+}
+
+.tool input[type="number"] {
+    width: 50px;
+    padding: 2px;
+}
+
+.tool input[type="color"] {
+    width: 50px;
 }
 
 .tool input[type="text"] {
-    padding: 3px;
-    margin: 3px;
-}
-
-.tool select {
-    width: 140px;
-    border: none;
-    outline: none;
-    margin: 2px;
-    border-radius: 5px;
-}
-
-.tool label[for="bg-opacity"] {
-    font-size: 12px;
-    color: lightgrey;
-}
-
-.tool label[for="image-upload"] {
-    background-color: gold;
-    border-radius: 10px;
-    margin: 3px;
-    padding: 3px;
-    color: #211d1d;
-    cursor: pointer;
-    width: 140px;
-    text-align: center;
+    width: 220px;
+    padding: 5px;
+    margin-bottom: 5px;
 }
 
 .tool input[type="file"] {
@@ -134,14 +126,43 @@
     z-index: -1;
 }
 
+.tool div select {
+    width: 100px;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+.tool label[for="bg-opacity"] {
+    font-size: 12px;
+    color: white;
+    margin-left: 5px;
+}
+
+.tool label[for="new-art"] {
+    margin-right: 5px;
+}
+
+.tool label[for="image-upload"] {
+    background-color: gold;
+    border-radius: 10px;
+    display: block;
+    margin: 5px auto;
+    padding: 2px;
+    color: #211d1d;
+    cursor: pointer;
+    width: 140px;
+    text-align: center;
+}
+
 .tool .text {
     display: flex;
 }
 
 .tool .text div {
-    margin: 5px;
-    background-color: lightgrey;
-    border-radius: 5px;
+    margin: 2px;
+    background-color: white;
+    border-radius: 2px;
     height: 32px;
     cursor: pointer;
 }

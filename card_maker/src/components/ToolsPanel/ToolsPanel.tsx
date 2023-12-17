@@ -9,8 +9,7 @@ import ChangeArt from "./tools/ChangeArt/ChangeArt";
 import getHexColor from "../../utils/getHexColor";
 import getOpacity from "../../utils/getOpacity";
 import ChangeStyle from "./tools/ChangeText/ChangeStyle";
-import ChangeSize from "./tools/ChangeText/ChangeSize";
-import ChangeFontFamily from "./tools/ChangeText/ChangeFontFamily";
+import ChangeCanvasSize from "./tools/ChangeCanvasSize/ChangeCanvasSize";
 
 function ToolsPanel() {
     const canvasId = useAppSelector((state) => state.template.canvas.id);
@@ -32,54 +31,61 @@ function ToolsPanel() {
             changeColor: true,
             changeArt: false,
             changeText: false,
+            changeCanvasSize: true,
         },
         [TypeBlock.art]: {
             changeImage: false,
             changeColor: true,
             changeArt: true,
             changeText: false,
+            changeCanvasSize: false,
         },
         [TypeBlock.text]: {
             changeImage: false,
             changeColor: true,
             changeArt: false,
             changeText: true,
+            changeCanvasSize: false,
         },
         [TypeBlock.image]: {
             changeImage: true,
-            changeColor: true,
+            changeColor: false,
             changeArt: false,
             changeText: false,
+            changeCanvasSize: false,
         },
     };
     const needRender = {
-        changeImage: true,
-        changeColor: true,
-        changeArt: true,
-        changeText: true,
+        changeImage: false,
+        changeColor: false,
+        changeArt: false,
+        changeText: false,
+        changeCanvasSize: false,
     };
     if (activeTypes.length) {
         activeTypes.forEach((type) => {
-            needRender.changeImage &&= needTools[type].changeImage;
-            needRender.changeColor &&= needTools[type].changeColor;
-            needRender.changeArt &&= needTools[type].changeArt;
-            needRender.changeText &&= needTools[type].changeText;
+            needRender.changeImage ||= needTools[type].changeImage;
+            needRender.changeColor ||= needTools[type].changeColor;
+            needRender.changeArt ||= needTools[type].changeArt;
+            needRender.changeText ||= needTools[type].changeText;
+            needRender.changeCanvasSize ||= needTools[type].changeCanvasSize;
         });
     } else {
         needRender.changeImage = false;
         needRender.changeColor = false;
         needRender.changeArt = false;
         needRender.changeText = false;
+        needRender.changeCanvasSize = false;
     }
     const currentColor = {
         hexColor: "#ffffff",
-        opacity: 0,
+        opacity: 1,
     };
     const currentBGColor = {
         hexColor: "#ffffff",
-        opacity: 0,
+        opacity: 1,
     };
-    let currentSize = 10;
+    let currentTextSize = 10;
     let currentFontFamily = "Arial";
     if (selectedBlocks.length === 1) {
         if (canvasId === selectedBlocks[0]) {
@@ -103,7 +109,7 @@ function ToolsPanel() {
                     currentColor.opacity = Number(getOpacity(block.text.color));
                     currentBGColor.hexColor = getHexColor(block.bgColor);
                     currentBGColor.opacity = Number(getOpacity(block.bgColor));
-                    currentSize = block.text.fontSize;
+                    currentTextSize = block.text.fontSize;
                     currentFontFamily = block.text.fontFamily;
                     break;
                 default:
@@ -122,13 +128,17 @@ function ToolsPanel() {
             {needRender.changeText && (
                 <>
                     <ChangeAlign />
-                    <ChangeStyle />
-                    <ChangeSize currentSize={currentSize} />
-                    <ChangeFontFamily currentFontFamily={currentFontFamily} />
+                    <ChangeStyle
+                        currentSize={currentTextSize}
+                        currentFontFamily={currentFontFamily}
+                    />
                 </>
             )}
             {needRender.changeImage && <ChangeImage />}
             {needRender.changeArt && <ChangeArt />}
+            {needRender.changeCanvasSize && (
+                <ChangeCanvasSize currentSize={canvas.size} />
+            )}
             {!activeTypes.length && <div>Select item</div>}
         </div>
     );

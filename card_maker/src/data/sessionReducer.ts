@@ -141,6 +141,19 @@ function sessionReducer(state = session, action: Action): Session {
                 },
             };
         }
+        case TitleActionType.CHANGE_CANVAS_SIZE: {
+            const newCanvasSize = (action as ISetNewSize).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    canvas: {
+                        ...state.template.canvas,
+                        size: newCanvasSize,
+                    },
+                },
+            };
+        }
         case TitleActionType.CHANGE_TEXT: {
             const newText = (action as IChangeText).payload;
             return {

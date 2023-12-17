@@ -13,6 +13,7 @@ const TitleActionType = {
     SET_COLOR: "SET_COLOR",
     SET_NEW_POSITION: "SET_NEW_POSITION",
     SET_NEW_SIZE: "SET_NEW_SIZE",
+    CHANGE_CANVAS_SIZE: "CHANGE_CANVAS_SIZE",
     CHANGE_TEXT: "CHANGE_TEXT",
     SET_TEXT_JUSTIFY_CONTENT: "SET_TEXT_JUSTIFY_CONTENT",
     SET_TEXT_ALIGN_ITEMS: "SET_TEXT_ALIGN_ITEMS",
@@ -47,6 +48,10 @@ interface ISetNewPosition {
 }
 interface ISetNewSize {
     type: typeof TitleActionType.SET_NEW_SIZE;
+    payload: Size;
+}
+interface IChangeCanvasSize {
+    type: typeof TitleActionType.CHANGE_CANVAS_SIZE;
     payload: Size;
 }
 interface IChangeText {
@@ -99,6 +104,7 @@ type Action =
     | ISetColor
     | ISetNewPosition
     | ISetNewSize
+    | IChangeCanvasSize
     | IChangeText
     | ISetTextJustifyContent
     | ISetTextAlignItems
@@ -117,6 +123,7 @@ export type {
     ISetColor,
     ISetNewPosition,
     ISetNewSize,
+    IChangeCanvasSize,
     IChangeText,
     ISetTextJustifyContent,
     ISetTextAlignItems,

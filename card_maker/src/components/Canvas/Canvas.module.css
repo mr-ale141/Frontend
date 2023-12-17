@@ -2,4 +2,9 @@
     position: relative;
     margin: auto;
     top: 2vh;
+    box-sizing: content-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: initial;
 }

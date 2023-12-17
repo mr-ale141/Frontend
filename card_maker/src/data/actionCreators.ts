@@ -38,6 +38,12 @@ export const setNewSize = (size: Size): Action => {
         payload: { ...size },
     };
 };
+export const changeCanvasSize = (size: Size): Action => {
+    return {
+        type: TitleActionType.CHANGE_CANVAS_SIZE,
+        payload: { ...size },
+    };
+};
 export const changeText = (newText: string): Action => {
     return {
         type: TitleActionType.CHANGE_TEXT,
