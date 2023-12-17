@@ -1,4 +1,11 @@
-import { ArtName, Color, Position, Size, Template } from "../type/type";
+import {
+    ArtName,
+    Color,
+    Position,
+    Size,
+    Template,
+    TypeBlock,
+} from "../type/type";
 
 const TitleActionType = {
     SET_SELECTED_BLOCK: "SET_SELECTED_BLOCK",
@@ -15,6 +22,8 @@ const TitleActionType = {
     CHANGE_ART: "CHANGE_ART",
     CHANGE_IMAGE: "CHANGE_IMAGE",
     SET_NEW_TEMPLATE: "SET_NEW_TEMPLATE",
+    DELETE_SELECTED_BLOCKS: "DELETE_SELECTED_BLOCKS",
+    ADD_NEW_BLOCK: "ADD_NEW_BLOCK",
 };
 
 interface ISetSelectedBlock {
@@ -76,6 +85,13 @@ interface ISetNewTemplate {
     type: typeof TitleActionType.SET_NEW_TEMPLATE;
     payload: Template;
 }
+interface IDeleteSelectedBlocks {
+    type: typeof TitleActionType.DELETE_SELECTED_BLOCKS;
+}
+interface IAddNewBlock {
+    type: typeof TitleActionType.ADD_NEW_BLOCK;
+    payload: TypeBlock;
+}
 
 type Action =
     | ISetSelectedBlock
@@ -91,7 +107,9 @@ type Action =
     | IChangeFontFamilyText
     | IChangeArt
     | IChangeImage
-    | ISetNewTemplate;
+    | ISetNewTemplate
+    | IDeleteSelectedBlocks
+    | IAddNewBlock;
 export type {
     Action,
     ISetSelectedBlock,
@@ -108,5 +126,7 @@ export type {
     IChangeArt,
     IChangeImage,
     ISetNewTemplate,
+    IDeleteSelectedBlocks,
+    IAddNewBlock,
 };
 export { TitleActionType };

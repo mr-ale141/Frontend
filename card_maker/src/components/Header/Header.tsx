@@ -3,28 +3,28 @@ import HeadButton from "./HeadButton/HeadButton";
 import undoIcon from "./icons/undo.png";
 import redoIcon from "./icons/redo.png";
 import saveIcon from "./icons/save.png";
+import delIcon from "./icons/del.png";
+import addARTIcon from "./icons/addART.png";
+import addTXTIcon from "./icons/addTXT.png";
+import addIMGIcon from "./icons/addIMG.png";
 import saveJSIcon from "./icons/saveJS.png";
-import openFileJS from "./icons/openFileJS.png";
+import openFileJSIcon from "./icons/openFileJS.png";
 import html2canvas from "html2canvas";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
 import React from "react";
 import getTemplate from "../../utils/getTemplate";
-import { Template } from "../../type/type";
+import { Template, TypeBlock } from "../../type/type";
 
 function Header() {
-    const { setSelectedBlock, setNewTemplate } = useAppDispatch();
+    const {
+        setSelectedBlock,
+        setNewTemplate,
+        deleteSelectedBlocks,
+        addNewBlock,
+    } = useAppDispatch();
     const template = useAppSelector((state) => state.template);
     const canvasId = useAppSelector((state) => state.template.canvas.id);
     const fileName = useAppSelector((state) => state.file_name);
-    function onMouseDownHandler(event: React.MouseEvent) {
-        const inputNewText = document.getElementById("new-text");
-        if (!inputNewText) {
-            if (!event.isDefaultPrevented()) {
-                setSelectedBlock("", event.ctrlKey);
-                event.preventDefault();
-            }
-        }
-    }
     function saveHandler() {
         setSelectedBlock("", false);
         const canvasDiv = document.getElementById(canvasId);
@@ -87,7 +87,7 @@ function Header() {
         a!.remove();
     }
     return (
-        <div className={css.header} onMouseDown={onMouseDownHandler}>
+        <div className={css.header}>
             <div className={css.logo}>
                 <span>Card Maker</span>
             </div>
@@ -109,8 +109,28 @@ function Header() {
             />
             <HeadButton
                 handler={openJSHandler}
-                icon={openFileJS}
+                icon={openFileJSIcon}
                 alt="open JSON-file"
+            />
+            <HeadButton
+                handler={() => deleteSelectedBlocks()}
+                icon={delIcon}
+                alt="delete selected blocks"
+            />
+            <HeadButton
+                handler={() => addNewBlock(TypeBlock.text)}
+                icon={addTXTIcon}
+                alt="add textBlock"
+            />
+            <HeadButton
+                handler={() => addNewBlock(TypeBlock.image)}
+                icon={addIMGIcon}
+                alt="add imageBlock"
+            />
+            <HeadButton
+                handler={() => addNewBlock(TypeBlock.art)}
+                icon={addARTIcon}
+                alt="add artBlock"
             />
         </div>
     );

@@ -1,21 +1,34 @@
-import session from "./max_data";
-import { Session, TypeBlock, Image } from "../type/type";
+import session, {
+    artBlockSource,
+    imageBlockSource,
+    textBlockSource,
+} from "./max_data";
+import { v4 as uuidV4 } from "uuid";
 import {
-    TitleActionType,
+    ArtBlockType,
+    Image,
+    ImageBlockType,
+    Session,
+    TextBlockType,
+    TypeBlock,
+} from "../type/type";
+import {
     Action,
-    ISetSelectedBlock,
+    IAddNewBlock,
+    IChangeArt,
+    IChangeFontFamilyText,
+    IChangeImage,
+    IChangeSizeText,
+    IChangeStyleText,
+    IChangeText,
     ISetBGColor,
     ISetNewPosition,
     ISetNewSize,
-    IChangeText,
-    ISetTextJustifyContent,
-    ISetTextAlignItems,
-    IChangeArt,
-    IChangeImage,
     ISetNewTemplate,
-    IChangeStyleText,
-    IChangeSizeText,
-    IChangeFontFamilyText,
+    ISetSelectedBlock,
+    ISetTextAlignItems,
+    ISetTextJustifyContent,
+    TitleActionType,
 } from "./typeActions";
 
 function sessionReducer(state = session, action: Action): Session {
@@ -357,6 +370,59 @@ function sessionReducer(state = session, action: Action): Session {
                 template: newTemplate,
                 file_name: state.file_name,
             };
+        }
+        case TitleActionType.DELETE_SELECTED_BLOCKS: {
+            let newBlocks = [...state.template.blocks];
+            state.selectedBlocks.forEach((deleteID) => {
+                const blocksArray: Array<
+                    ArtBlockType | TextBlockType | ImageBlockType
+                > = [];
+                newBlocks.forEach((block) => {
+                    if (deleteID !== block.id) {
+                        blocksArray.push(block);
+                    }
+                });
+                newBlocks = blocksArray;
+            });
+            return {
+                ...state,
+                selectedBlocks: [],
+                template: {
+                    ...state.template,
+                    blocks: newBlocks,
+                },
+            };
+        }
+        case TitleActionType.ADD_NEW_BLOCK: {
+            const newBlockType = (action as IAddNewBlock).payload;
+            const newId = uuidV4();
+            let newBlock;
+            switch (newBlockType) {
+                case TypeBlock.art:
+                    newBlock = artBlockSource[0];
+                    newBlock.id = newId;
+                    break;
+                case TypeBlock.text:
+                    newBlock = textBlockSource[0];
+                    newBlock.id = newId;
+                    break;
+                case TypeBlock.image:
+                    newBlock = imageBlockSource[0];
+                    newBlock.id = newId;
+                    break;
+                default:
+                    break;
+            }
+            if (newBlock)
+                return {
+                    ...state,
+                    selectedBlocks: [newBlock.id],
+                    template: {
+                        ...state.template,
+                        blocks: [...state.template.blocks, { ...newBlock }],
+                    },
+                };
+            else return state;
         }
         default:
             return state;

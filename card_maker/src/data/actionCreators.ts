@@ -1,4 +1,11 @@
-import { ArtName, Color, Position, Size, Template } from "../type/type";
+import {
+    ArtName,
+    Color,
+    Position,
+    Size,
+    Template,
+    TypeBlock,
+} from "../type/type";
 import { TitleActionType, Action } from "./typeActions";
 
 export const setSelectedBlock = (id: string, withCtrl: boolean) => {
@@ -87,5 +94,16 @@ export const setNewTemplate = (newTemplate: Template): Action => {
     return {
         type: TitleActionType.SET_NEW_TEMPLATE,
         payload: newTemplate,
+    };
+};
+export const deleteSelectedBlocks = (): Action => {
+    return {
+        type: TitleActionType.DELETE_SELECTED_BLOCKS,
+    };
+};
+export const addNewBlock = (newType: TypeBlock): Action => {
+    return {
+        type: TitleActionType.ADD_NEW_BLOCK,
+        payload: newType,
     };
 };

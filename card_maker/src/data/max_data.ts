@@ -12,7 +12,7 @@ import newImage from "./img/png/newImage.png";
 import santa from "./img/jpg/santaWithNoteBook.jpg";
 import { v4 as uuidV4 } from "uuid";
 
-const textBlockSource: Array<TextBlockType> = [
+export const textBlockSource: Array<TextBlockType> = [
     {
         id: uuidV4(),
         size: {
@@ -20,8 +20,8 @@ const textBlockSource: Array<TextBlockType> = [
             height: 110,
         },
         position: {
-            left: 425,
-            top: 40,
+            left: 50,
+            top: 50,
         },
         positionText: {
             justifyContent: "center",
@@ -135,7 +135,7 @@ const textBlockSource: Array<TextBlockType> = [
     },
 ];
 
-const imageBlockSource: Array<ImageBlockType> = [
+export const imageBlockSource: Array<ImageBlockType> = [
     {
         id: uuidV4(),
         size: {
@@ -204,7 +204,32 @@ const imageBlockSource: Array<ImageBlockType> = [
     },
 ];
 
-const artBlockSource: Array<ArtBlockType> = [
+export const artBlockSource: Array<ArtBlockType> = [
+    {
+        id: uuidV4(),
+        size: {
+            width: 50,
+            height: 50,
+        },
+        position: {
+            left: 40,
+            top: 40,
+        },
+        type: TypeBlock.art,
+        borderColor: {
+            r: 0xff,
+            g: 0xff,
+            b: 0x00,
+            a: 1,
+        },
+        artName: ArtName.like,
+        bgColor: {
+            r: 0x25,
+            g: 0x00,
+            b: 0xff,
+            a: 0,
+        },
+    },
     {
         id: uuidV4(),
         size: {
@@ -232,7 +257,7 @@ const artBlockSource: Array<ArtBlockType> = [
     },
 ];
 
-const templateSource: Array<Template> = [
+export const templateSource: Array<Template> = [
     {
         id: uuidV4(),
         canvas: {
