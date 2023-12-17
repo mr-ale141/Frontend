@@ -91,6 +91,16 @@ function Header() {
             <div className={css.logo}>
                 <span>Card Maker</span>
             </div>
+            <HeadButton
+                handler={() => console.log("not handler!!")}
+                icon={undoIcon}
+                alt="undo"
+            />
+            <HeadButton
+                handler={() => console.log("not handler!!")}
+                icon={redoIcon}
+                alt="redo"
+            />
             <HeadButton handler={saveHandler} icon={saveIcon} alt="save" />
             <HeadButton
                 handler={saveJSHandler}
@@ -101,16 +111,6 @@ function Header() {
                 handler={openJSHandler}
                 icon={openFileJS}
                 alt="open JSON-file"
-            />
-            <HeadButton
-                handler={() => console.log("not handler!!")}
-                icon={undoIcon}
-                alt="undo"
-            />
-            <HeadButton
-                handler={() => console.log("not handler!!")}
-                icon={redoIcon}
-                alt="redo"
             />
         </div>
     );

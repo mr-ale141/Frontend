@@ -134,22 +134,11 @@
     z-index: -1;
 }
 
-.horizontal {
+.tool .text {
     display: flex;
 }
 
-.horizontal div {
-    margin: 5px;
-    background-color: lightgrey;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.vertical {
-    display: flex;
-}
-
-.vertical div {
+.tool .text div {
     margin: 5px;
     background-color: lightgrey;
     border-radius: 5px;

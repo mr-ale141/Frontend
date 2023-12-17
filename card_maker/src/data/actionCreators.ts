@@ -49,6 +49,12 @@ export const setTextAlignItems = (newSetting: string): Action => {
         payload: newSetting,
     };
 };
+export const changeStyleText = (newSetting: string): Action => {
+    return {
+        type: TitleActionType.CHANGE_STYLE_TEXT,
+        payload: newSetting,
+    };
+};
 export const changeArt = (newArt: ArtName): Action => {
     return {
         type: TitleActionType.CHANGE_ART,

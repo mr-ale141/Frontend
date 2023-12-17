@@ -36,8 +36,8 @@ const textBlockSource: Array<TextBlockType> = [
                 b: 0x55,
                 a: 1,
             },
-            fontWeight: 800,
-            fontStyle: "italic",
+            fontWeight: 400,
+            fontStyle: "none",
             textDecoration: "none",
         },
         bgImage: {

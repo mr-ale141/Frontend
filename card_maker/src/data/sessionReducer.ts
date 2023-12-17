@@ -13,6 +13,7 @@ import {
     IChangeArt,
     IChangeImage,
     ISetNewTemplate,
+    IChangeStyleText,
 } from "./typeActions";
 
 function sessionReducer(state = session, action: Action): Session {
@@ -188,6 +189,54 @@ function sessionReducer(state = session, action: Action): Session {
                                 positionText: {
                                     ...block.positionText,
                                     alignItems: newSetting,
+                                },
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.CHANGE_STYLE_TEXT: {
+            const newSetting = (action as IChangeStyleText).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.text
+                        ) {
+                            return {
+                                ...block,
+                                text: {
+                                    ...block.text,
+                                    fontWeight:
+                                        block.text.fontWeight === 400
+                                            ? newSetting === "bold"
+                                                ? 800
+                                                : block.text.fontWeight
+                                            : newSetting === "bold"
+                                            ? 400
+                                            : block.text.fontWeight,
+                                    fontStyle:
+                                        block.text.fontStyle === "normal"
+                                            ? newSetting === "italic"
+                                                ? "italic"
+                                                : block.text.fontStyle
+                                            : newSetting === "italic"
+                                            ? "normal"
+                                            : block.text.fontStyle,
+                                    textDecoration:
+                                        block.text.textDecoration === "none"
+                                            ? newSetting === "underline"
+                                                ? "underline"
+                                                : block.text.textDecoration
+                                            : newSetting === "underline"
+                                            ? "none"
+                                            : block.text.textDecoration,
                                 },
                             };
                         } else {
