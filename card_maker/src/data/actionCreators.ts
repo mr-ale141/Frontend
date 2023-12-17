@@ -55,6 +55,18 @@ export const changeStyleText = (newSetting: string): Action => {
         payload: newSetting,
     };
 };
+export const changeSizeText = (newSetting: number): Action => {
+    return {
+        type: TitleActionType.CHANGE_SIZE_TEXT,
+        payload: newSetting,
+    };
+};
+export const changeFontFamilyText = (newSetting: string): Action => {
+    return {
+        type: TitleActionType.CHANGE_FONT_FAMILY_TEXT,
+        payload: newSetting,
+    };
+};
 export const changeArt = (newArt: ArtName): Action => {
     return {
         type: TitleActionType.CHANGE_ART,

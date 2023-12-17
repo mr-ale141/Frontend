@@ -10,6 +10,8 @@ const TitleActionType = {
     SET_TEXT_JUSTIFY_CONTENT: "SET_TEXT_JUSTIFY_CONTENT",
     SET_TEXT_ALIGN_ITEMS: "SET_TEXT_ALIGN_ITEMS",
     CHANGE_STYLE_TEXT: "CHANGE_STYLE_TEXT",
+    CHANGE_SIZE_TEXT: "CHANGE_SIZE_TEXT",
+    CHANGE_FONT_FAMILY_TEXT: "CHANGE_FONT_FAMILY_TEXT",
     CHANGE_ART: "CHANGE_ART",
     CHANGE_IMAGE: "CHANGE_IMAGE",
     SET_NEW_TEMPLATE: "SET_NEW_TEMPLATE",
@@ -54,6 +56,14 @@ interface IChangeStyleText {
     type: typeof TitleActionType.CHANGE_STYLE_TEXT;
     payload: string;
 }
+interface IChangeSizeText {
+    type: typeof TitleActionType.CHANGE_SIZE_TEXT;
+    payload: number;
+}
+interface IChangeFontFamilyText {
+    type: typeof TitleActionType.CHANGE_FONT_FAMILY_TEXT;
+    payload: string;
+}
 interface IChangeArt {
     type: typeof TitleActionType.CHANGE_ART;
     payload: ArtName;
@@ -77,6 +87,8 @@ type Action =
     | ISetTextJustifyContent
     | ISetTextAlignItems
     | IChangeStyleText
+    | IChangeSizeText
+    | IChangeFontFamilyText
     | IChangeArt
     | IChangeImage
     | ISetNewTemplate;
@@ -91,6 +103,8 @@ export type {
     ISetTextJustifyContent,
     ISetTextAlignItems,
     IChangeStyleText,
+    IChangeSizeText,
+    IChangeFontFamilyText,
     IChangeArt,
     IChangeImage,
     ISetNewTemplate,

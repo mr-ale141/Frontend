@@ -37,7 +37,7 @@ const textBlockSource: Array<TextBlockType> = [
                 a: 1,
             },
             fontWeight: 400,
-            fontStyle: "none",
+            fontStyle: "normal",
             textDecoration: "none",
         },
         bgImage: {

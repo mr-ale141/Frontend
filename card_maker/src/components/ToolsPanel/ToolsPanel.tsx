@@ -4,10 +4,13 @@ import { TypeBlock } from "../../type/type";
 import { useAppSelector } from "../../data/hooks";
 import ChangeColor from "./tools/ChangeColor/ChangeColor";
 import ChangeImage from "./tools/ChangeImage/ChangeImage";
-import ChangeText from "./tools/ChangeText/ChangeText";
+import ChangeAlign from "./tools/ChangeText/ChangeAlign";
 import ChangeArt from "./tools/ChangeArt/ChangeArt";
 import getHexColor from "../../utils/getHexColor";
 import getOpacity from "../../utils/getOpacity";
+import ChangeStyle from "./tools/ChangeText/ChangeStyle";
+import ChangeSize from "./tools/ChangeText/ChangeSize";
+import ChangeFontFamily from "./tools/ChangeText/ChangeFontFamily";
 
 function ToolsPanel() {
     const canvasId = useAppSelector((state) => state.template.canvas.id);
@@ -76,6 +79,8 @@ function ToolsPanel() {
         hexColor: "#ffffff",
         opacity: 0,
     };
+    let currentSize = 10;
+    let currentFontFamily = "Arial";
     if (selectedBlocks.length === 1) {
         if (canvasId === selectedBlocks[0]) {
             currentBGColor.hexColor = getHexColor(canvas.bgColor);
@@ -98,6 +103,8 @@ function ToolsPanel() {
                     currentColor.opacity = Number(getOpacity(block.text.color));
                     currentBGColor.hexColor = getHexColor(block.bgColor);
                     currentBGColor.opacity = Number(getOpacity(block.bgColor));
+                    currentSize = block.text.fontSize;
+                    currentFontFamily = block.text.fontFamily;
                     break;
                 default:
                     break;
@@ -112,7 +119,14 @@ function ToolsPanel() {
                     currentBGColor={currentBGColor}
                 />
             )}
-            {needRender.changeText && <ChangeText />}
+            {needRender.changeText && (
+                <>
+                    <ChangeAlign />
+                    <ChangeStyle />
+                    <ChangeSize currentSize={currentSize} />
+                    <ChangeFontFamily currentFontFamily={currentFontFamily} />
+                </>
+            )}
             {needRender.changeImage && <ChangeImage />}
             {needRender.changeArt && <ChangeArt />}
             {!activeTypes.length && <div>Select item</div>}

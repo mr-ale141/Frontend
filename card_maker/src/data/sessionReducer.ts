@@ -14,6 +14,8 @@ import {
     IChangeImage,
     ISetNewTemplate,
     IChangeStyleText,
+    IChangeSizeText,
+    IChangeFontFamilyText,
 } from "./typeActions";
 
 function sessionReducer(state = session, action: Action): Session {
@@ -237,6 +239,56 @@ function sessionReducer(state = session, action: Action): Session {
                                             : newSetting === "underline"
                                             ? "none"
                                             : block.text.textDecoration,
+                                },
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.CHANGE_SIZE_TEXT: {
+            const newSetting = (action as IChangeSizeText).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.text
+                        ) {
+                            return {
+                                ...block,
+                                text: {
+                                    ...block.text,
+                                    fontSize: newSetting,
+                                },
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.CHANGE_FONT_FAMILY_TEXT: {
+            const newSetting = (action as IChangeFontFamilyText).payload;
+            return {
+                ...state,
+                template: {
+                    ...state.template,
+                    blocks: state.template.blocks.map((block) => {
+                        if (
+                            state.selectedBlocks.includes(block.id) &&
+                            block.type === TypeBlock.text
+                        ) {
+                            return {
+                                ...block,
+                                text: {
+                                    ...block.text,
+                                    fontFamily: newSetting,
                                 },
                             };
                         } else {
