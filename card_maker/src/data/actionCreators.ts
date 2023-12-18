@@ -113,3 +113,13 @@ export const addNewBlock = (newType: TypeBlock): Action => {
         payload: newType,
     };
 };
+export const undo = (): Action => {
+    return {
+        type: TitleActionType.UNDO,
+    };
+};
+export const redo = (): Action => {
+    return {
+        type: TitleActionType.REDO,
+    };
+};

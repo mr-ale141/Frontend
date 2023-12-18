@@ -12,10 +12,14 @@ import ChangeStyle from "./tools/ChangeText/ChangeStyle";
 import ChangeCanvasSize from "./tools/ChangeCanvasSize/ChangeCanvasSize";
 
 function ToolsPanel() {
-    const canvasId = useAppSelector((state) => state.template.canvas.id);
-    const canvas = useAppSelector((state) => state.template.canvas);
-    const blocks = useAppSelector((state) => state.template.blocks);
-    const selectedBlocks = useAppSelector((state) => state.selectedBlocks);
+    const canvasId = useAppSelector(
+        (state) => state.present.template.canvas.id,
+    );
+    const canvas = useAppSelector((state) => state.present.template.canvas);
+    const blocks = useAppSelector((state) => state.present.template.blocks);
+    const selectedBlocks = useAppSelector(
+        (state) => state.present.selectedBlocks,
+    );
     const activeTypes: Array<TypeBlock> = [];
     selectedBlocks.forEach((id) => {
         if (id === canvasId) {

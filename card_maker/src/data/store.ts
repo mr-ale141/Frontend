@@ -1,6 +1,9 @@
 import { createStore } from "redux";
 import sessionReducer from "./sessionReducer";
+import undoRedo from "../hocs/undoRedo";
 
-export const store = createStore(sessionReducer);
+const undoableReducer = undoRedo(sessionReducer);
 
-export type RootState = ReturnType<typeof sessionReducer>;
+export const store = createStore(undoableReducer);
+
+export type RootState = ReturnType<typeof undoableReducer>;

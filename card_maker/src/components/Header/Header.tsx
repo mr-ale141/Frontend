@@ -23,9 +23,13 @@ function Header() {
         setNewTemplate,
         deleteSelectedBlocks,
         addNewBlock,
+        undo,
+        redo,
     } = useAppDispatch();
-    const template = useAppSelector((state) => state.template);
-    const canvasId = useAppSelector((state) => state.template.canvas.id);
+    const template = useAppSelector((state) => state.present.template);
+    const canvasId = useAppSelector(
+        (state) => state.present.template.canvas.id,
+    );
     function saveIMGHandler() {
         setSelectedBlock("", false);
         const canvasDiv = document.getElementById(canvasId);
@@ -116,16 +120,8 @@ function Header() {
             <div className={css.logo}>
                 <span>Card Maker</span>
             </div>
-            <HeadButton
-                handler={() => console.log("not handler!!")}
-                icon={undoIcon}
-                alt="undo"
-            />
-            <HeadButton
-                handler={() => console.log("not handler!!")}
-                icon={redoIcon}
-                alt="redo"
-            />
+            <HeadButton handler={undo} icon={undoIcon} alt="undo" />
+            <HeadButton handler={redo} icon={redoIcon} alt="redo" />
             <HeadButton
                 handler={openJSHandler}
                 icon={openFileJSIcon}

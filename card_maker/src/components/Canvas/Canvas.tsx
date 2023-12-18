@@ -6,10 +6,14 @@ import BlockContainer from "../BlockContainer/BlockContainer";
 import commonCss from "../../common/Common.module.css";
 
 function Canvas() {
-    const canvasId = useAppSelector((state) => state.template.canvas.id);
-    const blocks = useAppSelector((state) => state.template.blocks);
-    const canvas = useAppSelector((state) => state.template.canvas);
-    const selectedBlocks = useAppSelector((state) => state.selectedBlocks);
+    const canvasId = useAppSelector(
+        (state) => state.present.template.canvas.id,
+    );
+    const blocks = useAppSelector((state) => state.present.template.blocks);
+    const canvas = useAppSelector((state) => state.present.template.canvas);
+    const selectedBlocks = useAppSelector(
+        (state) => state.present.selectedBlocks,
+    );
     const isSelected = selectedBlocks.includes(canvas.id);
     const { setSelectedBlock } = useAppDispatch();
     function onMouseDownHandler(event: React.MouseEvent) {

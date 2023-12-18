@@ -1,8 +1,4 @@
-import session, {
-    artBlockSource,
-    imageBlockSource,
-    textBlockSource,
-} from "./max_data";
+import { artBlockSource, imageBlockSource, textBlockSource } from "./max_data";
 import { v4 as uuidV4 } from "uuid";
 import {
     ArtBlockType,
@@ -30,8 +26,9 @@ import {
     ISetTextJustifyContent,
     TitleActionType,
 } from "./typeActions";
+import { upperState } from "../hocs/undoRedo";
 
-function sessionReducer(state = session, action: Action): Session {
+function sessionReducer(state: upperState, action: Action): Session {
     switch (action.type) {
         case TitleActionType.SET_SELECTED_BLOCK: {
             let newList: Array<string>;
@@ -41,29 +38,32 @@ function sessionReducer(state = session, action: Action): Session {
                 newList = [];
             } else {
                 if (withCtrl) {
-                    newList = [...state.selectedBlocks, id];
+                    newList = [...state.present.selectedBlocks, id];
                 } else {
                     newList = [id];
                 }
             }
             return {
-                ...state,
+                ...state.present,
                 selectedBlocks: newList,
             };
         }
         case TitleActionType.SET_BG_COLOR: {
             const newColor = (action as ISetBGColor).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    canvas: state.selectedBlocks.includes(
-                        state.template.canvas.id,
+                    ...state.present.template,
+                    canvas: state.present.selectedBlocks.includes(
+                        state.present.template.canvas.id,
                     )
-                        ? { ...state.template.canvas, bgColor: newColor }
-                        : state.template.canvas,
-                    blocks: state.template.blocks.map((block) => {
-                        if (state.selectedBlocks.includes(block.id)) {
+                        ? {
+                              ...state.present.template.canvas,
+                              bgColor: newColor,
+                          }
+                        : state.present.template.canvas,
+                    blocks: state.present.template.blocks.map((block) => {
+                        if (state.present.selectedBlocks.includes(block.id)) {
                             return { ...block, bgColor: newColor };
                         } else {
                             return block;
@@ -75,11 +75,11 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.SET_COLOR: {
             const newColor = (action as ISetBGColor).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
-                        if (state.selectedBlocks.includes(block.id)) {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
+                        if (state.present.selectedBlocks.includes(block.id)) {
                             if (block.type === TypeBlock.text) {
                                 return {
                                     ...block,
@@ -100,11 +100,11 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.SET_NEW_POSITION: {
             const offset = (action as ISetNewPosition).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
-                        if (state.selectedBlocks.includes(block.id)) {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
+                        if (state.present.selectedBlocks.includes(block.id)) {
                             const newBlock = {
                                 ...block,
                                 position: { ...block.position },
@@ -122,11 +122,11 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.SET_NEW_SIZE: {
             const offset = (action as ISetNewSize).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
-                        if (state.selectedBlocks.includes(block.id)) {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
+                        if (state.present.selectedBlocks.includes(block.id)) {
                             const newBlock = {
                                 ...block,
                                 size: { ...block.size },
@@ -144,11 +144,11 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.CHANGE_CANVAS_SIZE: {
             const newCanvasSize = (action as ISetNewSize).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
+                    ...state.present.template,
                     canvas: {
-                        ...state.template.canvas,
+                        ...state.present.template.canvas,
                         size: newCanvasSize,
                     },
                 },
@@ -157,12 +157,12 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.CHANGE_TEXT: {
             const newText = (action as IChangeText).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.text
                         ) {
                             return {
@@ -179,12 +179,12 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.SET_TEXT_JUSTIFY_CONTENT: {
             const newSetting = (action as ISetTextJustifyContent).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.text
                         ) {
                             return {
@@ -204,12 +204,12 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.SET_TEXT_ALIGN_ITEMS: {
             const newSetting = (action as ISetTextAlignItems).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.text
                         ) {
                             return {
@@ -229,12 +229,12 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.CHANGE_STYLE_TEXT: {
             const newSetting = (action as IChangeStyleText).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.text
                         ) {
                             return {
@@ -277,12 +277,12 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.CHANGE_SIZE_TEXT: {
             const newSetting = (action as IChangeSizeText).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.text
                         ) {
                             return {
@@ -302,12 +302,12 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.CHANGE_FONT_FAMILY_TEXT: {
             const newSetting = (action as IChangeFontFamilyText).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.text
                         ) {
                             return {
@@ -327,12 +327,12 @@ function sessionReducer(state = session, action: Action): Session {
         case TitleActionType.CHANGE_ART: {
             const newArtName = (action as IChangeArt).payload;
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    blocks: state.template.blocks.map((block) => {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.art
                         ) {
                             return {
@@ -351,17 +351,20 @@ function sessionReducer(state = session, action: Action): Session {
             const typeSrc = newSrc.includes("http") ? "link" : "base64";
             const newBgImage: Image = { data: newSrc, type: typeSrc };
             return {
-                ...state,
+                ...state.present,
                 template: {
-                    ...state.template,
-                    canvas: state.selectedBlocks.includes(
-                        state.template.canvas.id,
+                    ...state.present.template,
+                    canvas: state.present.selectedBlocks.includes(
+                        state.present.template.canvas.id,
                     )
-                        ? { ...state.template.canvas, bgImage: newBgImage }
-                        : state.template.canvas,
-                    blocks: state.template.blocks.map((block) => {
+                        ? {
+                              ...state.present.template.canvas,
+                              bgImage: newBgImage,
+                          }
+                        : state.present.template.canvas,
+                    blocks: state.present.template.blocks.map((block) => {
                         if (
-                            state.selectedBlocks.includes(block.id) &&
+                            state.present.selectedBlocks.includes(block.id) &&
                             block.type === TypeBlock.image
                         ) {
                             return {
@@ -384,8 +387,8 @@ function sessionReducer(state = session, action: Action): Session {
             };
         }
         case TitleActionType.DELETE_SELECTED_BLOCKS: {
-            let newBlocks = [...state.template.blocks];
-            state.selectedBlocks.forEach((deleteID) => {
+            let newBlocks = [...state.present.template.blocks];
+            state.present.selectedBlocks.forEach((deleteID) => {
                 const blocksArray: Array<
                     ArtBlockType | TextBlockType | ImageBlockType
                 > = [];
@@ -397,10 +400,10 @@ function sessionReducer(state = session, action: Action): Session {
                 newBlocks = blocksArray;
             });
             return {
-                ...state,
+                ...state.present,
                 selectedBlocks: [],
                 template: {
-                    ...state.template,
+                    ...state.present.template,
                     blocks: newBlocks,
                 },
             };
@@ -427,17 +430,20 @@ function sessionReducer(state = session, action: Action): Session {
             }
             if (newBlock)
                 return {
-                    ...state,
+                    ...state.present,
                     selectedBlocks: [newBlock.id],
                     template: {
-                        ...state.template,
-                        blocks: [...state.template.blocks, { ...newBlock }],
+                        ...state.present.template,
+                        blocks: [
+                            ...state.present.template.blocks,
+                            { ...newBlock },
+                        ],
                     },
                 };
-            else return state;
+            else return state.present;
         }
         default:
-            return state;
+            return state.present;
     }
 }
 
