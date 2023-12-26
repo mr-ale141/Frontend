@@ -113,6 +113,12 @@ export const addNewBlock = (newType: TypeBlock): Action => {
         payload: newType,
     };
 };
+export const setTemplate = (newTemplateID: string): Action => {
+    return {
+        type: TitleActionType.SET_TEMPLATE,
+        payload: newTemplateID,
+    };
+};
 export const undo = (): Action => {
     return {
         type: TitleActionType.UNDO,

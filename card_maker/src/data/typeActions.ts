@@ -25,6 +25,7 @@ const TitleActionType = {
     SET_NEW_TEMPLATE: "SET_NEW_TEMPLATE",
     DELETE_SELECTED_BLOCKS: "DELETE_SELECTED_BLOCKS",
     ADD_NEW_BLOCK: "ADD_NEW_BLOCK",
+    SET_TEMPLATE: "SET_TEMPLATE",
     UNDO: "UNDO",
     REDO: "REDO",
 };
@@ -99,6 +100,10 @@ interface IAddNewBlock {
     type: typeof TitleActionType.ADD_NEW_BLOCK;
     payload: TypeBlock;
 }
+interface ISetTemplate {
+    type: typeof TitleActionType.SET_TEMPLATE;
+    payload: string;
+}
 interface IUndo {
     type: typeof TitleActionType.UNDO;
 }
@@ -127,6 +132,7 @@ type Action =
     | ISetNewTemplate
     | IDeleteSelectedBlocks
     | IAddNewBlock
+    | ISetTemplate
     | IUndo
     | IRedo
     | IEmptyAction;
@@ -149,6 +155,7 @@ export type {
     ISetNewTemplate,
     IDeleteSelectedBlocks,
     IAddNewBlock,
+    ISetTemplate,
     IUndo,
     IRedo,
     IEmptyAction,

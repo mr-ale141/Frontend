@@ -88,6 +88,7 @@ type CanvasType = {
 
 type Template = {
     id: string;
+    preview: string;
     canvas: CanvasType;
     blocks: Array<ArtBlockType | TextBlockType | ImageBlockType>;
 };

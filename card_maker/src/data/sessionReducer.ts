@@ -1,4 +1,9 @@
-import { artBlockSource, imageBlockSource, textBlockSource } from "./max_data";
+import {
+    artBlockSource,
+    imageBlockSource,
+    textBlockSource,
+    templateSource,
+} from "./max_data";
 import { v4 as uuidV4 } from "uuid";
 import {
     ArtBlockType,
@@ -22,6 +27,7 @@ import {
     ISetNewSize,
     ISetNewTemplate,
     ISetSelectedBlock,
+    ISetTemplate,
     ISetTextAlignItems,
     ISetTextJustifyContent,
     TitleActionType,
@@ -439,6 +445,18 @@ function sessionReducer(state: upperState, action: Action): Session {
                             { ...newBlock },
                         ],
                     },
+                };
+            else return state.present;
+        }
+        case TitleActionType.SET_TEMPLATE: {
+            const newTemplateID = (action as ISetTemplate).payload;
+            const newTemplate = templateSource.find(
+                (template) => template.id === newTemplateID,
+            );
+            if (newTemplate)
+                return {
+                    ...state.present,
+                    template: newTemplate,
                 };
             else return state.present;
         }

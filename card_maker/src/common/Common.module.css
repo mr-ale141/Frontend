@@ -89,8 +89,6 @@
 }
 
 .tool div {
-    width: min-content;
-    height: min-content;
     margin: 0 3px;
 }
 
@@ -103,6 +101,20 @@
     border-radius: 5px;
     border: none;
     outline: none;
+}
+
+.tool button {
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: gold;
+    display: block;
+    margin: 5px auto;
+    padding: 2px;
+    color: #211d1d;
+    cursor: pointer;
+    width: 140px;
+    text-align: center;
 }
 
 .tool input[type="number"] {

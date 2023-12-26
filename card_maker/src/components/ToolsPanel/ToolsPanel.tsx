@@ -10,6 +10,7 @@ import getHexColor from "../../utils/getHexColor";
 import getOpacity from "../../utils/getOpacity";
 import ChangeStyle from "./tools/ChangeText/ChangeStyle";
 import ChangeCanvasSize from "./tools/ChangeCanvasSize/ChangeCanvasSize";
+import ChangeTemplate from "./tools/ChangeTemplate/ChangeTemplate";
 
 function ToolsPanel() {
     const canvasId = useAppSelector(
@@ -143,7 +144,7 @@ function ToolsPanel() {
             {needRender.changeCanvasSize && (
                 <ChangeCanvasSize currentSize={canvas.size} />
             )}
-            {!activeTypes.length && <div>Select item</div>}
+            {!activeTypes.length && <ChangeTemplate />}
         </div>
     );
 }

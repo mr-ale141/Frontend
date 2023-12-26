@@ -1,0 +1,41 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(5 5 5 / 50%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 700px;
+    height: 500px;
+    background-color: #353535;
+    border-radius: 10px;
+    border: #cb9b51 solid 5px;
+}
+
+.wrapper span {
+    color: #cb9b51;
+    text-align: center;
+    font-size: 22px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.wrapper img {
+    width: 200px;
+    height: 143px;
+    margin: 10px;
+}
+
+.wrapper .focus {
+    border: gold solid 5px;
+}

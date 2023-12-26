@@ -10,6 +10,16 @@ import {
 import stars from "./img/png/stars.png";
 import newImage from "./img/png/newImage.png";
 import santa from "./img/jpg/santaWithNoteBook.jpg";
+import flowers from "./img/png/flowers.png";
+import snowFir from "./img/png/snow_fir.png";
+import frame from "./img/png/frame.png";
+import mountain from "./img/jpg/mountain.jpg";
+import previewTemplate0 from "../data/img/templatePreview/0.png";
+import previewTemplate1 from "../data/img/templatePreview/1.png";
+import previewTemplate2 from "../data/img/templatePreview/2.png";
+import previewTemplate3 from "../data/img/templatePreview/3.png";
+import previewTemplate4 from "../data/img/templatePreview/4.png";
+import previewTemplate5 from "../data/img/templatePreview/5.png";
 import { v4 as uuidV4 } from "uuid";
 
 export const textBlockSource: Array<TextBlockType> = [
@@ -33,7 +43,7 @@ export const textBlockSource: Array<TextBlockType> = [
             fontSize: 14,
             fontFamily: "Arial",
             color: {
-                r: 0x00,
+                r: 0xff,
                 g: 0x00,
                 b: 0x00,
                 a: 1,
@@ -96,11 +106,11 @@ export const textBlockSource: Array<TextBlockType> = [
     {
         id: uuidV4(),
         size: {
-            width: 180,
+            width: 300,
             height: 110,
         },
         position: {
-            left: 425,
+            left: 50,
             top: 40,
         },
         positionText: {
@@ -109,8 +119,48 @@ export const textBlockSource: Array<TextBlockType> = [
         },
         type: TypeBlock.text,
         text: {
-            value: "I need Card Maker!!!",
-            fontSize: 14,
+            value: "Happy New Year!",
+            fontSize: 30,
+            fontFamily: "Arial",
+            color: {
+                r: 0xff,
+                g: 0xff,
+                b: 0x00,
+                a: 1,
+            },
+            fontWeight: 800,
+            fontStyle: "normal",
+            textDecoration: "none",
+        },
+        bgImage: {
+            type: "",
+            data: "",
+        },
+        bgColor: {
+            r: 0x36,
+            g: 0x23,
+            b: 0x45,
+            a: 0,
+        },
+    },
+    {
+        id: uuidV4(),
+        size: {
+            width: 180,
+            height: 110,
+        },
+        position: {
+            left: 350,
+            top: 250,
+        },
+        positionText: {
+            justifyContent: "center",
+            alignItems: "center",
+        },
+        type: TypeBlock.text,
+        text: {
+            value: "Your text is here",
+            fontSize: 22,
             fontFamily: "Arial",
             color: {
                 r: 0xaa,
@@ -202,6 +252,28 @@ export const imageBlockSource: Array<ImageBlockType> = [
             a: 0,
         },
     },
+    {
+        id: uuidV4(),
+        size: {
+            width: 300,
+            height: 300,
+        },
+        position: {
+            left: 50,
+            top: 50,
+        },
+        type: TypeBlock.image,
+        bgImage: {
+            type: "Path",
+            data: stars,
+        },
+        bgColor: {
+            r: 0xff,
+            g: 0xff,
+            b: 0xff,
+            a: 0,
+        },
+    },
 ];
 
 export const artBlockSource: Array<ArtBlockType> = [
@@ -260,6 +332,7 @@ export const artBlockSource: Array<ArtBlockType> = [
 export const templateSource: Array<Template> = [
     {
         id: uuidV4(),
+        preview: previewTemplate0,
         canvas: {
             id: uuidV4(),
             type: TypeBlock.canvas,
@@ -288,6 +361,7 @@ export const templateSource: Array<Template> = [
     },
     {
         id: uuidV4(),
+        preview: previewTemplate1,
         canvas: {
             id: uuidV4(),
             type: TypeBlock.canvas,
@@ -316,12 +390,13 @@ export const templateSource: Array<Template> = [
     },
     {
         id: uuidV4(),
+        preview: previewTemplate2,
         canvas: {
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 400,
-                height: 400,
+                width: 700,
+                height: 500,
             },
             filter: {
                 r: 0x0,
@@ -330,8 +405,8 @@ export const templateSource: Array<Template> = [
                 a: 0,
             },
             bgImage: {
-                type: "",
-                data: "",
+                type: "Path",
+                data: snowFir,
             },
             bgColor: {
                 r: 0xff,
@@ -340,16 +415,17 @@ export const templateSource: Array<Template> = [
                 a: 1,
             },
         },
-        blocks: [imageBlockSource[1]],
+        blocks: [textBlockSource[2]],
     },
     {
         id: uuidV4(),
+        preview: previewTemplate3,
         canvas: {
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 297,
-                height: 210,
+                width: 700,
+                height: 500,
             },
             filter: {
                 r: 0x0,
@@ -358,8 +434,8 @@ export const templateSource: Array<Template> = [
                 a: 0,
             },
             bgImage: {
-                type: "",
-                data: "",
+                type: "Path",
+                data: flowers,
             },
             bgColor: {
                 r: 0xff,
@@ -368,7 +444,65 @@ export const templateSource: Array<Template> = [
                 a: 1,
             },
         },
-        blocks: [artBlockSource[0]],
+        blocks: [textBlockSource[3]],
+    },
+    {
+        id: uuidV4(),
+        preview: previewTemplate4,
+        canvas: {
+            id: uuidV4(),
+            type: TypeBlock.canvas,
+            size: {
+                width: 700,
+                height: 500,
+            },
+            filter: {
+                r: 0x0,
+                g: 0x0,
+                b: 0x0,
+                a: 0,
+            },
+            bgImage: {
+                type: "Path",
+                data: frame,
+            },
+            bgColor: {
+                r: 0xff,
+                g: 0xff,
+                b: 0xff,
+                a: 1,
+            },
+        },
+        blocks: [textBlockSource[3]],
+    },
+    {
+        id: uuidV4(),
+        preview: previewTemplate5,
+        canvas: {
+            id: uuidV4(),
+            type: TypeBlock.canvas,
+            size: {
+                width: 700,
+                height: 500,
+            },
+            filter: {
+                r: 0x0,
+                g: 0x0,
+                b: 0x0,
+                a: 0,
+            },
+            bgImage: {
+                type: "Path",
+                data: mountain,
+            },
+            bgColor: {
+                r: 0xff,
+                g: 0xff,
+                b: 0xff,
+                a: 1,
+            },
+        },
+        blocks: [],
     },
 ];
 
