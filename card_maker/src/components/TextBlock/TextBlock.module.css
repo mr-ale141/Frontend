@@ -11,9 +11,9 @@
     position: absolute;
 }
 
-.text input {
+.text div {
     z-index: 1;
     cursor: text;
     outline: none;
-    width: 95%;
+    border: none;
 }

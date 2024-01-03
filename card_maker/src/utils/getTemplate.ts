@@ -11,7 +11,6 @@ function GetTemplate(objectString: string): Template | undefined {
     if (object?.id && object?.canvas && object?.blocks) return object;
     else {
         alert("JSON-файл содержит не все нужные поля");
-        return undefined;
     }
 }
 

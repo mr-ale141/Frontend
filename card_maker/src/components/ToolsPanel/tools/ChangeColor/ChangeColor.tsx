@@ -39,16 +39,16 @@ function ChangeColor({ currentColor, currentBGColor }: ChangeColorProps) {
     return (
         <>
             <div className={commonCss.tool}>
-                <label htmlFor="bg-color">Color</label>
+                <label htmlFor="color">Color</label>
                 <input
-                    id="bg-color"
+                    id="color"
                     type="color"
                     defaultValue={currentColor.hexColor}
                     onChange={(event) => changeColor(event)}
                 />
-                <label htmlFor="bg-opacity">Opacity</label>
+                <label htmlFor="opacity">Opacity</label>
                 <input
-                    id="bg-opacity"
+                    id="opacity"
                     type="number"
                     min="0"
                     max="1"

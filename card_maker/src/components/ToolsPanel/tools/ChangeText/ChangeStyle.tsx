@@ -58,7 +58,7 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
             </div>
             <div>
                 <select
-                    id="new-art"
+                    id="select-font-size"
                     defaultValue={currentSize}
                     onChange={(event) => changeSizeHandler(event)}
                 >
@@ -71,7 +71,7 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
                     <option value="22">22</option>
                 </select>
                 <select
-                    id="new-art"
+                    id="select-font-family"
                     defaultValue={currentFontFamily}
                     onChange={(event) => changeFontHandler(event)}
                 >

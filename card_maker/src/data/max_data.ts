@@ -66,7 +66,7 @@ export const textBlockSource: Array<TextBlockType> = [
     {
         id: uuidV4(),
         size: {
-            width: 300,
+            width: 350,
             height: 110,
         },
         position: {
