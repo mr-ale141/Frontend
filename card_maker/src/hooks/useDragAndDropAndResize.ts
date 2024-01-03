@@ -1,34 +1,34 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { Position, Size } from "../type/type";
 import { useAppDispatch } from "../data/hooks";
+import { dhFlags, dwFlags, dxFlags, dyFlags, mode } from "./dataForMode";
 
-type RegisterResizeItemFn = (arg0: React.MouseEvent) => void;
+type RegisterItemFn = (arg0: MouseEvent) => void;
 
 type useResizeFn = (
+    arg0: React.RefObject<HTMLDivElement>,
     arg1: Dispatch<SetStateAction<Position>>,
     arg2: Dispatch<SetStateAction<Size>>,
-) => RegisterResizeItemFn;
+) => void;
 
-enum mode {
-    topLeft,
-    topCenter,
-    topRight,
-    rightCenter,
-    bottomRight,
-    bottomCenter,
-    bottomLeft,
-    leftCenter,
-}
-
-const useResize: useResizeFn = (setOffsetPosition, setOffsetSize) => {
-    const { setNewPosition, setNewSize } = useAppDispatch();
-    const registerResizeItem: RegisterResizeItemFn = (
-        mouseDownEvent: React.MouseEvent,
-    ) => {
+const useDragAndDropAndResize: useResizeFn = (
+    ref,
+    setOffsetPosition,
+    setOffsetSize,
+) => {
+    const { setNewPosition, setNewSize, setSelectedBlock } = useAppDispatch();
+    useEffect(() => {
+        ref.current?.addEventListener("mousedown", (e) =>
+            onMouseDownHandler(e),
+        );
+    }, []);
+    const registerItem: RegisterItemFn = (mouseDownEvent: MouseEvent) => {
         let currentMode: mode;
-        const targetClassName = (mouseDownEvent.target as HTMLElement)
-            .className;
-        if (targetClassName.includes("top-left")) {
+        const target = mouseDownEvent.target as HTMLElement;
+        const targetClassName = target.className;
+        if (target.tagName !== "DIV" || !targetClassName.includes("resize")) {
+            currentMode = mode.drag;
+        } else if (targetClassName.includes("top-left")) {
             currentMode = mode.topLeft;
         } else if (targetClassName.includes("top-center")) {
             currentMode = mode.topCenter;
@@ -45,46 +45,6 @@ const useResize: useResizeFn = (setOffsetPosition, setOffsetSize) => {
         } else if (targetClassName.includes("left-center")) {
             currentMode = mode.leftCenter;
         }
-        const dxFlags = {
-            [mode.topLeft]: 1,
-            [mode.topCenter]: 0,
-            [mode.topRight]: 0,
-            [mode.rightCenter]: 0,
-            [mode.bottomRight]: 0,
-            [mode.bottomCenter]: 0,
-            [mode.bottomLeft]: 1,
-            [mode.leftCenter]: 1,
-        };
-        const dyFlags = {
-            [mode.topLeft]: 1,
-            [mode.topCenter]: 1,
-            [mode.topRight]: 1,
-            [mode.rightCenter]: 0,
-            [mode.bottomRight]: 0,
-            [mode.bottomCenter]: 0,
-            [mode.bottomLeft]: 0,
-            [mode.leftCenter]: 0,
-        };
-        const dwFlags = {
-            [mode.topLeft]: -1,
-            [mode.topCenter]: 0,
-            [mode.topRight]: 1,
-            [mode.rightCenter]: 1,
-            [mode.bottomRight]: 1,
-            [mode.bottomCenter]: 0,
-            [mode.bottomLeft]: -1,
-            [mode.leftCenter]: -1,
-        };
-        const dhFlags = {
-            [mode.topLeft]: -1,
-            [mode.topCenter]: -1,
-            [mode.topRight]: -1,
-            [mode.rightCenter]: 0,
-            [mode.bottomRight]: 1,
-            [mode.bottomCenter]: 1,
-            [mode.bottomLeft]: 1,
-            [mode.leftCenter]: 0,
-        };
         let offsetPosition: Position;
         let offsetSize: Size;
         const onMouseMove = (dragEvent: MouseEvent) => {
@@ -116,6 +76,14 @@ const useResize: useResizeFn = (setOffsetPosition, setOffsetSize) => {
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("mouseup", onMouseDrop);
     };
-    return registerResizeItem;
+    const onMouseDownHandler = (event: MouseEvent) => {
+        const inputNewText = document.getElementById("new-text");
+        if (!inputNewText && !event.defaultPrevented) {
+            const id = (ref.current?.firstChild as HTMLDivElement).id;
+            if (id) setSelectedBlock(id, event.ctrlKey);
+            registerItem(event);
+            event.preventDefault();
+        }
+    };
 };
-export { useResize };
+export default useDragAndDropAndResize;
