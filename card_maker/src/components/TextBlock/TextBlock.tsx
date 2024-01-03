@@ -13,6 +13,7 @@ function TextBlock({ block }: textBlockProps) {
     function onMouseDownHandler(e: React.MouseEvent) {
         setSelectedBlock(block.id, e.ctrlKey);
         const target = e.target as HTMLDivElement;
+        target.contentEditable = "true";
         target.id = "new-text";
     }
     function onBlurHandler(e: React.FocusEvent) {
@@ -20,6 +21,8 @@ function TextBlock({ block }: textBlockProps) {
         const newText = target.innerText;
         changeText(newText);
         target.removeAttribute("id");
+        target.removeAttribute("contenteditable");
+        setSelectedBlock("", false);
     }
     const textAlign = block.positionText.justifyContent;
     return (
@@ -38,7 +41,6 @@ function TextBlock({ block }: textBlockProps) {
                     ...block.text,
                     color: GetRGBA(block.text.color),
                 }}
-                contentEditable="true"
                 onMouseDown={onMouseDownHandler}
             >
                 {block.text.value}
