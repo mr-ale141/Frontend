@@ -1,7 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { Position, Size } from "../type/type";
 import { useAppDispatch } from "../data/hooks";
-import { dhFlags, dwFlags, dxFlags, dyFlags, mode } from "./dataForMode";
+import { dhFlags, dwFlags, dxFlags, dyFlags } from "./dataForMode";
+import getModeDnD from "../utils/getModeDnD";
 
 type RegisterItemFn = (arg0: MouseEvent) => void;
 
@@ -23,28 +24,7 @@ const useDragAndDropAndResize: useResizeFn = (
         );
     }, []);
     const registerItem: RegisterItemFn = (mouseDownEvent: MouseEvent) => {
-        let currentMode: mode;
-        const target = mouseDownEvent.target as HTMLElement;
-        const targetClassName = target.className;
-        if (target.tagName !== "DIV" || !targetClassName.includes("resize")) {
-            currentMode = mode.drag;
-        } else if (targetClassName.includes("top-left")) {
-            currentMode = mode.topLeft;
-        } else if (targetClassName.includes("top-center")) {
-            currentMode = mode.topCenter;
-        } else if (targetClassName.includes("top-right")) {
-            currentMode = mode.topRight;
-        } else if (targetClassName.includes("right-center")) {
-            currentMode = mode.rightCenter;
-        } else if (targetClassName.includes("bottom-right")) {
-            currentMode = mode.bottomRight;
-        } else if (targetClassName.includes("bottom-center")) {
-            currentMode = mode.bottomCenter;
-        } else if (targetClassName.includes("bottom-left")) {
-            currentMode = mode.bottomLeft;
-        } else if (targetClassName.includes("left-center")) {
-            currentMode = mode.leftCenter;
-        }
+        const currentMode = getModeDnD(mouseDownEvent.target as HTMLElement);
         let offsetPosition: Position;
         let offsetSize: Size;
         const onMouseMove = (dragEvent: MouseEvent) => {
