@@ -39,6 +39,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
             <div className={css.logo}>
                 <span>Card Maker</span>
             </div>
+            <div className={css.line} />
             <Button
                 size="l"
                 view="outlined"
@@ -55,6 +56,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
             >
                 <Icon data={ArrowUturnCwRight} />
             </Button>
+            <div className={css.line} />
             <Button
                 size="l"
                 view="outlined"
@@ -62,8 +64,9 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 title="Open JSON-file"
             >
                 <Icon data={ArrowDownToSquare} />
-                <div>Open JSON</div>
+                <div>JSON</div>
             </Button>
+            <div className={css.line} />
             <Button
                 size="l"
                 view="outlined"
@@ -74,7 +77,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 title="Save as IMAGE"
             >
                 <Icon data={FloppyDisk} />
-                <div>Save IMG</div>
+                <div>IMG</div>
             </Button>
             <Button
                 size="l"
@@ -86,7 +89,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 title="Save as PDF"
             >
                 <Icon data={FloppyDisk} />
-                <div>Save PDF</div>
+                <div>PDF</div>
             </Button>
             <Button
                 size="l"
@@ -95,8 +98,9 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 title="Save as JSON"
             >
                 <Icon data={FloppyDisk} />
-                <div>Save JSON</div>
+                <div>JSON</div>
             </Button>
+            <div className={css.line} />
             <Button
                 size="l"
                 view="outlined"
@@ -124,6 +128,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 <Icon data={SquarePlus} />
                 <div>New Art</div>
             </Button>
+            <div className={css.line} />
             <Button
                 size="l"
                 view="outlined"
@@ -132,6 +137,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
             >
                 <Icon data={TrashBin} />
             </Button>
+            <div className={css.line} />
             <div style={{ flexGrow: "1" }} />
             <Button
                 size="l"
@@ -146,4 +152,5 @@ function Header({ isDark, setTheme }: HeaderProps) {
         </div>
     );
 }
+
 export default Header;

@@ -1,6 +1,6 @@
 .workspace {
     height: calc(100vh - 70px);
-    background-color: var(--g-color-base-background);
+    background-color: var(--g-color-private-cool-grey-50);
     position: relative;
     z-index: 0;
 }

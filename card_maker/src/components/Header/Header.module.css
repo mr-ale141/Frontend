@@ -1,14 +1,14 @@
 .header {
     height: 70px;
-    padding: 15px;
-    background-color: var(--g-color-line-generic-accent);
-    border: 2px outset var(--g-color-base-neutral-medium);
+    background-color: var(--g-color-private-cool-grey-150-solid);
+    border: 1px outset var(--g-color-private-cool-grey-300-solid);
     border-radius: 15px;
     display: flex;
+    align-items: center;
 }
 
 .logo {
-    width: 170px;
+    min-width: 170px;
     height: 35px;
     padding: 10px;
     margin-left: 15px;
@@ -16,8 +16,17 @@
     text-align: center;
     font-size: var(--yc-text-header-2-font-size);
     color: var(--yc-button-outline-color);
+    font-family: var(--g-text-body-font-family);
+}
+
+.line {
+    border-right: 1px solid var(--g-color-private-cool-grey-500-solid);
+    margin: 0 10px;
+    height: 80%;
 }
 
 .header button {
-    margin-left: 20px;
+    margin: 0 10px;
+    border-radius: 8px;
+    background-color: var(--g-color-private-cool-grey-200);
 }

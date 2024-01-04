@@ -5,9 +5,9 @@
     min-height: 400px;
     left: 0;
     top: 70px;
-    background-color: var(--g-color-line-generic-accent);
+    background-color: var(--g-color-private-cool-grey-150-solid);
     border-radius: 15px;
-    border: 2px outset var(--g-color-base-neutral-medium);
+    border: 1px outset var(--g-color-private-cool-grey-300-solid);
     z-index: 1;
     display: flex;
     flex-direction: column;
