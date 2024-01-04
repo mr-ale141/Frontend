@@ -6,12 +6,11 @@ import ChangeColor from "./tools/ChangeColor/ChangeColor";
 import ChangeImage from "./tools/ChangeImage/ChangeImage";
 import ChangeAlign from "./tools/ChangeText/ChangeAlign";
 import ChangeArt from "./tools/ChangeArt/ChangeArt";
-import getHexColor from "../../utils/getHexColor";
-import getOpacity from "../../utils/getOpacity";
 import ChangeStyle from "./tools/ChangeText/ChangeStyle";
 import ChangeCanvasSize from "./tools/ChangeCanvasSize/ChangeCanvasSize";
 import ChangeTemplate from "./tools/ChangeTemplate/ChangeTemplate";
-import needTools from "./tools/needTools";
+import getNeedRender from "./tools/UtilsToolsPanel/getNeedRender";
+import getCurrentParameters from "./tools/UtilsToolsPanel/getCurrentParameters";
 
 function ToolsPanel() {
     const canvasId = useAppSelector(
@@ -31,68 +30,9 @@ function ToolsPanel() {
             activeTypes.push(block!.type);
         }
     });
-    const needRender = {
-        changeImage: false,
-        changeColor: false,
-        changeArt: false,
-        changeText: false,
-        changeCanvasSize: false,
-    };
-    if (activeTypes.length) {
-        activeTypes.forEach((type) => {
-            needRender.changeImage ||= needTools[type].changeImage;
-            needRender.changeColor ||= needTools[type].changeColor;
-            needRender.changeArt ||= needTools[type].changeArt;
-            needRender.changeText ||= needTools[type].changeText;
-            needRender.changeCanvasSize ||= needTools[type].changeCanvasSize;
-        });
-    } else {
-        needRender.changeImage = false;
-        needRender.changeColor = false;
-        needRender.changeArt = false;
-        needRender.changeText = false;
-        needRender.changeCanvasSize = false;
-    }
-    const currentColor = {
-        hexColor: "#ffffff",
-        opacity: 1,
-    };
-    const currentBGColor = {
-        hexColor: "#ffffff",
-        opacity: 1,
-    };
-    let currentTextSize = 10;
-    let currentFontFamily = "Arial";
-    if (selectedBlocks.length === 1) {
-        if (canvasId === selectedBlocks[0]) {
-            currentBGColor.hexColor = getHexColor(canvas.bgColor);
-            currentBGColor.opacity = Number(getOpacity(canvas.bgColor));
-        } else {
-            const block = blocks.find((item) => {
-                return item.id === selectedBlocks[0];
-            });
-            switch (block?.type) {
-                case TypeBlock.art:
-                    currentColor.hexColor = getHexColor(block.borderColor);
-                    currentColor.opacity = Number(
-                        getOpacity(block.borderColor),
-                    );
-                    currentBGColor.hexColor = getHexColor(block.bgColor);
-                    currentBGColor.opacity = Number(getOpacity(block.bgColor));
-                    break;
-                case TypeBlock.text:
-                    currentColor.hexColor = getHexColor(block.text.color);
-                    currentColor.opacity = Number(getOpacity(block.text.color));
-                    currentBGColor.hexColor = getHexColor(block.bgColor);
-                    currentBGColor.opacity = Number(getOpacity(block.bgColor));
-                    currentTextSize = block.text.fontSize;
-                    currentFontFamily = block.text.fontFamily;
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+    const needRender = getNeedRender(activeTypes);
+    const { currentColor, currentBGColor, currentTextSize, currentFontFamily } =
+        getCurrentParameters({ selectedBlocks, canvas, blocks });
     return (
         <div className={css.tools}>
             {needRender.changeColor && (

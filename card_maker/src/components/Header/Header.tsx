@@ -10,8 +10,8 @@ import {
     FloppyDisk,
     Moon,
     Picture,
-    Square,
     SquareChartBar,
+    SquarePlus,
     Sun,
     TrashBin,
 } from "@gravity-ui/icons";
@@ -121,7 +121,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 onClick={() => addNewBlock(TypeBlock.art)}
                 title="Add new Art"
             >
-                <Icon data={Square} />
+                <Icon data={SquarePlus} />
                 <div>New Art</div>
             </Button>
             <Button
