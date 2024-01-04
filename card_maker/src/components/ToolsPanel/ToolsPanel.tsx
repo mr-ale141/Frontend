@@ -11,6 +11,7 @@ import getOpacity from "../../utils/getOpacity";
 import ChangeStyle from "./tools/ChangeText/ChangeStyle";
 import ChangeCanvasSize from "./tools/ChangeCanvasSize/ChangeCanvasSize";
 import ChangeTemplate from "./tools/ChangeTemplate/ChangeTemplate";
+import needTools from "./tools/needTools";
 
 function ToolsPanel() {
     const canvasId = useAppSelector(
@@ -30,36 +31,6 @@ function ToolsPanel() {
             activeTypes.push(block!.type);
         }
     });
-    const needTools = {
-        [TypeBlock.canvas]: {
-            changeImage: true,
-            changeColor: true,
-            changeArt: false,
-            changeText: false,
-            changeCanvasSize: true,
-        },
-        [TypeBlock.art]: {
-            changeImage: false,
-            changeColor: true,
-            changeArt: true,
-            changeText: false,
-            changeCanvasSize: false,
-        },
-        [TypeBlock.text]: {
-            changeImage: false,
-            changeColor: true,
-            changeArt: false,
-            changeText: true,
-            changeCanvasSize: false,
-        },
-        [TypeBlock.image]: {
-            changeImage: true,
-            changeColor: false,
-            changeArt: false,
-            changeText: false,
-            changeCanvasSize: false,
-        },
-    };
     const needRender = {
         changeImage: false,
         changeColor: false,
@@ -148,5 +119,4 @@ function ToolsPanel() {
         </div>
     );
 }
-
 export default ToolsPanel;

@@ -6,13 +6,13 @@ import getModeDnD from "../utils/getModeDnD";
 
 type RegisterItemFn = (arg0: MouseEvent) => void;
 
-type useResizeFn = (
+type UseResizeFn = (
     arg0: React.RefObject<HTMLDivElement>,
     arg1: Dispatch<SetStateAction<Position>>,
     arg2: Dispatch<SetStateAction<Size>>,
 ) => void;
 
-const useDragAndDropAndResize: useResizeFn = (
+const useDragAndDropAndResize: UseResizeFn = (
     ref,
     setOffsetPosition,
     setOffsetSize,

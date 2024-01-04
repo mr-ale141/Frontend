@@ -6,7 +6,7 @@ import {
     Template,
     TypeBlock,
 } from "../type/type";
-import { TitleActionType, Action } from "./typeActions";
+import { Action, TitleActionType } from "./typeActions";
 
 export const setSelectedBlock = (id: string, withCtrl: boolean) => {
     return {
@@ -96,9 +96,9 @@ export const changeImage = (newSrc: string): Action => {
         payload: newSrc,
     };
 };
-export const setNewTemplate = (newTemplate: Template): Action => {
+export const setOpenedTemplate = (newTemplate: Template): Action => {
     return {
-        type: TitleActionType.SET_NEW_TEMPLATE,
+        type: TitleActionType.SET_OPENED_TEMPLATE,
         payload: newTemplate,
     };
 };

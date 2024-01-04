@@ -1,26 +1,26 @@
-import { mode } from "../hooks/dataForMode";
+import { Mode } from "../hooks/dataForMode";
 
 export default function getModeDnD(target: HTMLElement) {
-    let currentMode: mode = mode.drag;
+    let currentMode: Mode = Mode.drag;
     const targetClassName = target.className;
     if (target.tagName !== "DIV" || !targetClassName.includes("resize")) {
-        currentMode = mode.drag;
+        currentMode = Mode.drag;
     } else if (targetClassName.includes("top-left")) {
-        currentMode = mode.topLeft;
+        currentMode = Mode.topLeft;
     } else if (targetClassName.includes("top-center")) {
-        currentMode = mode.topCenter;
+        currentMode = Mode.topCenter;
     } else if (targetClassName.includes("top-right")) {
-        currentMode = mode.topRight;
+        currentMode = Mode.topRight;
     } else if (targetClassName.includes("right-center")) {
-        currentMode = mode.rightCenter;
+        currentMode = Mode.rightCenter;
     } else if (targetClassName.includes("bottom-right")) {
-        currentMode = mode.bottomRight;
+        currentMode = Mode.bottomRight;
     } else if (targetClassName.includes("bottom-center")) {
-        currentMode = mode.bottomCenter;
+        currentMode = Mode.bottomCenter;
     } else if (targetClassName.includes("bottom-left")) {
-        currentMode = mode.bottomLeft;
+        currentMode = Mode.bottomLeft;
     } else if (targetClassName.includes("left-center")) {
-        currentMode = mode.leftCenter;
+        currentMode = Mode.leftCenter;
     }
     return currentMode;
 }

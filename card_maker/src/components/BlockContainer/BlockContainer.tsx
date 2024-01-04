@@ -14,11 +14,11 @@ import commonCss from "../../common/Common.module.css";
 import useDragAndDropAndResize from "../../hooks/useDragAndDropAndResize";
 import BorderSelected from "./BorderSelected/BorderSelected";
 
-type blockContainerProps = {
+type BlockContainerProps = {
     block: ArtBlockType | TextBlockType | ImageBlockType;
     isSelected: boolean;
 };
-function BlockContainer({ block, isSelected }: blockContainerProps) {
+function BlockContainer({ block, isSelected }: BlockContainerProps) {
     const offsetPositionZero: Position = { top: 0, left: 0 };
     const offsetSizeZero: Size = { width: 0, height: 0 };
     const [offsetPosition, setOffsetPosition] = useState(offsetPositionZero);

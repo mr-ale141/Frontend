@@ -13,12 +13,20 @@
   "author": "Dmitriy Mikhailov",
   "license": "ISC",
   "devDependencies": {
+    "@gravity-ui/browserslist-config": "^4.2.0",
+    "@gravity-ui/components": "^2.10.0",
+    "@gravity-ui/eslint-config": "^3.1.1",
+    "@gravity-ui/icons": "^2.8.1",
+    "@gravity-ui/prettier-config": "^1.1.0",
+    "@gravity-ui/stylelint-config": "^4.0.1",
+    "@gravity-ui/tsconfig": "^1.0.0",
+    "@gravity-ui/uikit": "^5.26.0",
     "@types/react": "^18.2.27",
     "@types/react-dom": "^18.2.12",
     "@types/uuid": "^9.0.6",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
-    "axios": "^1.5.1",
+    "axios": "^1.6.0",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
@@ -35,6 +43,7 @@
     "fs": "^0.0.1-security",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
+    "postcss": "^8.4.32",
     "prettier": "3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -42,7 +51,7 @@
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
-    "stylelint": "^15.10.3",
+    "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^4.0.2",
@@ -59,7 +68,8 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "extends @gravity-ui/browserslist-config"
     ]
   },
   "browser": {

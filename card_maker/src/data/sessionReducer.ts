@@ -1,8 +1,8 @@
 import {
     artBlockSource,
     imageBlockSource,
-    textBlockSource,
     templateSource,
+    textBlockSource,
 } from "./max_data";
 import { v4 as uuidV4 } from "uuid";
 import {
@@ -25,16 +25,16 @@ import {
     ISetBGColor,
     ISetNewPosition,
     ISetNewSize,
-    ISetNewTemplate,
+    ISetOpenedTemplate,
     ISetSelectedBlock,
     ISetTemplate,
     ISetTextAlignItems,
     ISetTextJustifyContent,
     TitleActionType,
 } from "./typeActions";
-import { upperState } from "../hocs/undoRedo";
+import { UpperState } from "../hocs/undoRedo";
 
-function sessionReducer(state: upperState, action: Action): Session {
+function sessionReducer(state: UpperState, action: Action): Session {
     switch (action.type) {
         case TitleActionType.SET_SELECTED_BLOCK: {
             let newList: Array<string>;
@@ -384,8 +384,8 @@ function sessionReducer(state: upperState, action: Action): Session {
                 },
             };
         }
-        case TitleActionType.SET_NEW_TEMPLATE: {
-            const newTemplate = (action as ISetNewTemplate).payload;
+        case TitleActionType.SET_OPENED_TEMPLATE: {
+            const newTemplate = (action as ISetOpenedTemplate).payload;
             return {
                 editHistory: [],
                 selectedBlocks: [],

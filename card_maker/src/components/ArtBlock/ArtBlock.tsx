@@ -9,7 +9,7 @@ import Rect from "../art/rectangle/Rect";
 import Square from "../art/square/Square";
 import React from "react";
 
-type artBlockProps = {
+type ArtBlockProps = {
     block: ArtBlockType;
 };
 
@@ -22,7 +22,7 @@ const artBlockSource = {
     [ArtName.rect]: Rect,
     [ArtName.square]: Square,
 };
-function ArtBlock({ block }: artBlockProps) {
+function ArtBlock({ block }: ArtBlockProps) {
     return (
         <div className={css.art} id={block.id}>
             {artBlockSource[block.artName]({ block })}

@@ -2,14 +2,14 @@ import session from "../data/max_data";
 import { Session } from "../type/type";
 import { Action } from "../data/typeActions";
 
-export type upperState = {
+export type UpperState = {
     past: Array<Session>;
     present: Session;
     future: Array<Session>;
 };
 
-function undoRedo(reducer: (state: upperState, action: Action) => Session) {
-    const initialState: upperState = {
+function undoRedo(reducer: (state: UpperState, action: Action) => Session) {
+    const initialState: UpperState = {
         past: new Array<Session>(),
         present: session,
         future: new Array<Session>(),

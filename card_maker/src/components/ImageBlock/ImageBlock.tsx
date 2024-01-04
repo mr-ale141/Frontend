@@ -1,11 +1,11 @@
 import css from "./ImageBlock.module.css";
 import { ImageBlockType } from "../../type/type";
 
-type imageBlockProps = {
+type ImageBlockProps = {
     block: ImageBlockType;
 };
 
-function ImageBlock({ block }: imageBlockProps) {
+function ImageBlock({ block }: ImageBlockProps) {
     return (
         <div className={css.image} id={block.id}>
             <img src={block.bgImage.data} alt="img" />

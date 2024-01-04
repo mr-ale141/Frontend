@@ -4,8 +4,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(5 5 5 / 50%);
-    color: white;
+    background-color: rgba(5 5 5 / 70%);
+    color: var(--yc-button-outline-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,13 +17,13 @@
     justify-content: center;
     width: 700px;
     height: 500px;
-    background-color: #353535;
+    background-color: var(--yc-color-base-modal);
     border-radius: 10px;
-    border: #cb9b51 solid 5px;
+    border: 2px outset var(--g-color-base-neutral-medium);
 }
 
 .wrapper span {
-    color: #cb9b51;
+    color: var(--yc-button-outline-color);
     text-align: center;
     font-size: 22px;
     width: 100%;
@@ -34,8 +34,9 @@
     width: 200px;
     height: 143px;
     margin: 10px;
+    border: 2px outset var(--g-color-base-neutral-medium);
 }
 
 .wrapper .focus {
-    border: gold solid 5px;
+    border: 4px outset var(--g-color-private-red-400-solid);
 }

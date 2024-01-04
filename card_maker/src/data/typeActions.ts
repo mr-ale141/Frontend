@@ -22,7 +22,7 @@ const TitleActionType = {
     CHANGE_FONT_FAMILY_TEXT: "CHANGE_FONT_FAMILY_TEXT",
     CHANGE_ART: "CHANGE_ART",
     CHANGE_IMAGE: "CHANGE_IMAGE",
-    SET_NEW_TEMPLATE: "SET_NEW_TEMPLATE",
+    SET_OPENED_TEMPLATE: "SET_OPENED_TEMPLATE",
     DELETE_SELECTED_BLOCKS: "DELETE_SELECTED_BLOCKS",
     ADD_NEW_BLOCK: "ADD_NEW_BLOCK",
     SET_TEMPLATE: "SET_TEMPLATE",
@@ -89,8 +89,8 @@ interface IChangeImage {
     type: typeof TitleActionType.CHANGE_IMAGE;
     payload: string;
 }
-interface ISetNewTemplate {
-    type: typeof TitleActionType.SET_NEW_TEMPLATE;
+interface ISetOpenedTemplate {
+    type: typeof TitleActionType.SET_OPENED_TEMPLATE;
     payload: Template;
 }
 interface IDeleteSelectedBlocks {
@@ -129,7 +129,7 @@ type Action =
     | IChangeFontFamilyText
     | IChangeArt
     | IChangeImage
-    | ISetNewTemplate
+    | ISetOpenedTemplate
     | IDeleteSelectedBlocks
     | IAddNewBlock
     | ISetTemplate
@@ -152,7 +152,7 @@ export type {
     IChangeFontFamilyText,
     IChangeArt,
     IChangeImage,
-    ISetNewTemplate,
+    ISetOpenedTemplate,
     IDeleteSelectedBlocks,
     IAddNewBlock,
     ISetTemplate,

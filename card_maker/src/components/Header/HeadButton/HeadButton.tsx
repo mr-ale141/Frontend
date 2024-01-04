@@ -1,12 +1,12 @@
 import React from "react";
 
-type headButtonProps = {
+type HeadButtonProps = {
     handler: () => void;
     icon: string;
     alt: string;
 };
 
-const HeadButton = ({ handler, icon, alt }: headButtonProps) => {
+const HeadButton = ({ handler, icon, alt }: HeadButtonProps) => {
     return (
         <button onClick={handler}>
             <img src={icon} alt={alt} />

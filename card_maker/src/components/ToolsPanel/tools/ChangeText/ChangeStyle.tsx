@@ -27,7 +27,7 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
         let i = 0;
         while (targetNode.previousSibling) {
             targetNode = targetNode.previousSibling;
-            targetNode.nodeType === 1 && i++;
+            if (targetNode.nodeType === 1) i++;
         }
         switch (i) {
             case 0:

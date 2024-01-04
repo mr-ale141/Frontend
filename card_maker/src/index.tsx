@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import "@gravity-ui/uikit/styles/fonts.css";
+import "@gravity-ui/uikit/styles/styles.css";
 import App from "./App";
 import { store } from "./data/store";
 import { Provider } from "react-redux";

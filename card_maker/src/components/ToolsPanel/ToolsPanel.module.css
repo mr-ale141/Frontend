@@ -2,17 +2,17 @@
     position: absolute;
     width: 245px;
     min-width: 100px;
-    height: 550px;
-    left: 15px;
-    top: 80px;
-    background-color: #353535;
+    height: 400px;
+    left: 0;
+    top: 70px;
+    background-color: var(--g-color-line-generic-accent);
     border-radius: 15px;
-    border: 2px outset #575757;
+    border: 2px outset var(--g-color-base-neutral-medium);
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #cb9b51;
+    color: var(--yc-button-outline-color);
     margin: 10px;
     padding: 5px;
 }

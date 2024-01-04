@@ -4,11 +4,11 @@ import { TextBlockType } from "../../type/type";
 import GetRGBA from "../../utils/getRGBA";
 import { useAppDispatch } from "../../data/hooks";
 
-type textBlockProps = {
+type TextBlockProps = {
     block: TextBlockType;
 };
 
-function TextBlock({ block }: textBlockProps) {
+function TextBlock({ block }: TextBlockProps) {
     const { changeText, setSelectedBlock } = useAppDispatch();
     function onMouseDownHandler(e: React.MouseEvent) {
         setSelectedBlock(block.id, e.ctrlKey);
