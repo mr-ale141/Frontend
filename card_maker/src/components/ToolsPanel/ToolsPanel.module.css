@@ -51,6 +51,10 @@
     z-index: -1;
 }
 
+.text {
+    min-width: 80px;
+}
+
 .tool > button,
 .select {
     border-radius: 6px;

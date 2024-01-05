@@ -41,7 +41,6 @@ function ChangeImage() {
                         document.getElementById("image-upload")?.click()
                     }
                 >
-                    <span>Upload Image</span>
                     <Icon data={FolderMagnifier} />
                 </Button>
                 <input
