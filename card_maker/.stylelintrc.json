@@ -1,8 +1,6 @@
 { 
     "extends": [
-        "stylelint-config-standard",
-        "@gravity-ui/stylelint-config",
-        "@gravity-ui/stylelint-config/prettier"
+        "stylelint-config-standard"
     ],
     "plugins": [
         "stylelint-order",

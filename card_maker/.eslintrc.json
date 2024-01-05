@@ -10,9 +10,7 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier",
-        "plugin:prettier/recommended",
-        "@gravity-ui/eslint-config",
-        "@gravity-ui/eslint-config/prettier"
+        "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
