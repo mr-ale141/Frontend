@@ -21,30 +21,27 @@ function ChangeCanvasSize({ currentSize }: ChangeCanvasSizeProps) {
         changeCanvasSize(newSize);
     }
     return (
-        <>
-            <div className={css.tool}>
-                <input
-                    id="canvas-width"
-                    type="number"
-                    min="10"
-                    max="800"
-                    step="1"
-                    defaultValue={currentSize.width}
-                    onChange={(event) => changeSizeWidth(event)}
-                />
-                <Icon className={css.x} data={Xmark} />
-                <input
-                    id="canvas-height"
-                    type="number"
-                    min="10"
-                    max="500"
-                    step="1"
-                    defaultValue={currentSize.height}
-                    onChange={(event) => changeSizeHeight(event)}
-                />
-            </div>
-            <div className={css.line} />
-        </>
+        <div className={css.tool}>
+            <input
+                id="canvas-width"
+                type="number"
+                min="10"
+                max="800"
+                step="1"
+                defaultValue={currentSize.width}
+                onChange={(event) => changeSizeWidth(event)}
+            />
+            <Icon className={css.x} data={Xmark} />
+            <input
+                id="canvas-height"
+                type="number"
+                min="10"
+                max="500"
+                step="1"
+                defaultValue={currentSize.height}
+                onChange={(event) => changeSizeHeight(event)}
+            />
+        </div>
     );
 }
 

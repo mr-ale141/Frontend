@@ -1,6 +1,6 @@
 .tools {
     position: relative;
-    height: var(--tools-height);
+    min-height: var(--tools-height);
     background-color: var(--g-color-private-cool-grey-150-solid);
     border-radius: var(--g-border-radius-xl);
     border: 1px outset var(--g-color-private-cool-grey-300-solid);
@@ -8,13 +8,8 @@
     align-items: center;
 }
 
-.line {
-    border-right: 1px solid var(--g-color-private-cool-grey-500-solid);
-    height: 80%;
-}
-
 .tool {
-    margin: 0 10px;
+    margin: 0 3px;
     display: flex;
     justify-content: center;
 }

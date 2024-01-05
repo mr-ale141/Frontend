@@ -36,7 +36,6 @@ function ChangeRotateScale({
                     <Icon data={ArrowRotateRight} />
                 </Button>
             </div>
-            <div className={css.line} />
             <div className={css.tool}>
                 <Button
                     view="outlined"
@@ -57,7 +56,6 @@ function ChangeRotateScale({
                     <Icon data={ArrowUpArrowDown} />
                 </Button>
             </div>
-            <div className={css.line} />
         </>
     );
 }

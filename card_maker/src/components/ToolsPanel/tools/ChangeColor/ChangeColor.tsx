@@ -67,7 +67,6 @@ function ChangeColor({ currentColor, currentBGColor }: ChangeColorProps) {
                     onChange={(event) => changeOpacity(event)}
                 />
             </div>
-            <div className={css.line} />
             <div className={css.tool}>
                 <Button
                     view="outlined"
@@ -92,7 +91,6 @@ function ChangeColor({ currentColor, currentBGColor }: ChangeColorProps) {
                     onChange={(event) => changeBGOpacity(event)}
                 />
             </div>
-            <div className={css.line} />
         </>
     );
 }

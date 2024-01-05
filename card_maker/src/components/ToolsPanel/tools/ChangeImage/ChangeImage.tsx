@@ -26,32 +26,27 @@ function ChangeImage() {
         if (file) reader.readAsDataURL(file);
     }
     return (
-        <>
-            <div className={css.tool}>
-                <TextInput
-                    className={css.text}
-                    label="URL:"
-                    placeholder="Insert URL and press enter"
-                    onKeyDown={(event) => changeImageLinkHandler(event)}
-                />
-                <Button
-                    view="outlined"
-                    title="Color"
-                    onClick={() =>
-                        document.getElementById("image-upload")?.click()
-                    }
-                >
-                    <Icon data={FolderMagnifier} />
-                </Button>
-                <input
-                    id="image-upload"
-                    type="file"
-                    accept="image/png, image/jpeg"
-                    onChange={(event) => changeImageFileHandler(event)}
-                />
-            </div>
-            <div className={css.line} />
-        </>
+        <div className={css.tool}>
+            <TextInput
+                className={css.text}
+                label="URL:"
+                placeholder="Insert URL and press enter"
+                onKeyDown={(event) => changeImageLinkHandler(event)}
+            />
+            <Button
+                view="outlined"
+                title="Color"
+                onClick={() => document.getElementById("image-upload")?.click()}
+            >
+                <Icon data={FolderMagnifier} />
+            </Button>
+            <input
+                id="image-upload"
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={(event) => changeImageFileHandler(event)}
+            />
+        </div>
     );
 }
 

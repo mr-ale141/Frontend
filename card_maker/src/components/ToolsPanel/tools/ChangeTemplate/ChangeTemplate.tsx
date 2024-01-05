@@ -29,7 +29,6 @@ function ChangeTemplate() {
                     <span>Template</span>
                 </Button>
             </div>
-            <div className={toolsCss.line} />
             {activeModal && (
                 <div className={css.modal} onClick={onChangeTemplate}>
                     <div className={css.wrapper}>

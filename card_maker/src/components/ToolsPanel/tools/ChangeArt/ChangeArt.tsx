@@ -11,18 +11,15 @@ function ChangeArt() {
         changeArt(num);
     }
     return (
-        <>
-            <div className={css.tool}>
-                <Select
-                    label="Art"
-                    width={75}
-                    className={css.select}
-                    onUpdate={(newValue) => changeArtHandler(newValue)}
-                    options={options}
-                />
-            </div>
-            <div className={css.line} />
-        </>
+        <div className={css.tool}>
+            <Select
+                label="Art"
+                width={75}
+                className={css.select}
+                onUpdate={(newValue) => changeArtHandler(newValue)}
+                options={options}
+            />
+        </div>
     );
 }
 

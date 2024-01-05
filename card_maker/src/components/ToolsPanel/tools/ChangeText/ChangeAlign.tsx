@@ -37,7 +37,6 @@ function ChangeAlign() {
                     <Icon data={TextAlignRight} />
                 </Button>
             </div>
-            <div className={css.line} />
             <div className={css.tool}>
                 <Button
                     view="outlined"
@@ -61,7 +60,6 @@ function ChangeAlign() {
                     <Icon data={ArrowShapeDownToLine} />
                 </Button>
             </div>
-            <div className={css.line} />
         </>
     );
 }

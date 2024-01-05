@@ -36,7 +36,6 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
                     <Icon data={Underline} />
                 </Button>
             </div>
-            <div className={css.line} />
             <div className={css.tool}>
                 <Select
                     label="Size"
@@ -49,7 +48,6 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
                     options={optionsSize}
                 />
             </div>
-            <div className={css.line} />
             <div className={css.tool}>
                 <Select
                     label="Family"
@@ -60,7 +58,6 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
                     options={optionsFamily}
                 />
             </div>
-            <div className={css.line} />
         </>
     );
 }
