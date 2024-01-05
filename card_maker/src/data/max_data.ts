@@ -29,6 +29,11 @@ export const textBlockSource: Array<TextBlockType> = [
             width: 180,
             height: 110,
         },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
+        },
         position: {
             left: 50,
             top: 50,
@@ -68,6 +73,11 @@ export const textBlockSource: Array<TextBlockType> = [
         size: {
             width: 350,
             height: 110,
+        },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
         },
         position: {
             left: 50,
@@ -109,6 +119,11 @@ export const textBlockSource: Array<TextBlockType> = [
             width: 350,
             height: 110,
         },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
+        },
         position: {
             left: 30,
             top: 40,
@@ -120,7 +135,7 @@ export const textBlockSource: Array<TextBlockType> = [
         type: TypeBlock.text,
         text: {
             value: "Happy New Year!",
-            fontSize: 30,
+            fontSize: 22,
             fontFamily: "Arial",
             color: {
                 r: 0xff,
@@ -148,6 +163,11 @@ export const textBlockSource: Array<TextBlockType> = [
         size: {
             width: 200,
             height: 110,
+        },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
         },
         position: {
             left: 350,
@@ -192,6 +212,11 @@ export const imageBlockSource: Array<ImageBlockType> = [
             width: 100,
             height: 100,
         },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
+        },
         position: {
             left: 10,
             top: 10,
@@ -213,6 +238,11 @@ export const imageBlockSource: Array<ImageBlockType> = [
         size: {
             width: 300,
             height: 300,
+        },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
         },
         position: {
             left: 150,
@@ -236,6 +266,11 @@ export const imageBlockSource: Array<ImageBlockType> = [
             width: 300,
             height: 300,
         },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
+        },
         position: {
             left: 50,
             top: 50,
@@ -257,6 +292,11 @@ export const imageBlockSource: Array<ImageBlockType> = [
         size: {
             width: 300,
             height: 300,
+        },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
         },
         position: {
             left: 50,
@@ -283,15 +323,20 @@ export const artBlockSource: Array<ArtBlockType> = [
             width: 50,
             height: 50,
         },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
+        },
         position: {
             left: 40,
             top: 40,
         },
         type: TypeBlock.art,
         borderColor: {
-            r: 0xff,
-            g: 0xff,
-            b: 0x00,
+            r: 0xaa,
+            g: 0xaa,
+            b: 0xaa,
             a: 1,
         },
         artName: ArtName.like,
@@ -307,6 +352,11 @@ export const artBlockSource: Array<ArtBlockType> = [
         size: {
             width: 300,
             height: 250,
+        },
+        rotate: 0,
+        scale: {
+            x: 1,
+            y: 1,
         },
         position: {
             left: 375,
@@ -509,7 +559,7 @@ export const templateSource: Array<Template> = [
 const session: Session = {
     editHistory: [],
     selectedBlocks: [],
-    template: templateSource[1],
+    template: templateSource[2],
 };
 
 export default session;

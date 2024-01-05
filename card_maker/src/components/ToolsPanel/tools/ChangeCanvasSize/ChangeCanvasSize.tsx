@@ -1,7 +1,9 @@
 import React from "react";
-import commonCss from "../../../../common/Common.module.css";
+import css from "../../ToolsPanel.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
 import { Size } from "../../../../type/type";
+import { Icon } from "@gravity-ui/uikit";
+import { Xmark } from "@gravity-ui/icons";
 
 type ChangeCanvasSizeProps = {
     currentSize: Size;
@@ -19,28 +21,30 @@ function ChangeCanvasSize({ currentSize }: ChangeCanvasSizeProps) {
         changeCanvasSize(newSize);
     }
     return (
-        <div className={commonCss.tool}>
-            <div>Canvas</div>
-            <input
-                id="canvas-width"
-                type="number"
-                min="10"
-                max="800"
-                step="1"
-                defaultValue={currentSize.width}
-                onChange={(event) => changeSizeWidth(event)}
-            />
-            <div>X</div>
-            <input
-                id="canvas-height"
-                type="number"
-                min="10"
-                max="500"
-                step="1"
-                defaultValue={currentSize.height}
-                onChange={(event) => changeSizeHeight(event)}
-            />
-        </div>
+        <>
+            <div className={css.tool}>
+                <input
+                    id="canvas-width"
+                    type="number"
+                    min="10"
+                    max="800"
+                    step="1"
+                    defaultValue={currentSize.width}
+                    onChange={(event) => changeSizeWidth(event)}
+                />
+                <Icon className={css.x} data={Xmark} />
+                <input
+                    id="canvas-height"
+                    type="number"
+                    min="10"
+                    max="500"
+                    step="1"
+                    defaultValue={currentSize.height}
+                    onChange={(event) => changeSizeHeight(event)}
+                />
+            </div>
+            <div className={css.line} />
+        </>
     );
 }
 

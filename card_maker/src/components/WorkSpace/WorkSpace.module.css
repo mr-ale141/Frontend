@@ -1,6 +1,7 @@
 .workspace {
-    height: calc(100vh - 70px);
+    height: calc(100vh - var(--header-height) - var(--tools-height));
     background-color: var(--g-color-private-cool-grey-50);
-    position: relative;
-    z-index: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }

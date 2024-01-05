@@ -2,6 +2,8 @@ import {
     ArtName,
     Color,
     Position,
+    Rotate,
+    Scale,
     Size,
     Template,
     TypeBlock,
@@ -26,6 +28,8 @@ const TitleActionType = {
     DELETE_SELECTED_BLOCKS: "DELETE_SELECTED_BLOCKS",
     ADD_NEW_BLOCK: "ADD_NEW_BLOCK",
     SET_TEMPLATE: "SET_TEMPLATE",
+    SET_ROTATE: "SET_ROTATE",
+    SET_SCALE: "SET_SCALE",
     UNDO: "UNDO",
     REDO: "REDO",
 };
@@ -104,6 +108,14 @@ interface ISetTemplate {
     type: typeof TitleActionType.SET_TEMPLATE;
     payload: string;
 }
+interface ISetRotate {
+    type: typeof TitleActionType.SET_ROTATE;
+    payload: Rotate;
+}
+interface ISetScale {
+    type: typeof TitleActionType.SET_SCALE;
+    payload: Scale;
+}
 interface IUndo {
     type: typeof TitleActionType.UNDO;
 }
@@ -133,6 +145,8 @@ type Action =
     | IDeleteSelectedBlocks
     | IAddNewBlock
     | ISetTemplate
+    | ISetRotate
+    | ISetScale
     | IUndo
     | IRedo
     | IEmptyAction;
@@ -156,6 +170,8 @@ export type {
     IDeleteSelectedBlocks,
     IAddNewBlock,
     ISetTemplate,
+    ISetRotate,
+    ISetScale,
     IUndo,
     IRedo,
     IEmptyAction,

@@ -21,6 +21,7 @@ function Line({ block }: IArrow) {
             stroke={getHexColor(block.bgColor)}
             strokeOpacity={getOpacity(block.bgColor)}
             style={{ backgroundColor: getRGBA(block.bgColor) }}
+            transform={`scale(${block.scale.x}, ${block.scale.y})`}
         >
             <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)">
                 <path d="M170 4090 l0 -70 6230 0 6230 0 0 70 0 70 -6230 0 -6230 0 0 -70z" />

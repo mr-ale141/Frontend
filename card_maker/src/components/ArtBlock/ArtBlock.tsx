@@ -24,7 +24,11 @@ const artBlockSource = {
 };
 function ArtBlock({ block }: ArtBlockProps) {
     return (
-        <div className={css.art} id={block.id}>
+        <div
+            className={css.art}
+            id={block.id}
+            style={{ transform: `rotate(${block.rotate}deg)` }}
+        >
             {artBlockSource[block.artName]({ block })}
         </div>
     );

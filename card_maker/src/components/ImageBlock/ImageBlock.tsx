@@ -7,8 +7,18 @@ type ImageBlockProps = {
 
 function ImageBlock({ block }: ImageBlockProps) {
     return (
-        <div className={css.image} id={block.id}>
-            <img src={block.bgImage.data} alt="img" />
+        <div
+            className={css.image}
+            id={block.id}
+            style={{ transform: `rotate(${block.rotate}deg)` }}
+        >
+            <img
+                src={block.bgImage.data}
+                alt="img"
+                style={{
+                    transform: `scale(${block.scale.x}, ${block.scale.y})`,
+                }}
+            />
         </div>
     );
 }

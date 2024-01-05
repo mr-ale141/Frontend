@@ -26,6 +26,8 @@ import {
     ISetNewPosition,
     ISetNewSize,
     ISetOpenedTemplate,
+    ISetRotate,
+    ISetScale,
     ISetSelectedBlock,
     ISetTemplate,
     ISetTextAlignItems,
@@ -42,12 +44,10 @@ function sessionReducer(state: UpperState, action: Action): Session {
             const withCtrl = (action as ISetSelectedBlock).payload.withCtrl;
             if (id === "") {
                 newList = [];
+            } else if (withCtrl) {
+                newList = [...state.present.selectedBlocks, id];
             } else {
-                if (withCtrl) {
-                    newList = [...state.present.selectedBlocks, id];
-                } else {
-                    newList = [id];
-                }
+                newList = [id];
             }
             return {
                 ...state.present,
@@ -459,6 +459,44 @@ function sessionReducer(state: UpperState, action: Action): Session {
                     template: newTemplate,
                 };
             else return state.present;
+        }
+        case TitleActionType.SET_ROTATE: {
+            const newRotate = (action as ISetRotate).payload;
+            return {
+                ...state.present,
+                template: {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
+                        if (state.present.selectedBlocks.includes(block.id)) {
+                            return {
+                                ...block,
+                                rotate: newRotate,
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
+        }
+        case TitleActionType.SET_SCALE: {
+            const newScale = (action as ISetScale).payload;
+            return {
+                ...state.present,
+                template: {
+                    ...state.present.template,
+                    blocks: state.present.template.blocks.map((block) => {
+                        if (state.present.selectedBlocks.includes(block.id)) {
+                            return {
+                                ...block,
+                                scale: newScale,
+                            };
+                        } else {
+                            return block;
+                        }
+                    }),
+                },
+            };
         }
         default:
             return state.present;

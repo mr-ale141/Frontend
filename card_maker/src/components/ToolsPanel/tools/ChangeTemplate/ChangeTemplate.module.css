@@ -5,10 +5,11 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(5 5 5 / 70%);
-    color: var(--yc-button-outline-color);
+    color: var(--g-color-private-cool-grey-600-solid);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 
 .wrapper {
@@ -17,9 +18,9 @@
     justify-content: center;
     width: 700px;
     height: 500px;
-    background-color: var(--yc-color-base-modal);
+    background-color: var(--g-color-private-cool-grey-50-solid);
     border-radius: 10px;
-    border: 2px outset var(--g-color-base-neutral-medium);
+    border: 4px outset var(--g-color-private-cool-grey-300-solid);
 }
 
 .wrapper span {
@@ -34,9 +35,9 @@
     width: 200px;
     height: 143px;
     margin: 10px;
-    border: 2px outset var(--g-color-base-neutral-medium);
+    border: 2px outset var(--g-color-private-cool-grey-300-solid);
 }
 
 .wrapper .focus {
-    border: 4px outset var(--g-color-private-red-400-solid);
+    border: 4px outset var(--g-color-private-cool-grey-300-solid);
 }

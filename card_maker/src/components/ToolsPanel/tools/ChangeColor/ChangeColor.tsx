@@ -1,7 +1,9 @@
-import React from "react";
-import commonCss from "../../../../common/Common.module.css";
+import React, { useRef } from "react";
+import css from "../../ToolsPanel.module.css";
 import GetColor from "../../../../utils/getColor";
 import { useAppDispatch } from "../../../../data/hooks";
+import { Button, Icon } from "@gravity-ui/uikit";
+import { BucketPaint, Palette } from "@gravity-ui/icons";
 
 type ChangeColorProps = {
     currentColor: {
@@ -36,46 +38,61 @@ function ChangeColor({ currentColor, currentBGColor }: ChangeColorProps) {
         color.a = Number(event.target.value);
         setBGColor(color);
     }
+
+    const refColor = useRef(null);
     return (
         <>
-            <div className={commonCss.tool}>
-                <label htmlFor="color">Color</label>
+            <div className={css.tool}>
+                <Button
+                    view="outlined"
+                    title="Color"
+                    onClick={() => document.getElementById("color")?.click()}
+                >
+                    <Icon data={Palette} />
+                </Button>
                 <input
+                    ref={refColor}
                     id="color"
                     type="color"
                     defaultValue={currentColor.hexColor}
                     onChange={(event) => changeColor(event)}
                 />
-                <label htmlFor="opacity">Opacity</label>
                 <input
                     id="opacity"
                     type="number"
                     min="0"
                     max="1"
                     step="0.1"
-                    defaultValue={currentColor.opacity}
+                    placeholder={`${currentColor.opacity}%`}
                     onChange={(event) => changeOpacity(event)}
                 />
             </div>
-            <div className={commonCss.tool}>
-                <label htmlFor="bg-color">Phone</label>
+            <div className={css.line} />
+            <div className={css.tool}>
+                <Button
+                    view="outlined"
+                    title="Color"
+                    onClick={() => document.getElementById("bg-color")?.click()}
+                >
+                    <Icon data={BucketPaint} />
+                </Button>
                 <input
                     id="bg-color"
                     type="color"
                     defaultValue={currentBGColor.hexColor}
                     onChange={(event) => changeBGColor(event)}
                 />
-                <label htmlFor="bg-opacity">Opacity</label>
                 <input
                     id="bg-opacity"
                     type="number"
                     min="0"
                     max="1"
                     step="0.1"
-                    defaultValue={currentBGColor.opacity}
+                    placeholder={`${currentBGColor.opacity}%`}
                     onChange={(event) => changeBGOpacity(event)}
                 />
             </div>
+            <div className={css.line} />
         </>
     );
 }

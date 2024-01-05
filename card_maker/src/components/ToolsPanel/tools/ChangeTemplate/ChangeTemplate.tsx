@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import commonCss from "../../../../common/Common.module.css";
+import toolsCss from "../../ToolsPanel.module.css";
 import css from "./ChangeTemplate.module.css";
 import { templateSource } from "../../../../data/max_data";
 import { useAppDispatch } from "../../../../data/hooks";
+import { Button, Icon } from "@gravity-ui/uikit";
+import { SquareLetterT } from "@gravity-ui/icons";
 
 function ChangeTemplate() {
     const { setTemplate } = useAppDispatch();
@@ -16,8 +18,18 @@ function ChangeTemplate() {
         setActiveModal(false);
     }
     return (
-        <div className={commonCss.tool}>
-            <button onClick={onClickHandler}>Change template</button>
+        <>
+            <div className={toolsCss.tool}>
+                <Button
+                    view="outlined"
+                    onClick={() => onClickHandler()}
+                    title="Change template"
+                >
+                    <Icon data={SquareLetterT} />
+                    <span>Template</span>
+                </Button>
+            </div>
+            <div className={toolsCss.line} />
             {activeModal && (
                 <div className={css.modal} onClick={onChangeTemplate}>
                     <div className={css.wrapper}>
@@ -43,7 +55,7 @@ function ChangeTemplate() {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 

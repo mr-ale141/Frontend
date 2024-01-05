@@ -4,6 +4,8 @@ import {
     ArtBlockType,
     CanvasType,
     ImageBlockType,
+    Rotate,
+    Scale,
     TextBlockType,
     TypeBlock,
 } from "../../../../type/type";
@@ -26,6 +28,8 @@ export default function getCurrentParameters({
         hexColor: "#ffffff",
         opacity: 1,
     };
+    let currentScale: Scale = { x: 0, y: 0 };
+    let currentRotate: Rotate = 0;
     let currentTextSize = 10;
     let currentFontFamily = "Arial";
     if (selectedBlocks.length === 1) {
@@ -36,6 +40,10 @@ export default function getCurrentParameters({
             const block = blocks.find((item) => {
                 return item.id === selectedBlocks[0];
             });
+            if (block) {
+                currentRotate = block.rotate;
+                currentScale = block.scale;
+            }
             switch (block?.type) {
                 case TypeBlock.art:
                     currentColor.hexColor = getHexColor(block.borderColor);
@@ -58,5 +66,12 @@ export default function getCurrentParameters({
             }
         }
     }
-    return { currentColor, currentBGColor, currentFontFamily, currentTextSize };
+    return {
+        currentColor,
+        currentBGColor,
+        currentFontFamily,
+        currentTextSize,
+        currentRotate,
+        currentScale,
+    };
 }

@@ -34,7 +34,7 @@ function Canvas() {
     if (canvas.bgImage.data.length !== 0) {
         styleCanvas.backgroundImage = `url(${canvas.bgImage.data})`;
     }
-    let classNameList = css.canvas + " " + commonCss.draggable;
+    let classNameList = css.canvas;
     if (isSelected) {
         classNameList += " " + commonCss.border;
     }

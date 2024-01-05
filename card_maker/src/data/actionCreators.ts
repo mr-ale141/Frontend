@@ -2,6 +2,8 @@ import {
     ArtName,
     Color,
     Position,
+    Rotate,
+    Scale,
     Size,
     Template,
     TypeBlock,
@@ -117,6 +119,18 @@ export const setTemplate = (newTemplateID: string): Action => {
     return {
         type: TitleActionType.SET_TEMPLATE,
         payload: newTemplateID,
+    };
+};
+export const setRotate = (newRotate: Rotate): Action => {
+    return {
+        type: TitleActionType.SET_ROTATE,
+        payload: newRotate,
+    };
+};
+export const setScale = (newScale: Scale): Action => {
+    return {
+        type: TitleActionType.SET_SCALE,
+        payload: newScale,
     };
 };
 export const undo = (): Action => {

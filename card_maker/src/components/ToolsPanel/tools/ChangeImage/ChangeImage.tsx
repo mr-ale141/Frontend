@@ -1,6 +1,8 @@
 import React from "react";
-import commonCss from "../../../../common/Common.module.css";
+import css from "../../ToolsPanel.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
+import { Button, Icon, TextInput } from "@gravity-ui/uikit";
+import { FolderMagnifier } from "@gravity-ui/icons";
 function ChangeImage() {
     const { changeImage } = useAppDispatch();
     function changeImageLinkHandler(
@@ -24,15 +26,24 @@ function ChangeImage() {
         if (file) reader.readAsDataURL(file);
     }
     return (
-        <div className={commonCss.tool}>
-            <div>
-                <input
-                    id="image-link"
-                    type="text"
+        <>
+            <div className={css.tool}>
+                <TextInput
+                    className={css.text}
+                    label="URL:"
                     placeholder="Insert URL and press enter"
                     onKeyDown={(event) => changeImageLinkHandler(event)}
                 />
-                <label htmlFor="image-upload">Upload local file</label>
+                <Button
+                    view="outlined"
+                    title="Color"
+                    onClick={() =>
+                        document.getElementById("image-upload")?.click()
+                    }
+                >
+                    <span>Upload Image</span>
+                    <Icon data={FolderMagnifier} />
+                </Button>
                 <input
                     id="image-upload"
                     type="file"
@@ -40,7 +51,9 @@ function ChangeImage() {
                     onChange={(event) => changeImageFileHandler(event)}
                 />
             </div>
-        </div>
+            <div className={css.line} />
+        </>
     );
 }
+
 export default ChangeImage;

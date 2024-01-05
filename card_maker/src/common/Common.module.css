@@ -1,15 +1,16 @@
 .draggable {
     cursor: move;
     position: absolute;
-    border: 1px solid rgba(0 0 0 / 0%);
+    border: 2px solid rgba(0 0 0 / 0%);
 }
 
 .border {
-    border: 1px solid var(--g-color-private-cool-grey-500-solid);
+    border: 2px solid var(--g-color-private-cool-grey-500-solid);
+    margin: 0;
 }
 
 .border .resize {
-    border: 1px solid var(--g-color-private-cool-grey-500-solid);
+    border: 2px solid var(--g-color-private-cool-grey-500-solid);
     border-radius: 3px;
     background-color: #ffffff;
     width: 10px;
@@ -67,100 +68,4 @@
     left: -5px;
     top: 50%;
     transform: translateY(-50%);
-}
-
-.tool {
-    width: 230px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-    padding: 5px;
-}
-
-.tool label {
-    margin: 2px;
-    color: var(--yc-button-outline-color);
-}
-
-.tool input {
-    border-radius: 5px;
-    border: none;
-    outline: none;
-}
-
-.tool button {
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background-color: var(--g-color-line-generic-accent);
-    display: block;
-    margin: 5px auto;
-    padding: 2px;
-    color: var(--yc-button-outline-color);
-    cursor: pointer;
-    width: 140px;
-    text-align: center;
-}
-
-.tool input[type="number"] {
-    width: 50px;
-    padding: 2px;
-}
-
-.tool input[type="color"] {
-    width: 50px;
-}
-
-.tool input[type="text"] {
-    width: 220px;
-    padding: 5px;
-    margin-bottom: 5px;
-}
-
-.tool input[type="file"] {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
-}
-
-.tool div select {
-    width: 100px;
-    border: none;
-    outline: none;
-    border-radius: 2px;
-}
-
-.tool label[for="bg-opacity"] {
-    font-size: 12px;
-    color: var(--yc-button-outline-color);
-    margin-left: 5px;
-}
-
-.tool label[for="new-art"] {
-    margin-right: 5px;
-}
-
-.tool label[for="image-upload"] {
-    background-color: var(--g-color-line-generic-accent);
-    border-radius: 10px;
-    display: block;
-    margin: 5px auto;
-    padding: 2px;
-    color: var(--yc-button-outline-color);
-    cursor: pointer;
-    width: 140px;
-    text-align: center;
-}
-
-.tool .text {
-    display: flex;
-}
-
-.tool .text div {
-    margin: 2px;
-    background-color: var(--g-color-line-generic-accent);
-    height: 32px;
-    cursor: pointer;
 }

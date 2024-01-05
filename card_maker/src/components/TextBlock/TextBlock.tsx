@@ -3,6 +3,7 @@ import css from "./TextBlock.module.css";
 import { TextBlockType } from "../../type/type";
 import GetRGBA from "../../utils/getRGBA";
 import { useAppDispatch } from "../../data/hooks";
+import stylesForRotate, { StylesArrayKeyType } from "./stylesForRotate";
 
 type TextBlockProps = {
     block: TextBlockType;
@@ -24,6 +25,8 @@ function TextBlock({ block }: TextBlockProps) {
         target.removeAttribute("contenteditable");
         setSelectedBlock("", false);
     }
+    const rotate = block.rotate.toString() as StylesArrayKeyType;
+    const s = stylesForRotate[rotate];
     const textAlign = block.positionText.justifyContent;
     return (
         <div
@@ -33,6 +36,8 @@ function TextBlock({ block }: TextBlockProps) {
                 ...block.positionText,
                 textAlign,
                 backgroundColor: GetRGBA(block.bgColor),
+                lineHeight: "normal",
+                ...s,
             }}
             onBlur={onBlurHandler}
         >
@@ -40,6 +45,7 @@ function TextBlock({ block }: TextBlockProps) {
                 style={{
                     ...block.text,
                     color: GetRGBA(block.text.color),
+                    transform: `scale(${block.scale.x}, ${block.scale.y})`,
                 }}
                 onMouseDown={onMouseDownHandler}
             >

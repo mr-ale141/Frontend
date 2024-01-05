@@ -1,18 +1,59 @@
 .tools {
-    position: absolute;
-    width: 245px;
-    min-width: 100px;
-    min-height: 400px;
-    left: 0;
-    top: 70px;
+    position: relative;
+    height: var(--tools-height);
     background-color: var(--g-color-private-cool-grey-150-solid);
-    border-radius: 15px;
+    border-radius: var(--g-border-radius-xl);
     border: 1px outset var(--g-color-private-cool-grey-300-solid);
-    z-index: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    color: var(--yc-button-outline-color);
-    margin-top: 5px;
-    padding: 5px;
+}
+
+.line {
+    border-right: 1px solid var(--g-color-private-cool-grey-500-solid);
+    height: 80%;
+}
+
+.tool {
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.tool > * {
+    margin: 0 2px;
+}
+
+.tool label {
+    cursor: pointer;
+}
+
+.tool input[type="number"] {
+    background-color: var(--g-color-private-cool-grey-200);
+    color: var(--g-color-text-primary);
+    outline: none;
+    border: none;
+    border-radius: var(--g-border-radius-l);
+    height: 28px;
+    padding: 0 5px;
+}
+
+.x {
+    margin: 6px 0;
+}
+
+.tool input[type="color"] {
+    position: fixed;
+    z-index: -1;
+}
+
+.tool input[type="file"] {
+    position: fixed;
+    z-index: -1;
+}
+
+.tool > button,
+.select {
+    border-radius: 6px;
+    background-color: var(--g-color-private-cool-grey-200);
+    color: var(--g-color-text-primary);
 }

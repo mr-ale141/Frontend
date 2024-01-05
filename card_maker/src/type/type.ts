@@ -37,6 +37,13 @@ type Color = {
     a: number;
 };
 
+type Rotate = number;
+
+type Scale = {
+    x: number;
+    y: number;
+};
+
 type Text = {
     value: string;
     fontSize: number;
@@ -51,6 +58,8 @@ type Block = {
     id: string;
     position: Position;
     size: Size;
+    rotate: Rotate;
+    scale: Scale;
 };
 
 type TextBlockType = Block & {
@@ -116,6 +125,8 @@ export type {
     Session,
     Color,
     Size,
+    Rotate,
+    Scale,
     Position,
     Image,
 };

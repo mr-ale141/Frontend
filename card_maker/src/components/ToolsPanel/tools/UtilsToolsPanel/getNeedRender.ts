@@ -8,6 +8,7 @@ export default function getNeedRender(activeTypes: Array<TypeBlock>) {
         changeArt: false,
         changeText: false,
         changeCanvasSize: false,
+        changeRotateScale: false,
     };
     if (activeTypes.length) {
         activeTypes.forEach((type) => {
@@ -16,6 +17,7 @@ export default function getNeedRender(activeTypes: Array<TypeBlock>) {
             needRender.changeArt ||= needTools[type].changeArt;
             needRender.changeText ||= needTools[type].changeText;
             needRender.changeCanvasSize ||= needTools[type].changeCanvasSize;
+            needRender.changeRotateScale ||= needTools[type].changeRotateScale;
         });
     } else {
         needRender.changeImage = false;
@@ -23,6 +25,7 @@ export default function getNeedRender(activeTypes: Array<TypeBlock>) {
         needRender.changeArt = false;
         needRender.changeText = false;
         needRender.changeCanvasSize = false;
+        needRender.changeRotateScale = false;
     }
     return needRender;
 }

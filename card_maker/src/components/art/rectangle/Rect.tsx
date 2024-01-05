@@ -19,6 +19,7 @@ function Rect({ block }: IArrow) {
             stroke={getHexColor(block.bgColor)}
             strokeOpacity={getOpacity(block.bgColor)}
             style={{ backgroundColor: getRGBA(block.bgColor) }}
+            transform={`scale(${block.scale.x}, ${block.scale.y})`}
         >
             <g transform="translate(0.000000,960.000000) scale(0.100000,-0.100000)">
                 <path d="M0 4800 l0 -4800 6400 0 6400 0 0 4800 0 4800 -6400 0 -6400 0 0 -4800z m8398 3461 l3182 -1 0 -3460 0 -3460 -5180 0 -5180 0 0 3460 0 3460 1503 2 c826 2 1725 2 1997 1 272 -1 1927 -2 3678 -2z" />

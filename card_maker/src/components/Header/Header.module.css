@@ -1,8 +1,8 @@
 .header {
-    height: 70px;
+    height: var(--header-height);
     background-color: var(--g-color-private-cool-grey-150-solid);
     border: 1px outset var(--g-color-private-cool-grey-300-solid);
-    border-radius: 15px;
+    border-radius: var(--g-border-radius-xl);
     display: flex;
     align-items: center;
 }
@@ -12,21 +12,19 @@
     height: 35px;
     padding: 10px;
     margin-left: 15px;
-    border-radius: 15px;
     text-align: center;
     font-size: var(--yc-text-header-2-font-size);
-    color: var(--yc-button-outline-color);
+    color: var(--g-color-private-cool-grey-700-solid);
     font-family: var(--g-text-body-font-family);
 }
 
 .line {
     border-right: 1px solid var(--g-color-private-cool-grey-500-solid);
-    margin: 0 10px;
     height: 80%;
 }
 
 .header button {
     margin: 0 10px;
-    border-radius: 8px;
+    border-radius: var(--g-border-radius-l);
     background-color: var(--g-color-private-cool-grey-200);
 }

@@ -4,14 +4,14 @@ import React from "react";
 import { TypeBlock } from "../../type/type";
 import { Button, Icon } from "@gravity-ui/uikit";
 import {
-    ArrowDownToSquare,
-    ArrowUturnCcwLeft,
-    ArrowUturnCwRight,
+    ArrowShapeTurnUpLeft,
+    ArrowShapeTurnUpRight,
     FloppyDisk,
+    FolderOpen,
     Moon,
     Picture,
+    Shapes3,
     SquareChartBar,
-    SquarePlus,
     Sun,
     TrashBin,
 } from "@gravity-ui/icons";
@@ -46,7 +46,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 onClick={() => undo()}
                 title="Undo"
             >
-                <Icon data={ArrowUturnCcwLeft} />
+                <Icon data={ArrowShapeTurnUpLeft} />
             </Button>
             <Button
                 size="l"
@@ -54,7 +54,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 onClick={() => redo()}
                 title="Redo"
             >
-                <Icon data={ArrowUturnCwRight} />
+                <Icon data={ArrowShapeTurnUpRight} />
             </Button>
             <div className={css.line} />
             <Button
@@ -63,7 +63,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 onClick={() => OpenJSHandler(setOpenedTemplate)}
                 title="Open JSON-file"
             >
-                <Icon data={ArrowDownToSquare} />
+                <Icon data={FolderOpen} />
                 <div>JSON</div>
             </Button>
             <div className={css.line} />
@@ -125,7 +125,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 onClick={() => addNewBlock(TypeBlock.art)}
                 title="Add new Art"
             >
-                <Icon data={SquarePlus} />
+                <Icon data={Shapes3} />
                 <div>New Art</div>
             </Button>
             <div className={css.line} />

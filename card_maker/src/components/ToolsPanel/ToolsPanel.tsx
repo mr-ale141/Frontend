@@ -9,6 +9,7 @@ import ChangeArt from "./tools/ChangeArt/ChangeArt";
 import ChangeStyle from "./tools/ChangeText/ChangeStyle";
 import ChangeCanvasSize from "./tools/ChangeCanvasSize/ChangeCanvasSize";
 import ChangeTemplate from "./tools/ChangeTemplate/ChangeTemplate";
+import ChangeRotateScale from "./tools/ChangeRotateScale/ChangeRotateScale";
 import getNeedRender from "./tools/UtilsToolsPanel/getNeedRender";
 import getCurrentParameters from "./tools/UtilsToolsPanel/getCurrentParameters";
 
@@ -31,8 +32,14 @@ function ToolsPanel() {
         }
     });
     const needRender = getNeedRender(activeTypes);
-    const { currentColor, currentBGColor, currentTextSize, currentFontFamily } =
-        getCurrentParameters({ selectedBlocks, canvas, blocks });
+    const {
+        currentColor,
+        currentBGColor,
+        currentTextSize,
+        currentFontFamily,
+        currentRotate,
+        currentScale,
+    } = getCurrentParameters({ selectedBlocks, canvas, blocks });
     return (
         <div className={css.tools}>
             {needRender.changeColor && (
@@ -54,6 +61,12 @@ function ToolsPanel() {
             {needRender.changeArt && <ChangeArt />}
             {needRender.changeCanvasSize && (
                 <ChangeCanvasSize currentSize={canvas.size} />
+            )}
+            {needRender.changeRotateScale && (
+                <ChangeRotateScale
+                    currentRotate={currentRotate}
+                    currentScale={currentScale}
+                />
             )}
             {!activeTypes.length && <ChangeTemplate />}
         </div>
