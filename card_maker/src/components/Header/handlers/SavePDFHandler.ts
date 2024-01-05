@@ -13,7 +13,6 @@ export default function SavePDFHandler(canvasId: string) {
         let width = canvas.width;
         let height = canvas.height;
         let pdf;
-        console.log(width, ":", height);
         if (width > height) {
             // eslint-disable-next-line new-cap
             pdf = new jsPDF("l", "px", [width / pxInMm, height / pxInMm]);
