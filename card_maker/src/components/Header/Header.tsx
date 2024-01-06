@@ -72,7 +72,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 view="outlined"
                 onClick={() => {
                     setSelectedBlock("", false);
-                    SaveIMGHandler(canvasId);
+                    setTimeout(() => SaveIMGHandler(canvasId), 100);
                 }}
                 title="Save as IMAGE"
             >
@@ -84,7 +84,7 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 view="outlined"
                 onClick={() => {
                     setSelectedBlock("", false);
-                    SavePDFHandler(canvasId);
+                    setTimeout(() => SavePDFHandler(canvasId), 100);
                 }}
                 title="Save as PDF"
             >
