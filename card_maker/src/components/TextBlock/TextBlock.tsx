@@ -49,7 +49,7 @@ function TextBlock({ block }: TextBlockProps) {
                 }}
                 onMouseDown={onMouseDownHandler}
             >
-                {block.text.value}
+                <pre>{block.text.value}</pre>
             </div>
         </div>
     );

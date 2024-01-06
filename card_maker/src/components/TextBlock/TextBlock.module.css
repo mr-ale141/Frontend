@@ -10,7 +10,7 @@
     position: absolute;
 }
 
-.text div {
+.text pre {
     cursor: text;
     outline: none;
     border: none;
