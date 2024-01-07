@@ -23,14 +23,14 @@ function ChangeRotateScale({
             <div className={css.tool}>
                 <Button
                     view="outlined"
-                    onClick={() => setRotate((currentRotate - 90) % 360)}
+                    onClick={() => setRotate((currentRotate + 90) % 360)}
                     title="Rotate Left"
                 >
                     <Icon data={ArrowRotateLeft} />
                 </Button>
                 <Button
                     view="outlined"
-                    onClick={() => setRotate((currentRotate + 90) % 360)}
+                    onClick={() => setRotate((currentRotate - 90) % 360)}
                     title="Rotate Right"
                 >
                     <Icon data={ArrowRotateRight} />

@@ -461,13 +461,18 @@ function sessionReducer(state: UpperState, action: Action): Session {
             else return state.present;
         }
         case TitleActionType.SET_ROTATE: {
-            const newRotate = (action as ISetRotate).payload;
+            let newRotate = (action as ISetRotate).payload;
             return {
                 ...state.present,
                 template: {
                     ...state.present.template,
                     blocks: state.present.template.blocks.map((block) => {
                         if (state.present.selectedBlocks.includes(block.id)) {
+                            if (
+                                block.type === TypeBlock.text &&
+                                (newRotate === 180 || newRotate === -180)
+                            )
+                                newRotate = 0;
                             return {
                                 ...block,
                                 rotate: newRotate,
