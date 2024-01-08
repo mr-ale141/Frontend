@@ -75,7 +75,18 @@ function ChangeColor({
         newColor.a = currentBGColor.opacity;
         selectedBlocks.forEach((id) => {
             const block = document.getElementById(id);
-            block?.style.setProperty("background-color", GetRGBA(newColor));
+            if (
+                block?.className.includes("Text") ||
+                block?.className.includes("Image") ||
+                block?.className.includes("Canvas")
+            ) {
+                block?.style.setProperty("background-color", GetRGBA(newColor));
+            } else if (block?.className.includes("Art")) {
+                (block?.firstChild as HTMLElement).style.setProperty(
+                    "background-color",
+                    GetRGBA(newColor),
+                );
+            }
         });
     };
     const saveNewBGOpacity = () => {
