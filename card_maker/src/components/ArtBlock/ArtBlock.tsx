@@ -8,6 +8,7 @@ import Line from "../art/line/Line";
 import Rect from "../art/rectangle/Rect";
 import Square from "../art/square/Square";
 import React from "react";
+import getRGBA from "../../utils/getRGBA";
 
 type ArtBlockProps = {
     block: ArtBlockType;
@@ -27,7 +28,10 @@ function ArtBlock({ block }: ArtBlockProps) {
         <div
             className={css.art}
             id={block.id}
-            style={{ transform: `rotate(${block.rotate}deg)` }}
+            style={{
+                transform: `rotate(${block.rotate}deg)`,
+                backgroundColor: getRGBA(block.bgColor),
+            }}
         >
             {artBlockSource[block.artName]({ block })}
         </div>

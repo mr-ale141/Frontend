@@ -2,7 +2,6 @@ import React from "react";
 import { ArtBlockType } from "../../../type/type";
 import getHexColor from "../../../utils/getHexColor";
 import getOpacity from "../../../utils/getOpacity";
-import getRGBA from "../../../utils/getRGBA";
 interface IArrow {
     block: ArtBlockType;
 }
@@ -16,9 +15,6 @@ function Square({ block }: IArrow) {
             height="100%"
             fill={getHexColor(block.borderColor)}
             fillOpacity={getOpacity(block.borderColor)}
-            stroke={getHexColor(block.bgColor)}
-            strokeOpacity={getOpacity(block.bgColor)}
-            style={{ backgroundColor: getRGBA(block.bgColor) }}
             transform={`scale(${block.scale.x}, ${block.scale.y})`}
         >
             <g transform="translate(0.000000,1278.000000) scale(0.100000,-0.100000)">

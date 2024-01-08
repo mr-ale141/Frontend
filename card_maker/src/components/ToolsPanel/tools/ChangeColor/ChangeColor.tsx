@@ -42,7 +42,7 @@ function ChangeColor({
                     GetRGBA(newColor),
                 );
             } else if (block?.className.includes("Art")) {
-                (block?.firstChild as HTMLElement).style.setProperty(
+                (block?.firstChild as HTMLElement).setAttribute(
                     "fill",
                     GetRGBA(newColor),
                 );
@@ -75,18 +75,7 @@ function ChangeColor({
         newColor.a = currentBGColor.opacity;
         selectedBlocks.forEach((id) => {
             const block = document.getElementById(id);
-            if (
-                block?.className.includes("Text") ||
-                block?.className.includes("Image") ||
-                block?.className.includes("Canvas")
-            ) {
-                block?.style.setProperty("background-color", GetRGBA(newColor));
-            } else if (block?.className.includes("Art")) {
-                (block?.firstChild as HTMLElement).style.setProperty(
-                    "background-color",
-                    GetRGBA(newColor),
-                );
-            }
+            block?.style.setProperty("background-color", GetRGBA(newColor));
         });
     };
     const saveNewBGOpacity = () => {
@@ -129,7 +118,12 @@ function ChangeColor({
                 () => inputBGColor?.blur(),
             );
         };
-    }, [currentBGColor.hexColor, currentColor.hexColor]);
+    }, [
+        currentBGColor.hexColor,
+        currentBGColor.opacity,
+        currentColor.hexColor,
+        currentColor.opacity,
+    ]);
     return (
         <>
             <div className={css.tool}>
