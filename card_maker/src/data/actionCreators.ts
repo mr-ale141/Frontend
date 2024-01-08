@@ -16,16 +16,16 @@ export const setSelectedBlock = (id: string, withCtrl: boolean) => {
         payload: { id, withCtrl },
     };
 };
-export const setBGColor = (color: Color): Action => {
+export const setBGColor = (color: Color, targets: Array<string>): Action => {
     return {
         type: TitleActionType.SET_BG_COLOR,
-        payload: { ...color },
+        payload: { color, targets },
     };
 };
-export const setColor = (color: Color): Action => {
+export const setColor = (color: Color, targets: Array<string>): Action => {
     return {
         type: TitleActionType.SET_COLOR,
-        payload: { ...color },
+        payload: { color, targets },
     };
 };
 export const setNewPosition = (position: Position): Action => {

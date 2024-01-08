@@ -46,6 +46,7 @@ function ToolsPanel() {
                 <ChangeColor
                     currentColor={currentColor}
                     currentBGColor={currentBGColor}
+                    selectedBlocks={selectedBlocks}
                 />
             )}
             {needRender.changeText && (

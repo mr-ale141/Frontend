@@ -43,11 +43,11 @@ interface ISetSelectedBlock {
 }
 interface ISetBGColor {
     type: typeof TitleActionType.SET_BG_COLOR;
-    payload: Color;
+    payload: { color: Color; targets: Array<string> };
 }
 interface ISetColor {
     type: typeof TitleActionType.SET_COLOR;
-    payload: Color;
+    payload: { color: Color; targets: Array<string> };
 }
 interface ISetNewPosition {
     type: typeof TitleActionType.SET_NEW_POSITION;

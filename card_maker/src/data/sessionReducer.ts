@@ -55,22 +55,20 @@ function sessionReducer(state: UpperState, action: Action): Session {
             };
         }
         case TitleActionType.SET_BG_COLOR: {
-            const newColor = (action as ISetBGColor).payload;
+            const { color, targets } = (action as ISetBGColor).payload;
             return {
                 ...state.present,
                 template: {
                     ...state.present.template,
-                    canvas: state.present.selectedBlocks.includes(
-                        state.present.template.canvas.id,
-                    )
+                    canvas: targets.includes(state.present.template.canvas.id)
                         ? {
                               ...state.present.template.canvas,
-                              bgColor: newColor,
+                              bgColor: color,
                           }
                         : state.present.template.canvas,
                     blocks: state.present.template.blocks.map((block) => {
-                        if (state.present.selectedBlocks.includes(block.id)) {
-                            return { ...block, bgColor: newColor };
+                        if (targets.includes(block.id)) {
+                            return { ...block, bgColor: color };
                         } else {
                             return block;
                         }
@@ -79,20 +77,20 @@ function sessionReducer(state: UpperState, action: Action): Session {
             };
         }
         case TitleActionType.SET_COLOR: {
-            const newColor = (action as ISetBGColor).payload;
+            const { color, targets } = (action as ISetBGColor).payload;
             return {
                 ...state.present,
                 template: {
                     ...state.present.template,
                     blocks: state.present.template.blocks.map((block) => {
-                        if (state.present.selectedBlocks.includes(block.id)) {
+                        if (targets.includes(block.id)) {
                             if (block.type === TypeBlock.text) {
                                 return {
                                     ...block,
-                                    text: { ...block.text, color: newColor },
+                                    text: { ...block.text, color },
                                 };
                             } else if (block.type === TypeBlock.art) {
-                                return { ...block, borderColor: newColor };
+                                return { ...block, borderColor: color };
                             } else {
                                 return block;
                             }
