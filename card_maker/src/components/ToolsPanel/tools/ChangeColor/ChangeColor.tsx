@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import css from "../../ToolsPanel.module.css";
 import GetColor from "../../../../utils/getColor";
 import { useAppDispatch } from "../../../../data/hooks";
@@ -24,8 +24,6 @@ function ChangeColor({
     selectedBlocks,
 }: ChangeColorProps) {
     const { setBGColor, setColor } = useAppDispatch();
-    const [startColor, setStartColor] = useState(currentColor.hexColor);
-    const [startBGColor, setStartBGColor] = useState(currentBGColor.hexColor);
     const saveNewColor = () => {
         const inputColor = document.getElementById("color") as HTMLInputElement;
         const newColor = GetColor(inputColor?.value);
@@ -34,9 +32,21 @@ function ChangeColor({
     };
     const previewNewColor = () => {
         const inputColor = document.getElementById("color") as HTMLInputElement;
-        console.log(inputColor);
+        const newColor = GetColor(inputColor?.value);
+        newColor.a = currentColor.opacity;
         selectedBlocks.forEach((id) => {
-            console.log(document.getElementById(id));
+            const block = document.getElementById(id);
+            if (block?.className.includes("Text")) {
+                (block?.firstChild as HTMLElement).style.setProperty(
+                    "color",
+                    GetRGBA(newColor),
+                );
+            } else if (block?.className.includes("Art")) {
+                (block?.firstChild as HTMLElement).style.setProperty(
+                    "fill",
+                    GetRGBA(newColor),
+                );
+            }
         });
     };
     const saveNewOpacity = () => {
@@ -52,11 +62,9 @@ function ChangeColor({
             "bg-color",
         ) as HTMLInputElement;
         if (currentBGColor.hexColor !== inputBGColor?.value) {
-            setStartBGColor(inputBGColor.value);
             const newColor = GetColor(inputBGColor.value);
             newColor.a = currentBGColor.opacity;
             setBGColor(newColor, selectedBlocks);
-            console.log("saveBG", newColor);
         }
     };
     const previewNewBGColor = () => {
@@ -79,21 +87,29 @@ function ChangeColor({
         setBGColor(color, selectedBlocks);
     };
     useEffect(() => {
-        console.log("mount");
         const inputColor = document.getElementById("color") as HTMLInputElement;
         const inputBGColor = document.getElementById(
             "bg-color",
         ) as HTMLInputElement;
+        const inputOpacity = document.getElementById(
+            "opacity",
+        ) as HTMLInputElement;
+        const inputBGOpacity = document.getElementById(
+            "bg-opacity",
+        ) as HTMLInputElement;
         inputBGColor.value = currentBGColor.hexColor;
-        setStartBGColor(currentBGColor.hexColor);
+        inputColor.value = currentColor.hexColor;
+        inputOpacity.value = "";
+        inputBGOpacity.value = "";
         document.addEventListener("mousedown", () => inputColor?.blur());
         document.addEventListener("mousedown", () => inputBGColor?.blur());
         inputColor.addEventListener("blur", saveNewColor, true);
         inputBGColor.addEventListener("blur", saveNewBGColor, true);
         return () => {
-            console.log("unmount");
-            inputColor?.blur();
-            inputBGColor?.blur();
+            inputColor.blur();
+            inputBGColor.blur();
+            inputOpacity.blur();
+            inputBGOpacity.blur();
             inputColor.removeEventListener("blur", saveNewColor, true);
             inputBGColor.removeEventListener("blur", saveNewBGColor, true);
             document.removeEventListener("mousedown", () => inputColor?.blur());
@@ -102,7 +118,7 @@ function ChangeColor({
                 () => inputBGColor?.blur(),
             );
         };
-    }, [currentBGColor.hexColor, startBGColor]);
+    }, [currentBGColor.hexColor, currentColor.hexColor]);
     return (
         <>
             <div className={css.tool}>
@@ -113,14 +129,11 @@ function ChangeColor({
                         const inputColor = document.getElementById(
                             "color",
                         ) as HTMLInputElement;
-                        setStartColor(inputColor.value);
                         inputColor?.click();
                         inputColor?.focus();
                     }}
                 >
                     <Icon data={Palette} />
-                    <span>{"Curr: " + currentColor.hexColor}</span>
-                    <span>{"Start:" + startColor}</span>
                 </Button>
                 <input
                     id="color"
@@ -136,6 +149,9 @@ function ChangeColor({
                     step="0.1"
                     placeholder={`${currentColor.opacity}%`}
                     onChange={saveNewOpacity}
+                    onFocus={(e) =>
+                        (e.target.value = currentColor.opacity.toString())
+                    }
                 />
             </div>
             <div className={css.tool}>
@@ -146,21 +162,11 @@ function ChangeColor({
                         const inputBGColor = document.getElementById(
                             "bg-color",
                         ) as HTMLInputElement;
-                        if (inputBGColor.value !== currentBGColor.hexColor) {
-                            console.log(
-                                "MOUNT: inputBGColor.value !== startBGColor",
-                            );
-                            inputBGColor.defaultValue = currentBGColor.hexColor;
-                            setStartBGColor(currentBGColor.hexColor);
-                        }
-                        console.log("clickBG");
                         inputBGColor?.click();
                         inputBGColor?.focus();
                     }}
                 >
                     <Icon data={BucketPaint} />
-                    <span>{"CurrBG: " + currentBGColor.hexColor}</span>
-                    <span>{" | StartBG:" + startBGColor}</span>
                 </Button>
                 <input
                     id="bg-color"
@@ -176,6 +182,9 @@ function ChangeColor({
                     step="0.1"
                     placeholder={`${currentBGColor.opacity}%`}
                     onChange={saveNewBGOpacity}
+                    onFocus={(e) =>
+                        (e.target.value = currentBGColor.opacity.toString())
+                    }
                 />
             </div>
         </>
