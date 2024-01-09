@@ -1,5 +1,5 @@
 import { templateSource } from "../max_data";
-import { Image, Session, TypeBlock } from "../type/type";
+import { Session, TypeBlock } from "../type/type";
 import { UpperState } from "../../hocs/undoRedo";
 import {
     ToolsActionTypes,
@@ -237,9 +237,7 @@ function toolsReducer(state: UpperState, action: ToolsAction): Session {
             };
         }
         case ToolsActionTypes.CHANGE_IMAGE: {
-            const newSrc = (action as IChangeImage).payload;
-            const typeSrc = newSrc.includes("http") ? "link" : "base64";
-            const newBgImage: Image = { data: newSrc, type: typeSrc };
+            const newImage = (action as IChangeImage).payload;
             return {
                 ...state.present,
                 template: {
@@ -249,7 +247,7 @@ function toolsReducer(state: UpperState, action: ToolsAction): Session {
                     )
                         ? {
                               ...state.present.template.canvas,
-                              bgImage: newBgImage,
+                              bgImage: newImage,
                           }
                         : state.present.template.canvas,
                     blocks: state.present.template.blocks.map((block) => {
@@ -259,7 +257,7 @@ function toolsReducer(state: UpperState, action: ToolsAction): Session {
                         ) {
                             return {
                                 ...block,
-                                bgImage: newBgImage,
+                                bgImage: newImage,
                             };
                         } else {
                             return block;

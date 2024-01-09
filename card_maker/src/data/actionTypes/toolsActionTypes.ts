@@ -1,4 +1,4 @@
-import { ArtName, Color, Rotate, Scale } from "../type/type";
+import { ArtName, Color, Image, Rotate, Scale } from "../type/type";
 
 const ToolsActionTypes = {
     SET_BG_COLOR: "SET_BG_COLOR",
@@ -49,7 +49,7 @@ interface IChangeArt {
 }
 interface IChangeImage {
     type: typeof ToolsActionTypes.CHANGE_IMAGE;
-    payload: string;
+    payload: Image;
 }
 interface ISetTemplate {
     type: typeof ToolsActionTypes.SET_TEMPLATE;

@@ -1,4 +1,4 @@
-import { ArtName, Color, Rotate, Scale } from "../type/type";
+import { ArtName, Color, Image, Rotate, Scale } from "../type/type";
 import { ToolsAction, ToolsActionTypes } from "../actionTypes/toolsActionTypes";
 
 const setBGColor = (color: Color, targets: Array<string>): ToolsAction => {
@@ -53,10 +53,10 @@ const changeArt = (newArt: ArtName): ToolsAction => {
         payload: newArt,
     };
 };
-const changeImage = (newSrc: string): ToolsAction => {
+const changeImage = (newImage: Image): ToolsAction => {
     return {
         type: ToolsActionTypes.CHANGE_IMAGE,
-        payload: newSrc,
+        payload: newImage,
     };
 };
 const setTemplate = (newTemplateID: string): ToolsAction => {

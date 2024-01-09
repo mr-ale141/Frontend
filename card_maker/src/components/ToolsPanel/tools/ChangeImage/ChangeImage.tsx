@@ -3,27 +3,29 @@ import css from "../../ToolsPanel.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
 import { Button, Icon, TextInput } from "@gravity-ui/uikit";
 import { FolderMagnifier } from "@gravity-ui/icons";
+import getBase64Image from "../../../../utils/getBase64Image";
 function ChangeImage() {
     const { changeImage } = useAppDispatch();
-    function changeImageLinkHandler(
+    async function changeImageLinkHandler(
         event: React.KeyboardEvent<HTMLInputElement>,
     ) {
-        if (event.key === "Enter") {
-            changeImage(event.currentTarget.value);
-            event.currentTarget.value = "";
+        const newSrc = event.currentTarget.value;
+        event.currentTarget.value = "";
+        if (event.key === "Enter" && newSrc) {
+            const image = await getBase64Image(newSrc);
+            if (image) changeImage(image);
         }
     }
     function changeImageFileHandler(
         event: React.ChangeEvent<HTMLInputElement>,
     ) {
         const file = event.target.files ? event.target.files[0] : null;
-        const reader = new FileReader();
-        let base64: string | null;
-        reader.onloadend = function () {
-            base64 = typeof reader.result === "string" ? reader.result : null;
-            if (base64) changeImage(base64);
-        };
-        if (file) reader.readAsDataURL(file);
+        if (file) {
+            const promise = getBase64Image(file);
+            promise.then((img) => {
+                if (img) changeImage(img);
+            });
+        }
     }
     return (
         <div className={css.tool}>

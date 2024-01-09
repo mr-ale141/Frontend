@@ -8,18 +8,6 @@ enum ArtName {
     like,
 }
 
-enum TypeBlock {
-    art,
-    text,
-    image,
-    canvas,
-}
-
-type Image = {
-    type: "link" | "base64" | "Path" | "";
-    data: string;
-};
-
 type Position = {
     left: number;
     top: number;
@@ -28,6 +16,19 @@ type Position = {
 type Size = {
     width: number;
     height: number;
+};
+
+enum TypeBlock {
+    art,
+    text,
+    image,
+    canvas,
+}
+
+type Image = {
+    type: "link" | "base64" | "path" | "";
+    data: string;
+    size: Size;
 };
 
 type Color = {

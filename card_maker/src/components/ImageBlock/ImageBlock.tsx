@@ -6,6 +6,7 @@ type ImageBlockProps = {
 };
 
 function ImageBlock({ block }: ImageBlockProps) {
+    // console.log(block.bgImage);
     return (
         <div
             className={css.image}
