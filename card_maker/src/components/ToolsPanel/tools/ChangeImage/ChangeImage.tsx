@@ -16,15 +16,13 @@ function ChangeImage() {
             if (image) changeImage(image);
         }
     }
-    function changeImageFileHandler(
+    async function changeImageFileHandler(
         event: React.ChangeEvent<HTMLInputElement>,
     ) {
         const file = event.target.files ? event.target.files[0] : null;
         if (file) {
-            const promise = getBase64Image(file);
-            promise.then((img) => {
-                if (img) changeImage(img);
-            });
+            const image = await getBase64Image(file);
+            if (image) changeImage(image);
         }
     }
     return (
