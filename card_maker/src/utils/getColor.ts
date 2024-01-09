@@ -1,4 +1,4 @@
-import { Color } from "../type/type";
+import { Color } from "../data/type/type";
 function GetColor(str: string): Color {
     if (str[0] === "#") {
         let strR = str[1];

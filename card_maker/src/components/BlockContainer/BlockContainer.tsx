@@ -6,7 +6,7 @@ import {
     Size,
     TextBlockType,
     TypeBlock,
-} from "../../type/type";
+} from "../../data/type/type";
 import ArtBlock from "../ArtBlock/ArtBlock";
 import TextBlock from "../TextBlock/TextBlock";
 import ImageBlock from "../ImageBlock/ImageBlock";

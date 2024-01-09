@@ -8,7 +8,7 @@ import {
     Scale,
     TextBlockType,
     TypeBlock,
-} from "../../../../type/type";
+} from "../../../../data/type/type";
 
 type GetCurrentParametersInput = {
     selectedBlocks: Array<string>;

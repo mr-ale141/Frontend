@@ -1,6 +1,6 @@
-import { Template } from "../../../type/type";
+import { Template } from "../../../data/type/type";
 import getTemplate from "../../../utils/getTemplate";
-import { Action } from "../../../data/typeActions";
+import Action from "../../../data/actionTypes/actionTypes";
 
 export default function OpenJSHandler(
     setOpenedTemplate: (arg0: Template) => Action,

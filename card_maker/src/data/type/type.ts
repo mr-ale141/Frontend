@@ -102,15 +102,7 @@ type Template = {
     blocks: Array<ArtBlockType | TextBlockType | ImageBlockType>;
 };
 
-type DeltaHistory = {
-    object: string;
-    field: string;
-    operation: string;
-    newValue: object;
-};
-
 type Session = {
-    editHistory: Array<DeltaHistory>;
     selectedBlocks: Array<string>;
     template: Template;
 };
@@ -121,7 +113,6 @@ export type {
     ArtBlockType,
     Template,
     CanvasType,
-    DeltaHistory,
     Session,
     Color,
     Size,

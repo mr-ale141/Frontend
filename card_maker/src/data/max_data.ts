@@ -6,7 +6,7 @@ import {
     Template,
     TextBlockType,
     TypeBlock,
-} from "../type/type";
+} from "./type/type";
 import stars from "./img/png/stars.png";
 import newImage from "./img/png/newImage.png";
 import santa from "./img/jpg/santaWithNoteBook.jpg";
@@ -387,8 +387,8 @@ export const templateSource: Array<Template> = [
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 700,
-                height: 500,
+                width: 800,
+                height: 600,
             },
             filter: {
                 r: 0x0,
@@ -416,8 +416,8 @@ export const templateSource: Array<Template> = [
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 700,
-                height: 500,
+                width: 800,
+                height: 600,
             },
             filter: {
                 r: 0x10,
@@ -445,8 +445,8 @@ export const templateSource: Array<Template> = [
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 700,
-                height: 500,
+                width: 800,
+                height: 600,
             },
             filter: {
                 r: 0x0,
@@ -474,8 +474,8 @@ export const templateSource: Array<Template> = [
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 700,
-                height: 500,
+                width: 800,
+                height: 600,
             },
             filter: {
                 r: 0x0,
@@ -503,8 +503,8 @@ export const templateSource: Array<Template> = [
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 700,
-                height: 500,
+                width: 800,
+                height: 600,
             },
             filter: {
                 r: 0x0,
@@ -532,8 +532,8 @@ export const templateSource: Array<Template> = [
             id: uuidV4(),
             type: TypeBlock.canvas,
             size: {
-                width: 700,
-                height: 500,
+                width: 800,
+                height: 600,
             },
             filter: {
                 r: 0x0,
@@ -557,7 +557,6 @@ export const templateSource: Array<Template> = [
 ];
 
 const session: Session = {
-    editHistory: [],
     selectedBlocks: [],
     template: templateSource[2],
 };

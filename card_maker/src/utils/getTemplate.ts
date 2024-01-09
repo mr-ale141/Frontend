@@ -1,4 +1,4 @@
-import { Template } from "../type/type";
+import { Template } from "../data/type/type";
 
 function GetTemplate(objectString: string): Template | undefined {
     let object;

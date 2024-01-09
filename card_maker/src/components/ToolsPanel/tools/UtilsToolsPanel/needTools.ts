@@ -1,4 +1,4 @@
-import { TypeBlock } from "../../../../type/type";
+import { TypeBlock } from "../../../../data/type/type";
 
 const needTools = {
     [TypeBlock.canvas]: {

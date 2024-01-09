@@ -1,5 +1,5 @@
 import React from "react";
-import { ArtBlockType } from "../../../type/type";
+import { ArtBlockType } from "../../../data/type/type";
 import getHexColor from "../../../utils/getHexColor";
 import getOpacity from "../../../utils/getOpacity";
 

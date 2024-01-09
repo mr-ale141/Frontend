@@ -1,5 +1,5 @@
 import css from "./ImageBlock.module.css";
-import { ImageBlockType } from "../../type/type";
+import { ImageBlockType } from "../../data/type/type";
 
 type ImageBlockProps = {
     block: ImageBlockType;

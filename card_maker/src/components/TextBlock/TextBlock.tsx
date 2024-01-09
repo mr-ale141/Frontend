@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./TextBlock.module.css";
-import { TextBlockType } from "../../type/type";
+import { TextBlockType } from "../../data/type/type";
 import GetRGBA from "../../utils/getRGBA";
 import { useAppDispatch } from "../../data/hooks";
 import stylesForRotate, { StylesArrayKeyType } from "./stylesForRotate";
@@ -15,6 +15,7 @@ function TextBlock({ block }: TextBlockProps) {
         setSelectedBlock(block.id, e.ctrlKey);
         const target = e.target as HTMLDivElement;
         target.contentEditable = "true";
+        target.focus();
         target.id = "new-text";
     }
     function onBlurHandler(e: React.FocusEvent) {
@@ -49,7 +50,7 @@ function TextBlock({ block }: TextBlockProps) {
                 }}
                 onMouseDown={onMouseDownHandler}
             >
-                <pre>{block.text.value}</pre>
+                <pre style={{ fontFamily: "inherit" }}>{block.text.value}</pre>
             </div>
         </div>
     );

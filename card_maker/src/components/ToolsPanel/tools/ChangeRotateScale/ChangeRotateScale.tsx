@@ -8,7 +8,7 @@ import {
     ArrowRotateRight,
     ArrowUpArrowDown,
 } from "@gravity-ui/icons";
-import { Rotate, Scale } from "../../../../type/type";
+import { Rotate, Scale } from "../../../../data/type/type";
 type ChangeRotateScaleProps = {
     currentRotate: Rotate;
     currentScale: Scale;

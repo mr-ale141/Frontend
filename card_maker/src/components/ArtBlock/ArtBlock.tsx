@@ -1,5 +1,5 @@
 import css from "./ArtBlock.module.css";
-import { ArtBlockType, ArtName } from "../../type/type";
+import { ArtBlockType, ArtName } from "../../data/type/type";
 import Quote from "../art/quote/Quote";
 import Arrow from "../art/arrow/Arrow";
 import Circle from "../art/circle/Circle";

@@ -1,4 +1,4 @@
-import { Color } from "../type/type";
+import { Color } from "../data/type/type";
 function getHexColor(color: Color): string {
     let colorStr = "#";
     colorStr +=

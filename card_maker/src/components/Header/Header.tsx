@@ -1,7 +1,7 @@
 import css from "./Header.module.css";
 import { useAppDispatch, useAppSelector } from "../../data/hooks";
 import React from "react";
-import { TypeBlock } from "../../type/type";
+import { TypeBlock } from "../../data/type/type";
 import { Button, Icon } from "@gravity-ui/uikit";
 import {
     ArrowShapeTurnUpLeft,
@@ -34,6 +34,17 @@ function Header({ isDark, setTheme }: HeaderProps) {
         (state) => state.present.template.canvas.id,
     );
     const { setSelectedBlock } = useAppDispatch();
+    document.addEventListener("keydown", (e) => {
+        if (e.ctrlKey) {
+            if (e.key === "z") {
+                undo();
+            } else if (e.key === "y") {
+                redo();
+            }
+        } else if (e.key === "Delete") {
+            deleteSelectedBlocks();
+        }
+    });
     return (
         <div className={css.header}>
             <div className={css.logo}>

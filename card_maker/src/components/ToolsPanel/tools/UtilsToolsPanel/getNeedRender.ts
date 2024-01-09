@@ -1,5 +1,5 @@
 import needTools from "./needTools";
-import { TypeBlock } from "../../../../type/type";
+import { TypeBlock } from "../../../../data/type/type";
 
 export default function getNeedRender(activeTypes: Array<TypeBlock>) {
     const needRender = {

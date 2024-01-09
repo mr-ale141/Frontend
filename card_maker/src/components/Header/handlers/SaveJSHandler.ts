@@ -1,4 +1,4 @@
-import { Template } from "../../../type/type";
+import { Template } from "../../../data/type/type";
 
 export default function SaveIMGHandler(template: Template) {
     const name = "card.json";

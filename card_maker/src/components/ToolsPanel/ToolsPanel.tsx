@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./ToolsPanel.module.css";
-import { TypeBlock } from "../../type/type";
+import { TypeBlock } from "../../data/type/type";
 import { useAppSelector } from "../../data/hooks";
 import ChangeColor from "./tools/ChangeColor/ChangeColor";
 import ChangeImage from "./tools/ChangeImage/ChangeImage";

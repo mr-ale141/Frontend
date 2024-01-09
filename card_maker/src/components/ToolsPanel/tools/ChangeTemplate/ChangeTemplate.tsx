@@ -33,16 +33,25 @@ function ChangeTemplate() {
                 <div className={css.modal} onClick={onChangeTemplate}>
                     <div className={css.wrapper}>
                         <span>Select template</span>
+                        <p id="alert" className={css.alert}>
+                            The current canvas will be deleted!
+                        </p>
                         {templateSource.map((template) => {
                             return (
                                 <img
                                     onMouseOver={(e) => {
                                         const target = e.target as HTMLElement;
                                         target.classList.add(css.focus);
+                                        const alert =
+                                            document.getElementById("alert");
+                                        alert?.classList.add(css.red);
                                     }}
                                     onMouseLeave={(e) => {
                                         const target = e.target as HTMLElement;
                                         target.classList.remove(css.focus);
+                                        const alert =
+                                            document.getElementById("alert");
+                                        alert?.classList.remove(css.red);
                                     }}
                                     src={template.preview}
                                     alt="preview"

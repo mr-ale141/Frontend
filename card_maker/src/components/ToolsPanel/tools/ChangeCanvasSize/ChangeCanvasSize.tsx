@@ -1,7 +1,7 @@
 import React from "react";
 import css from "../../ToolsPanel.module.css";
 import { useAppDispatch } from "../../../../data/hooks";
-import { Size } from "../../../../type/type";
+import { Size } from "../../../../data/type/type";
 import { Icon } from "@gravity-ui/uikit";
 import { Xmark } from "@gravity-ui/icons";
 

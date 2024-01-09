@@ -1,5 +1,5 @@
 import { SelectOption } from "@gravity-ui/uikit";
-import { ArtName } from "../../../../type/type";
+import { ArtName } from "../../../../data/type/type";
 
 const options: SelectOption<string>[] = [
     {
