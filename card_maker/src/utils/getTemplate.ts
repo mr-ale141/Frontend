@@ -8,7 +8,8 @@ function GetTemplate(objectString: string): Template | undefined {
         console.log(error);
         return undefined;
     }
-    if (object?.id && object?.canvas && object?.blocks) return object;
+    if (object?.id && object?.preview && object?.canvas && object?.blocks)
+        return object;
     else {
         alert("JSON-файл содержит не все нужные поля");
     }

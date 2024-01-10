@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { Position, Size } from "../data/type/type";
 import { useAppDispatch } from "../data/hooks";
-import { dhFlags, dwFlags, dxFlags, dyFlags } from "./dataForMode";
+import { dhFlags, dwFlags, dxFlags, dyFlags } from "./dataForModeResize";
 import getModeDnD from "../utils/getModeDnD";
 
 type RegisterItemFn = (arg0: MouseEvent) => void;

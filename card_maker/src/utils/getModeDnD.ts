@@ -1,4 +1,4 @@
-import { Mode } from "../hooks/dataForMode";
+import { Mode } from "../hooks/dataForModeResize";
 
 export default function getModeDnD(target: HTMLElement) {
     let currentMode: Mode = Mode.drag;

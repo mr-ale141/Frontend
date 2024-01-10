@@ -545,7 +545,7 @@ const templateSource: Array<Template> = [
 
 const session: Session = {
     selectedBlocks: [],
-    template: templateSource[2],
+    template: templateSource[0],
 };
 
 export { textBlockSource, imageBlockSource, artBlockSource, templateSource };

@@ -42,7 +42,8 @@ function Header({ isDark, setTheme }: HeaderProps) {
                 redo();
             }
         } else if (e.key === "Delete") {
-            deleteSelectedBlocks();
+            const inputNewText = document.getElementById("new-text");
+            if (!inputNewText) deleteSelectedBlocks();
         }
     });
     return (

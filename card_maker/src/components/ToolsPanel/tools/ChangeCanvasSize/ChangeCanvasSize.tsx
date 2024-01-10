@@ -11,7 +11,7 @@ type ChangeCanvasSizeProps = {
 const minWidth = 320;
 const maxWidth = 800;
 const minHeight = 220;
-const maxHeight = 500;
+const maxHeight = 600;
 function ChangeCanvasSize({ currentSize }: ChangeCanvasSizeProps) {
     const { changeCanvasSize } = useAppDispatch();
     function changeSizeWidth(event: React.ChangeEvent<HTMLInputElement>) {
