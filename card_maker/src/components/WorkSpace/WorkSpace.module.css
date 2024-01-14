@@ -1,5 +1,5 @@
 .workspace {
-    height: calc(100vh - var(--header-height) - var(--tools-height));
+    min-height: calc(100vh - var(--header-height) - var(--tools-height));
     background-color: var(--g-color-private-cool-grey-50);
     padding: 20px;
     display: flex;

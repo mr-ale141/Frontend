@@ -9,8 +9,8 @@ type ChangeCanvasSizeProps = {
     currentSize: Size;
 };
 const minWidth = 320;
-const maxWidth = 800;
 const minHeight = 220;
+const maxWidth = 800;
 const maxHeight = 600;
 function ChangeCanvasSize({ currentSize }: ChangeCanvasSizeProps) {
     const { changeCanvasSize } = useAppDispatch();
@@ -52,5 +52,7 @@ function ChangeCanvasSize({ currentSize }: ChangeCanvasSizeProps) {
         </div>
     );
 }
+
+export { minWidth, minHeight, maxWidth, maxHeight };
 
 export default ChangeCanvasSize;

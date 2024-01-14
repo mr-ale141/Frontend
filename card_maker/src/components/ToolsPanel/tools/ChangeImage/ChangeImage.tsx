@@ -29,7 +29,7 @@ function ChangeImage() {
         <div className={css.tool}>
             <TextInput
                 className={css.text}
-                label="URL:"
+                label="Image URL:"
                 placeholder="Insert URL and press enter"
                 onKeyDown={(event) => changeImageLinkHandler(event)}
             />

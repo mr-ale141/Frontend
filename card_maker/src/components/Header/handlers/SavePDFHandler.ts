@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
-const pxInMm = 3.8;
+const pxInPt = 1.33333;
 
 export default function SavePDFHandler(canvasId: string) {
     const canvasDiv = document.getElementById(canvasId);
@@ -15,10 +15,10 @@ export default function SavePDFHandler(canvasId: string) {
         let pdf;
         if (width > height) {
             // eslint-disable-next-line new-cap
-            pdf = new jsPDF("l", "px", [width / pxInMm, height / pxInMm]);
+            pdf = new jsPDF("l", "px", [width / pxInPt, height / pxInPt]);
         } else {
             // eslint-disable-next-line new-cap
-            pdf = new jsPDF("p", "px", [height / pxInMm, width / pxInMm]);
+            pdf = new jsPDF("p", "px", [height / pxInPt, width / pxInPt]);
         }
         width = pdf.internal.pageSize.getWidth();
         height = pdf.internal.pageSize.getHeight();

@@ -38,8 +38,8 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
             </div>
             <div className={css.tool}>
                 <Select
-                    label="Size"
-                    width={90}
+                    label="Size:"
+                    width={95}
                     className={css.select}
                     defaultValue={[currentSize.toString()]}
                     onUpdate={(newValue) =>
@@ -50,8 +50,8 @@ function ChangeStyle({ currentSize, currentFontFamily }: ChangeSizeProps) {
             </div>
             <div className={css.tool}>
                 <Select
-                    label="Family"
-                    width={120}
+                    label="Family:"
+                    width={125}
                     className={css.select}
                     defaultValue={[currentFontFamily]}
                     onUpdate={(newValue) => changeFontFamilyText(newValue[0])}

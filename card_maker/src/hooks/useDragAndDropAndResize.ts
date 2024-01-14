@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { Position, Size } from "../data/type/type";
 import { useAppDispatch } from "../data/hooks";
-import { dhFlags, dwFlags, dxFlags, dyFlags } from "./dataForModeResize";
+import { dhFlags, dwFlags, dxFlags, dyFlags, Mode } from "./dataForModeResize";
 import getModeDnD from "../utils/getModeDnD";
 
 type RegisterItemFn = (arg0: MouseEvent) => void;
@@ -24,9 +24,17 @@ const useDragAndDropAndResize: UseResizeFn = (
         );
     }, []);
     const registerItem: RegisterItemFn = (mouseDownEvent: MouseEvent) => {
-        const currentMode = getModeDnD(mouseDownEvent.target as HTMLElement);
+        const targetMove = mouseDownEvent.target as HTMLElement;
+        const currentMode = getModeDnD(targetMove);
         let offsetPosition: Position;
         let offsetSize: Size;
+        let ratio: number;
+        if (currentMode === Mode.bottomRight) {
+            const block = targetMove.parentNode as HTMLElement;
+            const height = block.clientHeight;
+            const width = block.clientWidth;
+            ratio = width / height;
+        }
         const onMouseMove = (dragEvent: MouseEvent) => {
             const offsetMoveX = dragEvent.clientX - mouseDownEvent.clientX;
             const offsetMoveY = dragEvent.clientY - mouseDownEvent.clientY;
@@ -34,10 +42,21 @@ const useDragAndDropAndResize: UseResizeFn = (
                 top: dyFlags[currentMode] * offsetMoveY,
                 left: dxFlags[currentMode] * offsetMoveX,
             };
-            offsetSize = {
-                width: dwFlags[currentMode] * offsetMoveX,
-                height: dhFlags[currentMode] * offsetMoveY,
-            };
+            if (
+                dragEvent.ctrlKey &&
+                currentMode === Mode.bottomRight &&
+                offsetSize?.width
+            ) {
+                offsetSize = {
+                    width: dwFlags[currentMode] * offsetMoveX,
+                    height: offsetSize.width / ratio,
+                };
+            } else {
+                offsetSize = {
+                    width: dwFlags[currentMode] * offsetMoveX,
+                    height: dhFlags[currentMode] * offsetMoveY,
+                };
+            }
             setOffsetPosition(offsetPosition);
             setOffsetSize(offsetSize);
         };

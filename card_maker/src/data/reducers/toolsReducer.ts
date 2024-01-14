@@ -1,6 +1,7 @@
 import { templateSource } from "../max_data";
 import { Session, TypeBlock } from "../type/type";
 import { UpperState } from "../../hocs/undoRedo";
+// import { minWidth, minHeight, maxWidth, maxHeight } from "../../components/ToolsPanel/tools/ChangeCanvasSize/ChangeCanvasSize";
 import {
     ToolsActionTypes,
     IChangeArt,
@@ -248,6 +249,7 @@ function toolsReducer(state: UpperState, action: ToolsAction): Session {
                         ? {
                               ...state.present.template.canvas,
                               bgImage: newImage,
+                              size: newImage.size,
                           }
                         : state.present.template.canvas,
                     blocks: state.present.template.blocks.map((block) => {
@@ -258,6 +260,7 @@ function toolsReducer(state: UpperState, action: ToolsAction): Session {
                             return {
                                 ...block,
                                 bgImage: newImage,
+                                size: newImage.size,
                             };
                         } else {
                             return block;

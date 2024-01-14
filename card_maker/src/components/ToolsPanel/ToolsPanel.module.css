@@ -37,12 +37,12 @@
 }
 
 .tool input[type="color"] {
-    position: fixed;
+    position: absolute;
     z-index: -1;
 }
 
 .tool input[type="file"] {
-    position: fixed;
+    position: absolute;
     z-index: -1;
 }
 

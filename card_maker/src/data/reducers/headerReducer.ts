@@ -1,4 +1,9 @@
-import { artBlockSource, imageBlockSource, textBlockSource } from "../max_data";
+import {
+    artBlockSource,
+    imageBlockSource,
+    textBlockSource,
+    templateSource,
+} from "../max_data";
 import { v4 as uuidV4 } from "uuid";
 import {
     ArtBlockType,
@@ -43,6 +48,13 @@ function headerReducer(state: UpperState, action: HeaderAction): Session {
                 template: {
                     ...state.present.template,
                     blocks: newBlocks,
+                    canvas: state.present.selectedBlocks.includes(
+                        state.present.template.canvas.id,
+                    )
+                        ? {
+                              ...templateSource[0].canvas,
+                          }
+                        : state.present.template.canvas,
                 },
             };
         }
