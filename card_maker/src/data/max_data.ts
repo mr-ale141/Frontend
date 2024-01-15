@@ -32,15 +32,15 @@ const textBlockSource: Array<TextBlockType> = [
         type: TypeBlock.text,
         text: {
             value: "New text",
-            fontSize: 14,
+            fontSize: 26,
             fontFamily: "Arial",
             color: {
-                r: 0xff,
-                g: 0x00,
+                r: 0xaa,
+                g: 0x99,
                 b: 0x00,
                 a: 1,
             },
-            fontWeight: 400,
+            fontWeight: 800,
             fontStyle: "normal",
             textDecoration: "none",
         },
@@ -277,8 +277,8 @@ const artBlockSource: Array<ArtBlockType> = [
     {
         id: uuidV4(),
         size: {
-            width: 50,
-            height: 50,
+            width: 100,
+            height: 100,
         },
         rotate: 0,
         scale: {
@@ -292,8 +292,8 @@ const artBlockSource: Array<ArtBlockType> = [
         type: TypeBlock.art,
         borderColor: {
             r: 0xaa,
-            g: 0xaa,
-            b: 0xaa,
+            g: 0x99,
+            b: 0x00,
             a: 1,
         },
         artName: ArtName.like,
